@@ -1,3 +1,4 @@
+using namespace std;
 constexpr int STK_MAX = 1000;
 
 class Stack
