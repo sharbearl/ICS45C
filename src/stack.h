@@ -1,3 +1,5 @@
+#include <iostream>
+#include <string>
 using namespace std;
 constexpr int STK_MAX = 1000;
 
@@ -18,6 +20,7 @@ public:
             buf[_top] = c;
             _top++;
         }
+    }
 
     char pop()
     {
@@ -55,7 +58,7 @@ public:
     {
         for (int i = 0; i < STK_MAX; i++)
         {
-            if buf[i] != '\0'
+            if (buf[i] != '\0')
             {
                 return false;
             }
