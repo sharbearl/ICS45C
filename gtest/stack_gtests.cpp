@@ -67,13 +67,13 @@ TEST(Stack, PushAndPop) {
     testing::internal::CaptureStdout();
     pop_all(st);
     std::string output = testing::internal::GetCapturedStdout();
-    
+    EXPECT_STREQ("olleH\n", output.c_str());
 }
 
 TEST(Stack, Full) {
     Stack st;
     std::string s = "The quick brown fox jumped over the lazy dog.";
-    for (int i = 0; i < 40; i++)
+    for (int i = 0; i < 30; i++)
     {
         push_all(st, s);
     }
@@ -83,12 +83,13 @@ TEST(Stack, Full) {
 TEST(Stack, PushFull) {
     Stack st;
     std::string s = "The quick brown fox jumped over the lazy dog.";
-    std::string result;
+    std::string result = " kciuq ehT";
     for (int i = 0; i < 22; i++)
     {
-        result += s;
+        result += ".god yzal eht revo depmuj xof nworb kciuq ehT";
     }
-    result += "The quick ";
+    result += "\n";
+
     for (int i = 0; i < 40; i++)
     {
         push_all(st, s);
@@ -96,7 +97,7 @@ TEST(Stack, PushFull) {
     testing::internal::CaptureStdout();
     pop_all(st);
     std::string output = testing::internal::GetCapturedStdout();
-    
+    EXPECT_EQ(result, output.c_str());
 }
 
 } // anonymous namespace
