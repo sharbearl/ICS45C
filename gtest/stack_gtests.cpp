@@ -57,6 +57,46 @@ TEST(Stack, PopAll) {
 }
 
 // ADD YOUR TESTS HERE:
+TEST(Stack, PushAndPop) {
+    Stack st;
+    std::string a = "Hello";
+    std::string b = "Welcome";
+    push_all(st, b);
+    pop_all(st);
+    push_all(st, a);
+    testing::internal::CaptureStdout();
+    pop_all(st);
+    std::string output = testing::internal::GetCapturedStdout();
+    
+}
 
+TEST(Stack, Full) {
+    Stack st;
+    std::string s = "The quick brown fox jumped over the lazy dog.";
+    for (int i = 0; i < 40; i++)
+    {
+        push_all(st, s);
+    }
+    EXPECT_TRUE(st.isFull());
+}
+
+TEST(Stack, PushFull) {
+    Stack st;
+    std::string s = "The quick brown fox jumped over the lazy dog.";
+    std::string result;
+    for (int i = 0; i < 22; i++)
+    {
+        result += s;
+    }
+    result += "The quick ";
+    for (int i = 0; i < 40; i++)
+    {
+        push_all(st, s);
+    }
+    testing::internal::CaptureStdout();
+    pop_all(st);
+    std::string output = testing::internal::GetCapturedStdout();
+    
+}
 
 } // anonymous namespace

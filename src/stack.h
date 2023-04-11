@@ -20,6 +20,7 @@ public:
             buf[_top] = c;
             _top++;
         }
+        cout << buf[_top];
     }
 
     char pop()
@@ -29,28 +30,23 @@ public:
         {
             return '@';
         }
-        if (_top == STK_MAX)
-        {
-            buf[_top] = {};
-            _top--;
-        }
-        buf[_top] = {};
         if (_top != 0)
         {
             _top--;
         }
+        buf[_top] = {};
         return last;
     }
 
     char top()
     {
-        if (_top == STK_MAX)
+        if (_top == 0)
         {
-            return buf[_top - 1];
+            return buf[_top];
         }
         else
         {
-        return buf[_top];
+        return buf[_top - 1];
         }
     }
 
