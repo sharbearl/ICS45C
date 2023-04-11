@@ -21,7 +21,7 @@ void count(string s, int counts[])
 
 void print_count(int counts[], int len)
 {
-    for (int i = 0; i < 65; i++)
+    for (int i = 0; i < len; i++)
     {
         cout << index_to_char(i) << " " << counts[i] << endl;
     }
