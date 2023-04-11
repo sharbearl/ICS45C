@@ -6,8 +6,8 @@ int char_to_index(char ch)
 }
 
 char index_to_char(int i)
-{
-    return char(i);
+{ 
+    return char(i + 65);
 }
 
 void count(string s, int counts[])
