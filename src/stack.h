@@ -26,9 +26,9 @@ public:
     char pop()
     {
         char last = top();
-        if (_top == 0 && isEmpty())
+        if (last == '@')
         {
-            return '@';
+            return last;
         }
         if (_top != 0)
         {
@@ -42,7 +42,14 @@ public:
     {
         if (_top == 0)
         {
-            return buf[_top];
+            if (isEmpty())
+            {
+                return '@';
+            }
+            else
+            {
+                return buf[_top];
+            }
         }
         else
         {
