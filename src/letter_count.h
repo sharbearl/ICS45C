@@ -1,3 +1,5 @@
+using namespace std;
+
 int char_to_index(char ch)
 {
     return int(toupper(ch)) - 65;
