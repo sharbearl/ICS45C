@@ -38,7 +38,7 @@ TEST(Count, UpperLower) {
 }
 
 TEST(Count, IgnoreOthers) {
-    std::string s = "a!";
+    std::string s = "a! .)";
     int char_counts[26] = {0};
     count(s, char_counts);
     for (int i = 1; i < 26; ++i) {

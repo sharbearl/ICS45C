@@ -1,3 +1,4 @@
+#include <cctype>
 using namespace std;
 
 int char_to_index(char ch)
@@ -15,7 +16,10 @@ void count(string s, int counts[])
     for (int i = 0; i < s.length(); i++)
     {
         char cur = s[i];
-        counts[char_to_index(cur)]++;
+        if (isalpha(cur))
+        {
+            counts[char_to_index(cur)]++;
+        }
     }
 }
 
