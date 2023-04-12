@@ -26,6 +26,46 @@ TEST(Count, SimpleString) {
 }
 
 // ADD YOUR TESTS HERE:
+TEST(Count, UpperLower) {
+    std::string s = "AaZz";
+    int char_counts[26] = {0};
+    count(s, char_counts);
+    EXPECT_EQ(2, char_counts[0]);
+    EXPECT_EQ(2, char_counts[25]);
+    for (int i = 1; i < 24; ++i) {
+        EXPECT_EQ(0, char_counts[i]);
+    }
+}
 
+TEST(Count, IgnoreOthers) {
+    std::string s = "a!";
+    int char_counts[26] = {0};
+    count(s, char_counts);
+    for (int i = 1; i < 26; ++i) {
+        EXPECT_EQ(0, char_counts[i]);
+    }
+}
+
+
+TEST(Count, MultipleLines) {
+    std::string a = "AbCdE";
+    std::string b = "aBcDe";
+    int char_counts[26] = {0};
+    count(a, char_counts);
+    count(b, char_counts);
+    for (int i = 0; i < 5; ++i) {
+        EXPECT_EQ(2, char_counts[i]);
+    }
+}
+
+TEST(Count, Output) {
+    std::string a = "AbCdE";
+    int char_counts[26] = {0};
+    count(a, char_counts);
+    testing::internal::CaptureStdout();
+    print_count(char_counts, 26);
+    std::string output = testing::internal::GetCapturedStdout();
+    EXPECT_STREQ("A 1\nB 1\nC 1\nD 1\nE 1\nF 0\nG 0\nH 0\nI 0\nJ 0\nK 0\nL 0\nM 0\nN 0\nO 0\nP 0\nQ 0\nR 0\nS 0\nT 0\nU 0\nV 0\nW 0\nX 0\nY 0\nZ 0\n", output.c_str());
+}
 
 } // anonymous namespace
