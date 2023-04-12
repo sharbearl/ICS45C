@@ -19,7 +19,7 @@ void count(string s, int counts[])
     }
 }
 
-void print_count(int counts[], int len)
+void print_counts(int counts[], int len)
 {
     for (int i = 0; i < len; i++)
     {

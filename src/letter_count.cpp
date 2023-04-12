@@ -11,6 +11,6 @@ int main()
     {
         count(line, counts);
     }
-    print_count(counts, N_CHARS);
+    print_counts(counts, N_CHARS);
     return 0;
 }
