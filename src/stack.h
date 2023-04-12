@@ -20,7 +20,6 @@ public:
             buf[_top] = c;
             _top++;
         }
-        cout << buf[_top];
     }
 
     char pop()
