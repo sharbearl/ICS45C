@@ -70,7 +70,13 @@ Coins coins_required_for_cents(int amount_in_cents)
 
 void print_cents(int cents, std::ostream& out)
 {
-    out << "$" << cents / 100.00 << endl;
+    int remain = cents % 100;
+    out << "$" << cents / 100 << "." << remain;
+    if (remain == 0)
+    {
+        out << 0;
+    }
+    out << endl;
 }
 
 Coins ask_for_coins(std::istream& in, std::ostream& out)
@@ -87,4 +93,47 @@ Coins ask_for_coins(std::istream& in, std::ostream& out)
     in >> p; 
 
     return Coins(q, d, n, p);
+}
+
+void coins_menu(std::istream& in, std::ostream& out)
+{
+    string cmd;
+    Coins myCoins(0,0,0,0);
+    out << "Coins Menu" << endl;
+
+    while (true)
+    {
+        out << "1. Deposit Change\n2. Extract Change\n3. Print Balance\n4. Exit\n\nUser Input: ";
+        in >> cmd;
+        out << endl;
+        
+        if (cmd == "1")
+        {
+            Coins deposit = ask_for_coins(in, out);
+            myCoins.deposit_coins(deposit);
+            out << endl << "Thank you!" << endl << endl;
+    }
+        else if (cmd == "2")
+        {
+            Coins extract = myCoins.extract_exact_change(ask_for_coins(in, out));
+            out << endl << "Thank you!" << endl << endl;
+            if (extract == Coins(0,0,0,0))
+            {
+            out << "ERROR: Insufficient Funds" << endl << endl;
+            }
+        }
+        else if (cmd == "3")
+        {
+            print_cents(myCoins.total_value_in_cents(), out);
+            out << endl<< "Thank you!" << endl << endl;
+        }
+        else if (cmd == "4")
+        {
+            break;
+        }
+        else
+        {
+            out << "ERROR: Invalid Command" << endl << endl;
+        }
+    }
 }
