@@ -11,5 +11,5 @@ int main()
     const auto word_counts = count_words(document, stopwords);
 
     ofstream output("frequency.txt");
-    output_word_counts(word_counts, output)
+    output_word_counts(word_counts, output);
 }
