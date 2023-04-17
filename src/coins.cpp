@@ -6,6 +6,14 @@ Coins::Coins(int q, int d, int n, int p)
     :quarters(q), dimes(d), nickels(n), pennies(p)
 {}
 
+void Coins::deposit_coins(Coins& coins)
+{
+    quarters += coins.quarters;
+    dimes += coins.dimes;
+    nickels += coins.nickels;
+    pennies += coins.pennies;
+}
+
 bool Coins::has_exact_change_for_coins(Coins const& coins) const
 {
     return coins.quarters <= quarters && coins.dimes <= dimes && coins.nickels <= nickels && coins.pennies <= pennies;
