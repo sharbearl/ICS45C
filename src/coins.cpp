@@ -71,12 +71,26 @@ Coins coins_required_for_cents(int amount_in_cents)
 void print_cents(int cents, std::ostream& out)
 {
     int remain = cents % 100;
-    out << "$" << cents / 100 << "." << remain;
-    if (remain == 0)
+    out << "$" << cents / 100 << ".";
+    if (remain % 10 == 0)
     {
-        out << 0;
+        if (remain / 10 == 0)
+        {
+            out << 0 << 0;
+        }
+        else
+        {
+            out << remain;
+        }
     }
-    out << endl;
+    else if (remain % 10 != 0)
+    {
+        if (remain / 10 == 0)
+        {
+            out << 0;
+        }
+        out << remain;
+    }
 }
 
 Coins ask_for_coins(std::istream& in, std::ostream& out)

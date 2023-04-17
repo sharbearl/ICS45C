@@ -15,7 +15,6 @@ int main()
     cout << "Coins required for chips: " << chips << endl;
     cout << "Pocket after paying for chips: " << pocket << endl << endl;
 
-    cout << coins_required_for_cents(405);
     Coins transfer = piggyBank.extract_exact_change(coins_required_for_cents(405));
     pocket.deposit_coins(transfer);
     cout << "Transferring money to pocket" << endl;
@@ -25,6 +24,7 @@ int main()
 
     Coins sofa(10,10,10,10);
     piggyBank.deposit_coins(sofa);
+    sofa.extract_exact_change(sofa);
     cout << "Transferring sofa change to piggy bank" << endl;
     cout << "Sofa: " << sofa << endl;
     cout << "Piggy bank: " << piggyBank << endl << endl;

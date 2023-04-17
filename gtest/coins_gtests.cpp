@@ -57,3 +57,39 @@ TEST(Coins, PrintCents) {
   EXPECT_STREQ(print_cents_str(100).c_str(), "$1.00");
   EXPECT_STREQ(print_cents_str(205).c_str(), "$2.05");
 }
+
+TEST(Coins, coinsRequired)
+{
+    Coins required = coins_required_for_cents(41);
+    Coins expected(1,1,1,1);
+    EXPECT_EQ(required, expected);
+}
+
+TEST(Coins, totalValue)
+{
+    Coins pocket(1,1,1,1);
+    int value = 41;
+    EXPECT_EQ(pocket.total_value_in_cents(), value);
+}
+
+TEST(Coins, exactChange)
+{
+    Coins pocket(2,2,2,2);
+    Coins cheap(1,1,1,1);
+    Coins expensive(1,1,1,3);
+
+    EXPECT_TRUE(pocket.has_exact_change_for_coins(cheap));
+    EXPECT_FALSE(pocket.has_exact_change_for_coins(expensive)); 
+}
+
+TEST(Coins, extract)
+{
+    Coins pocket(1,2,3,4);
+    
+    EXPECT_EQ(pocket.extract_exact_change(Coins(1,1,1,1)), Coins(1,1,1,1));
+    EXPECT_EQ(pocket, Coins(0,1,2,3));
+
+    EXPECT_EQ(pocket.extract_exact_change(Coins(5,5,5,5)), Coins(0,0,0,0));
+    EXPECT_EQ(pocket, Coins(0,1,2,3));
+ 
+}
