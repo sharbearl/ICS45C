@@ -12,6 +12,8 @@ void Coins::deposit_coins(Coins& coins)
     dimes += coins.dimes;
     nickels += coins.nickels;
     pennies += coins.pennies;
+
+    coins.extract_exact_change(coins);
 }
 
 bool Coins::has_exact_change_for_coins(Coins const& coins) const
@@ -113,7 +115,7 @@ void coins_menu(std::istream& in, std::ostream& out)
 {
     string cmd;
     Coins myCoins(0,0,0,0);
-    out << "Coins Menu" << endl;
+    out << "Coins Menu" << endl << endl;
 
     while (true)
     {
@@ -139,7 +141,7 @@ void coins_menu(std::istream& in, std::ostream& out)
         else if (cmd == "3")
         {
             print_cents(myCoins.total_value_in_cents(), out);
-            out << endl<< "Thank you!" << endl << endl;
+            out << endl << endl <<"Thank you!" << endl << endl;
         }
         else if (cmd == "4")
         {

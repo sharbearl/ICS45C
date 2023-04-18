@@ -16,9 +16,9 @@ int main()
     cout << "Pocket after paying for chips: " << pocket << endl << endl;
 
     Coins transfer = piggyBank.extract_exact_change(coins_required_for_cents(405));
-    pocket.deposit_coins(transfer);
     cout << "Transferring money to pocket" << endl;
     cout << "Coins for transfer: " << transfer << endl;
+    pocket.deposit_coins(transfer);
     cout << "Pocket: " << pocket << endl;
     cout << "Piggy bank: " << piggyBank << endl << endl;
 
@@ -31,4 +31,5 @@ int main()
 
     cout << "Piggy bank total: ";
     print_cents(piggyBank.total_value_in_cents(), cout);
+    cout << endl;
 }
