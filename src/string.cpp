@@ -1,10 +1,11 @@
+#include <iostream>
 #include "string.hpp";
 
 String::String(const char *s)
 {
     strncpy(buf, s, MAXLEN - 1);
 }
-/*
+
 char &String::operator[](int index)
 {
     return buf[index];
@@ -12,10 +13,9 @@ char &String::operator[](int index)
 
 String::String(const String &s)
 {
-    
-    strncpy(buf, s, MAXLEN - 1);
+    strncpy(buf, s.buf, MAXLEN - 1);
 }
-*/
+
 int String::size()
 {
     return strlen(buf);
@@ -30,12 +30,17 @@ int String::strlen(const char *s)
     }
     return len;
 }
-/*
+
+void String::print(std::ostream &out) const
+{
+    out << buf;
+}
+
 String::~String()
 {
-    std::cout << "String <buf> is destructing" << endl;
+    std::cout << "String " << buf << " is destructing" << std::endl;
 }
-*/
+
 char *String::strcpy(char *dest, const char *src)
 {
     int i;
@@ -57,3 +62,11 @@ char *String::strncpy(char *dest, const char *src, int n)
     dest[i] = '\0';
     return dest;
 }
+
+std::ostream &operator<<(std::ostream &out, const String &s)
+{
+    s.print(out);
+    return out;
+}
+
+
