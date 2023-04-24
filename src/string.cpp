@@ -63,6 +63,70 @@ char *String::strncpy(char *dest, const char *src, int n)
     return dest;
 }
 
+int String::strcmp(const char *left, const char *right)
+{
+    int i;
+    for(i = 0; left[i] != '\0' && right[i] != '\0'; ++i)
+    {
+        if (left[i] > right[i])
+        {
+            return 1;
+        }
+        else if (left[i] < right[i])
+        {
+            return -1;
+        }
+        else
+        {
+            continue;
+        }
+    }
+    if (strlen(left) > strlen(right))
+    {
+        return 1;
+    }
+    else if (strlen(left) < strlen(right))
+    {
+        return -1;
+    }
+    else if (left[i] == right[i])
+    {
+        return 0;
+    }
+}
+
+int String::strncmp(const char *left, const char *right, int n)
+{
+    int i;
+    for(i = 0; left[i] != '\0' && right[i] != '\0' && i < n - 1; ++i)
+    {
+        if (left[i] > right[i])
+        {
+            return 1;
+        }
+        else if (left[i] < right[i])
+        {
+            return -1;
+        }
+        else
+        {
+            continue;
+        }
+    }
+    if (left[i] == right[i])
+    {
+        return 0;
+    }
+    else if (strlen(left) < strlen(right))
+    {
+        return -1;
+    }
+    else if (strlen(left) > strlen(right))
+    {
+        return 1;
+    } 
+}
+
 std::ostream &operator<<(std::ostream &out, const String &s)
 {
     s.print(out);
