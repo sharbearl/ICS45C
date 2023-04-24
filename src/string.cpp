@@ -147,6 +147,30 @@ char *String::strncpy(char *dest, const char *src, int n)
     return dest;
 }
 
+char *String::strcat(char *dest, const char *src)
+{
+    int i;
+    int len = strlen(dest);
+    for(i = 0; src[i] != '\0' && i < MAXLEN - 1; ++i)
+    {
+        dest[i + len] = src[i];
+    }
+    dest[i + len] = '\0'; 
+    return dest;
+}
+
+char *String::strncat(char *dest, const char *src, int n)
+{
+    int i;
+    int len = strlen(dest);
+    for(i = 0; src[i] != '\0' && i < MAXLEN - 1 && i < n; ++i)
+    {
+        dest[i + len] = src[i];
+    }
+    dest[i + len] = '\0'; 
+    return dest;
+}
+
 int String::strcmp(const char *left, const char *right)
 {
     int i;
