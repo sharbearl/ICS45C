@@ -24,12 +24,12 @@ public:
     int indexOf(const String &s);
     */
     bool operator==(const String &s) const;
-    /*bool operator!=(const String &s) const;
+    bool operator!=(const String &s) const;
     bool operator>(const String &s) const;
     bool operator<(const String &s) const;
     bool operator<=(const String &s) const;
     bool operator>=(const String &s) const;
-
+    /*
     String operator+(const String &s);
 
     String &operator+=(const String &s);

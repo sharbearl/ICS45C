@@ -40,6 +40,71 @@ bool String::operator==(const String &s) const
     }
 }
 
+bool String::operator!=(const String &s) const
+{
+    int result = strncmp(buf, s.buf, MAXLEN - 1);
+    if (result != 0)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+bool String::operator>(const String &s) const
+{
+    int result = strncmp(buf, s.buf, MAXLEN - 1);
+    if (result == 1)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    } 
+}
+
+bool String::operator<(const String &s) const
+{
+    int result = strncmp(buf, s.buf, MAXLEN - 1);
+    if (result == -1)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    } 
+}
+
+bool String::operator<=(const String &s) const
+{
+    int result = strncmp(buf, s.buf, MAXLEN - 1);
+    if (result <= 0)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    } 
+}
+
+bool String::operator>=(const String &s) const
+{
+    int result = strncmp(buf, s.buf, MAXLEN - 1);
+    if (result >= 0)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    } 
+}
+
 void String::print(std::ostream &out) const
 {
     out << buf;
