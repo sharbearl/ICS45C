@@ -35,7 +35,7 @@ int main()
     cout << firstString << endl;
     cout << (firstString < secondString) << endl;
     cout << (firstString <= thirdString) << endl;
-    cout << (firstString > forthString) << endl;
+    cout << (firstString > fourthString) << endl;
     cout << (firstString >= fifthString) << endl;
 
     return 0;
