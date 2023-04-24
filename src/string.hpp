@@ -11,7 +11,7 @@ public:
 
     String(const String &s);
     
-    String &operator =(const String &s);
+    String &operator=(const String &s);
     
     char &operator[](int index);
     
@@ -22,9 +22,9 @@ public:
     int indexOf(char c);
 
     int indexOf(const String &s);
-
+    */
     bool operator==(const String &s) const;
-    bool operator!=(const String &s) const;
+    /*bool operator!=(const String &s) const;
     bool operator>(const String &s) const;
     bool operator<(const String &s) const;
     bool operator<=(const String &s) const;
@@ -37,9 +37,9 @@ public:
     void print(std::ostream &out) const;
     /*
     void read(std::istream &in);
-    */
+    
     ~String();
-    /*
+    
     bool in_bounds(int i)
     {
         return i >= 0 && i < strlen(buf);

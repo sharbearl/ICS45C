@@ -6,6 +6,12 @@ String::String(const char *s)
     strncpy(buf, s, MAXLEN - 1);
 }
 
+String &String::operator=(const String &s)
+{
+    strncpy(buf, s.buf, MAXLEN - 1);
+    return *this;
+}
+
 char &String::operator[](int index)
 {
     return buf[index];
@@ -21,6 +27,24 @@ int String::size()
     return strlen(buf);
 }
 
+bool String::operator==(const String &s) const
+{
+    int result = strncmp(buf, s.buf, MAXLEN - 1);
+    if (result == 0)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+void String::print(std::ostream &out) const
+{
+    out << buf;
+}
+
 int String::strlen(const char *s)
 {
     int len = 0;
@@ -30,17 +54,12 @@ int String::strlen(const char *s)
     }
     return len;
 }
-
-void String::print(std::ostream &out) const
-{
-    out << buf;
-}
-
+/*
 String::~String()
 {
     std::cout << "String " << buf << " is destructing" << std::endl;
 }
-
+*/
 char *String::strcpy(char *dest, const char *src)
 {
     int i;
