@@ -217,26 +217,32 @@ char *String::strncpy(char *dest, const char *src, int n)
 char *String::strcat(char *dest, const char *src)
 {
     int i;
-    int len = strlen(dest);i
-    char temp[len + strlen(src)] = dest; 
+    int len = strlen(dest);
+    char temp[strlen(src) + len + 1];
+    strcpy(temp, dest);
+
     for(i = 0; src[i] != '\0'; ++i)
     {
-        dest[i + len] = src[i];
+        temp[i + len] = src[i];
     }
-    dest[i + len] = '\0'; 
-    return dest;
+    temp[i + len] = '\0';
+    strcpy(dest, temp);
+    return dest; 
 }
 
 char *String::strncat(char *dest, const char *src, int n)
 {
     int i;
     int len = strlen(dest);
-    char temp[len + strlen(src)] = dest;
-    for(i = 0; && src[i] != '\0' && i < n; ++i)
+    char temp[strlen(src) + len + 1];
+    strcpy(temp, dest);
+
+    for(i = 0; src[i] != '\0' && i < n; ++i)
     {
-        dest[i + len] = src[i];
+        temp[i + len] = src[i];
     }
-    dest[i + len] = '\0'; 
+    temp[i + len] = '\0'; 
+    strcpy(dest, temp);
     return dest;
 }
 
@@ -333,6 +339,11 @@ const char *String::strchr(const char *str, char c)
 
 const char *String::strstr(const char *haystack, const char *needle)
 {
+    if (strlen(haystack) < strlen(needle))
+    {
+        return nullptr;
+    }
+
     for(int i = 0; haystack[i] != '\0' && i < strlen(haystack) - strlen(needle) + 1; ++i)
     {
         const char *p = &haystack[i];
