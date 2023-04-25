@@ -70,3 +70,12 @@ TEST(StringClass, Reverse) {
     String t("happy");
     EXPECT_EQ(t.reverse(), String("yppah"));
 }
+
+TEST(StringClass, IndexOfChar) {
+    String s("abcd");
+    EXPECT_EQ(s.indexOf('a'), 0);
+    EXPECT_EQ(s.indexOf('d'), 3);
+
+    String t("abcdcba");
+    EXPECT_EQ(s.indexOf('b'), 1);
+}

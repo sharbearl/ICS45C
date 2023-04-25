@@ -18,11 +18,11 @@ public:
     int size();
     
     String reverse();
-    /*
+    
     int indexOf(char c);
 
-    int indexOf(const String &s);
-    */
+    //int indexOf(const String &s);
+    
     bool operator==(const String &s) const;
     bool operator!=(const String &s) const;
     bool operator>(const String &s) const;

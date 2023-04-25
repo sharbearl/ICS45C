@@ -14,6 +14,12 @@ String &String::operator=(const String &s)
 
 char &String::operator[](int index)
 {
+    if (!in_bounds(index))
+    {
+        std::cout << "ERROR: Index Out Of Bounds";
+        return buf[0];
+    }
+    
     return buf[index];
 }
 
@@ -33,6 +39,11 @@ String String::reverse()
     reverse_cpy(c, buf);
     return String(c);
 
+}
+
+int String::indexOf(char c)
+{
+    return strchr(buf, c) - buf; 
 }
 
 bool String::operator==(const String &s) const
