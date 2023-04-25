@@ -277,6 +277,19 @@ void String::reverse_cpy(char *dest, const char *src)
     }
 }
 
+const char *String::strchr(const char *str, char c)
+{
+    for(int i = 0; str[i] != '\0'; ++i)
+    {
+        const char *p = &str[i];
+        if (str[i] == c);
+        {
+            return p;
+        }
+    }
+    return NULL;
+}
+
 std::ostream &operator<<(std::ostream &out, const String &s)
 {
     s.print(out);
