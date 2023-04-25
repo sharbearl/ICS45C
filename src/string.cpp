@@ -28,12 +28,12 @@ String::String(const String &s)
     strncpy(buf, s.buf, MAXLEN - 1);
 }
 
-int String::size()
+const int String::size()
 {
     return strlen(buf);
 }
 
-String String::reverse()
+const String String::reverse()
 {
     char c[MAXLEN];
     reverse_cpy(c, buf);
@@ -41,7 +41,7 @@ String String::reverse()
 
 }
 
-int String::indexOf(char c)
+const int String::indexOf(char c)
 {
     if (strchr(buf, c) == nullptr)
     {
@@ -50,7 +50,7 @@ int String::indexOf(char c)
     return strchr(buf, c) - buf; 
 }
 
-int String::indexOf(const String &s)
+const int String::indexOf(const String &s)
 {
     if (strstr(buf, s.buf) == nullptr)
     {
@@ -203,7 +203,7 @@ char *String::strcat(char *dest, const char *src)
 {
     int i;
     int len = strlen(dest);
-    for(i = 0; src[i] != '\0' && i < MAXLEN - 1; ++i)
+    for(i = 0; i < strlen(src) && src[i] != '\0' && i < MAXLEN - 1; ++i)
     {
         dest[i + len] = src[i];
     }
@@ -215,7 +215,7 @@ char *String::strncat(char *dest, const char *src, int n)
 {
     int i;
     int len = strlen(dest);
-    for(i = 0; src[i] != '\0' && i < MAXLEN - 1 && i < n; ++i)
+    for(i = 0; i < strlen(src) && src[i] != '\0' && i < MAXLEN - 1 && i < n; ++i)
     {
         dest[i + len] = src[i];
     }
