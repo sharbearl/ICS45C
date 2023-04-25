@@ -52,11 +52,11 @@ int String::indexOf(char c)
 
 int String::indexOf(const String &s)
 {
-    if (strchr(buf, *s.buf) == nullptr)
+    if (strstr(buf, s.buf) == nullptr)
     {
         return -1;
     } 
-    return strchr(buf, *s.buf) - buf; 
+    return strstr(buf, s.buf) - buf; 
 }
 
 bool String::operator==(const String &s) const

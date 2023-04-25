@@ -67,22 +67,22 @@ TEST(StringFunction, strcmp) {
     char a[10] = "abc";
     char b[10] = "xyz";
     char c[10] = "abcdefghi";
-    EXPECT_EQ(String::strcmp(a,b), -1);
-    EXPECT_EQ(String::strcmp(b,a), 1);
+    EXPECT_LT(String::strcmp(a,b), 0);
+    EXPECT_GT(String::strcmp(b,a), 0);
     EXPECT_EQ(String::strcmp(a,a), 0);
     EXPECT_EQ(String::strcmp(c,c), 0);
-    EXPECT_EQ(String::strcmp(a,c), -1);
+    EXPECT_LT(String::strcmp(a,c), 0);
 }
 
 TEST(StringFunction, strncmp) {
     char a[10] = "abc";
     char b[10] = "xyz";
     char c[10] = "abcdefghi";
-    EXPECT_EQ(String::strncmp(a,b,3), -1);
-    EXPECT_EQ(String::strncmp(b,a,3), 1);
+    EXPECT_LT(String::strncmp(a,b,3), 0);
+    EXPECT_GT(String::strncmp(b,a,3), 0);
     EXPECT_EQ(String::strncmp(a,a,2), 0);
     EXPECT_EQ(String::strncmp(a,c,3), 0);
-    EXPECT_EQ(String::strncmp(a,c,5), -1);
+    EXPECT_LT(String::strncmp(a,c,5), 0);
 }
 
 TEST(StringFunction, reverse_cpy) {
@@ -91,23 +91,25 @@ TEST(StringFunction, reverse_cpy) {
     String::reverse_cpy(a, b);
     EXPECT_STREQ(a, "zyx");
 
-    char result[10] = "code";
-    String::reverse_cpy(result, result);
-    EXPECT_STREQ(result, "edoc"); 
+    char first[10] = "";
+    char second[10] = "code";
+    String::reverse_cpy(first, second);
+    EXPECT_STREQ(first, "edoc"); 
 }
 
 TEST(StringFunction, strchr) {
     char a[10] = "abcdcba";
 
-    EXPECT_TRUE(String::strchr(a, 'b'));
+    EXPECT_NE(String::strchr(a, 'b'), nullptr);
+    EXPECT_NE(String::strchr(a, 'd'), nullptr);
     EXPECT_EQ(String::strchr(a, 'z'), nullptr);
 }
 
 TEST(StringFunction, strstr) {
     char a[10] = "abcdef";
 
-    EXPECT_TRUE(String::strstr(a, "a"));
-    EXPECT_TRUE(String::strstr(a, "abc"));
-    EXPECT_TRUE(String::strstr(a, "ef"));
+    EXPECT_NE(String::strstr(a, "a"), nullptr);
+    EXPECT_NE(String::strstr(a, "abc"), nullptr);
+    EXPECT_NE(String::strstr(a, "ef"), nullptr);
     EXPECT_EQ(String::strstr(a, "xyz"), nullptr);
 }
