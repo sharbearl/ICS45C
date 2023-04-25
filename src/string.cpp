@@ -3,6 +3,11 @@
 
 String::String(const char *s)
 {
+    if (strlen(s) >= MAXLEN)
+    {
+        std::cout << "ERROR: Index Out Of Bounds";
+        strncpy(buf, "", MAXLEN - 1);
+    } 
     strncpy(buf, s, MAXLEN - 1);
 }
 
@@ -28,12 +33,12 @@ String::String(const String &s)
     strncpy(buf, s.buf, MAXLEN - 1);
 }
 
-const int String::size()
+int String::size() const
 {
     return strlen(buf);
 }
 
-const String String::reverse()
+String String::reverse() const
 {
     char c[MAXLEN];
     reverse_cpy(c, buf);
@@ -41,7 +46,7 @@ const String String::reverse()
 
 }
 
-const int String::indexOf(char c)
+int String::indexOf(char c) const
 {
     if (strchr(buf, c) == nullptr)
     {
@@ -50,7 +55,7 @@ const int String::indexOf(char c)
     return strchr(buf, c) - buf; 
 }
 
-const int String::indexOf(const String &s)
+int String::indexOf(const String &s) const
 {
     if (strstr(buf, s.buf) == nullptr)
     {
@@ -139,6 +144,11 @@ bool String::operator>=(const String &s) const
 
 String String::operator+(const String &s)
 {
+    if (strlen(buf) + strlen(s.buf) >= MAXLEN)
+    {
+        std::cout << "ERROR: Index Out Of Bounds";
+        return *this;
+    } 
     String temp(buf);
     strncat(temp.buf, s.buf, MAXLEN - 1);
     return temp;
@@ -146,6 +156,11 @@ String String::operator+(const String &s)
 
 String &String::operator+=(const String &s)
 {
+    if (strlen(buf) + strlen(s.buf) >= MAXLEN)
+    {
+        std::cout << "ERROR: Index Out Of Bounds";
+        return *this;
+    } 
     strncat(buf, s.buf, MAXLEN - 1);
     return *this;
 }

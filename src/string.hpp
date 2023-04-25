@@ -15,13 +15,13 @@ public:
     
     char &operator[](int index);
     
-    const int size();
+    int size() const;
     
-    const String reverse();
+    String reverse() const;
     
-    const int indexOf(char c);
+    int indexOf(char c) const;
 
-    const int indexOf(const String &s);
+    int indexOf(const String &s) const;
     
     bool operator==(const String &s) const;
     bool operator!=(const String &s) const;
@@ -40,7 +40,7 @@ public:
     
     ~String();
     
-    const bool in_bounds(int i)
+    bool in_bounds(int i) const
     {
         return i >= 0 && i < strlen(buf);
     }
