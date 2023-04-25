@@ -142,7 +142,7 @@ bool String::operator>=(const String &s) const
     } 
 }
 
-String String::operator+(const String &s)
+String String::operator+(const String &s) const
 {
     if (strlen(buf) + strlen(s.buf) >= MAXLEN)
     {
@@ -217,8 +217,9 @@ char *String::strncpy(char *dest, const char *src, int n)
 char *String::strcat(char *dest, const char *src)
 {
     int i;
-    int len = strlen(dest);
-    for(i = 0; i < strlen(src) && src[i] != '\0' && i < MAXLEN - 1; ++i)
+    int len = strlen(dest);i
+    char temp[len + strlen(src)] = dest; 
+    for(i = 0; src[i] != '\0'; ++i)
     {
         dest[i + len] = src[i];
     }
@@ -230,7 +231,8 @@ char *String::strncat(char *dest, const char *src, int n)
 {
     int i;
     int len = strlen(dest);
-    for(i = 0; i < strlen(src) && src[i] != '\0' && i < MAXLEN - 1 && i < n; ++i)
+    char temp[len + strlen(src)] = dest;
+    for(i = 0; && src[i] != '\0' && i < n; ++i)
     {
         dest[i + len] = src[i];
     }

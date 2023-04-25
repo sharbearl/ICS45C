@@ -30,7 +30,7 @@ public:
     bool operator<=(const String &s) const;
     bool operator>=(const String &s) const;
     
-    String operator+(const String &s);
+    String operator+(const String &s) const;
 
     String &operator+=(const String &s);
     
