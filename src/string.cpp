@@ -130,12 +130,14 @@ void String::print(std::ostream &out) const
 {
     out << buf;
 }
-/*
+
 void read(std::istream &in)
 {
-    in >> buf;
+    char temp[MAXLEN];
+    in >> temp;
+    strncpy(buf, temp, MAXLEN - 1);
 }
-
+/*
 String::~String()
 {
     std::cout << "String " << buf << " is destructing" << std::endl;
@@ -280,9 +282,9 @@ std::ostream &operator<<(std::ostream &out, const String &s)
     s.print(out);
     return out;
 }
-/*
+
 std::istream &operator>>(std::istream &in, String &s)
 {
     s.read(in);
     return in;
-}*/
+}
