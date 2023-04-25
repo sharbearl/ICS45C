@@ -282,12 +282,12 @@ const char *String::strchr(const char *str, char c)
     for(int i = 0; str[i] != '\0'; ++i)
     {
         const char *p = &str[i];
-        if (str[i] == c);
+        if (str[i] == c)
         {
             return p;
         }
     }
-    return NULL;
+    return nullptr;
 }
 
 std::ostream &operator<<(std::ostream &out, const String &s)

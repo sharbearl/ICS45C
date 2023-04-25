@@ -100,7 +100,7 @@ TEST(StringFunction, strchr) {
     char a[10] = "abcdcba";
 
     EXPECT_TRUE(String::strchr(a, 'b'));
-    EXPECT_FALSE(String::strchr(a, 'z'));
+    EXPECT_EQ(String::strchr(a, 'z'), nullptr);
 }
 
 TEST(StringFunction, strstr) {
