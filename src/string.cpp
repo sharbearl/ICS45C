@@ -105,11 +105,29 @@ bool String::operator>=(const String &s) const
     } 
 }
 
+String String::operator+(const String &s)
+{
+    String temp(buf);
+    strncat(temp.buf, s.buf, MAXLEN - 1);
+    return temp;
+}
+
+String &String::operator+=(const String &s)
+{
+    strncat(buf, s.buf, MAXLEN - 1);
+    return *this;
+}
+
 void String::print(std::ostream &out) const
 {
     out << buf;
 }
-
+/*
+String::~String()
+{
+    std::cout << "String " << buf << " is destructing" << std::endl;
+}
+*/
 int String::strlen(const char *s)
 {
     int len = 0;
@@ -119,12 +137,7 @@ int String::strlen(const char *s)
     }
     return len;
 }
-/*
-String::~String()
-{
-    std::cout << "String " << buf << " is destructing" << std::endl;
-}
-*/
+
 char *String::strcpy(char *dest, const char *src)
 {
     int i;

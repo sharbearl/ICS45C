@@ -29,11 +29,11 @@ public:
     bool operator<(const String &s) const;
     bool operator<=(const String &s) const;
     bool operator>=(const String &s) const;
-    /*
+    
     String operator+(const String &s);
 
     String &operator+=(const String &s);
-    */
+    
     void print(std::ostream &out) const;
     /*
     void read(std::istream &in);
