@@ -296,7 +296,7 @@ int String::strncmp(const char *left, const char *right, int n)
             continue;
         }
     } 
-    if (left[i] == right[i])
+    if (left[i] == right[i] || n == 0)
     {
         return 0;
     }
@@ -325,10 +325,13 @@ void String::reverse_cpy(char *dest, const char *src)
 }
 
 const char *String::strchr(const char *str, char c)
-{
+{   
+    const char *p = &str[0];
+    if (str[0] == c && str[0] == '\0')
+        return p;
     for(int i = 0; str[i] != '\0'; ++i)
     {
-        const char *p = &str[i];
+        p = &str[i];
         if (str[i] == c)
         {
             return p;
