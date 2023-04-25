@@ -131,7 +131,7 @@ void String::print(std::ostream &out) const
     out << buf;
 }
 
-void read(std::istream &in)
+void String::read(std::istream &in)
 {
     char temp[MAXLEN];
     in >> temp;
