@@ -16,9 +16,9 @@ public:
     char &operator[](int index);
     
     int size();
-    /*
+    
     String reverse();
-
+    /*
     int indexOf(char c);
 
     int indexOf(const String &s);
@@ -35,16 +35,16 @@ public:
     String &operator+=(const String &s);
     
     void print(std::ostream &out) const;
-    /*
+    
     void read(std::istream &in);
-    
+    /*
     ~String();
-    
+    */
     bool in_bounds(int i)
     {
         return i >= 0 && i < strlen(buf);
     }
-    */
+    
     static int strlen(const char *s);
     static char *strcpy(char *dest, const char *src);
     static char *strncpy(char *dest, const char *src, int n);

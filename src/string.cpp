@@ -27,6 +27,14 @@ int String::size()
     return strlen(buf);
 }
 
+String String::reverse()
+{
+    char c[MAXLEN];
+    reverse_cpy(c, buf);
+    return String(c);
+
+}
+
 bool String::operator==(const String &s) const
 {
     int result = strncmp(buf, s.buf, MAXLEN - 1);
@@ -123,6 +131,11 @@ void String::print(std::ostream &out) const
     out << buf;
 }
 /*
+void read(std::istream &in)
+{
+    in >> buf;
+}
+
 String::~String()
 {
     std::cout << "String " << buf << " is destructing" << std::endl;
@@ -248,10 +261,28 @@ int String::strncmp(const char *left, const char *right, int n)
     } 
 }
 
+void String::reverse_cpy(char *dest, const char *src)
+{
+    int len = strlen(src);
+    int j = 0;
+    char temp[len + 1];
+    strcpy(temp, src);
+
+    for(int i = len - 1; i >= 0; --i)
+    {
+        dest[j] = temp[i];
+        ++j;
+    }
+}
+
 std::ostream &operator<<(std::ostream &out, const String &s)
 {
     s.print(out);
     return out;
 }
-
-
+/*
+std::istream &operator>>(std::istream &in, String &s)
+{
+    s.read(in);
+    return in;
+}*/

@@ -62,3 +62,11 @@ TEST(StringClass, Concatenation) {
     s += t;
     EXPECT_EQ(s, String("abcdef"));
 }
+
+TEST(StringClass, Reverse) {
+    String s("abcd");
+    EXPECT_EQ(s.reverse(), String("dcba"));
+
+    String t("happy");
+    EXPECT_EQ(t.reverse(), String("yppah"));
+}
