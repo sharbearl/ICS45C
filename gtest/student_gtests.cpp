@@ -104,5 +104,10 @@ TEST(StringFunction, strchr) {
 }
 
 TEST(StringFunction, strstr) {
-    EXPECT_TRUE(false); 
+    char a[10] = "abcdef";
+
+    EXPECT_TRUE(String::strstr(a, "a"));
+    EXPECT_TRUE(String::strstr(a, "abc"));
+    EXPECT_TRUE(String::strstr(a, "ef"));
+    EXPECT_EQ(String::strstr(a, "xyz"), nullptr);
 }

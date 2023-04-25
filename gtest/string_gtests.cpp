@@ -79,3 +79,12 @@ TEST(StringClass, IndexOfChar) {
     String t("abcdcba");
     EXPECT_EQ(s.indexOf('b'), 1);
 }
+
+TEST(StringClass, IndexOfString) {
+    String s("abcd");
+    EXPECT_EQ(s.indexOf(String("ab")), 0);
+    EXPECT_EQ(s.indexOf(String("cd")), 2);
+
+    String t("abcdcba");
+    EXPECT_EQ(s.indexOf(String("bcd")), 1);
+}

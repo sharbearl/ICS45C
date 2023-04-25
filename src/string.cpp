@@ -46,6 +46,11 @@ int String::indexOf(char c)
     return strchr(buf, c) - buf; 
 }
 
+int String::indexOf(const String &s)
+{
+    return strchr(buf, *s.buf) - buf; 
+}
+
 bool String::operator==(const String &s) const
 {
     int result = strncmp(buf, s.buf, MAXLEN - 1);
@@ -148,12 +153,12 @@ void String::read(std::istream &in)
     in >> temp;
     strncpy(buf, temp, MAXLEN - 1);
 }
-/*
+
 String::~String()
 {
     std::cout << "String " << buf << " is destructing" << std::endl;
 }
-*/
+
 int String::strlen(const char *s)
 {
     int len = 0;
@@ -294,6 +299,26 @@ const char *String::strchr(const char *str, char c)
     {
         const char *p = &str[i];
         if (str[i] == c)
+        {
+            return p;
+        }
+    }
+    return nullptr;
+}
+
+const char *String::strstr(const char *haystack, const char *needle)
+{
+    for(int i = 0; haystack[i] != '\0' && i < strlen(haystack) - strlen(needle) + 1; ++i)
+    {
+        const char *p = &haystack[i];
+        bool found = true;
+        for (int j = 0; j < strlen(needle); ++j)
+            if (haystack[i+j] != needle[j])
+            {
+                found = false;
+                break;
+            }
+        if (found)
         {
             return p;
         }
