@@ -295,19 +295,19 @@ int String::strncmp(const char *left, const char *right, int n)
         {
             continue;
         }
-    }
+    } 
     if (left[i] == right[i])
     {
         return 0;
     }
-    else if (strlen(left) < strlen(right))
-    {
-        return -1;
-    }
     else if (strlen(left) > strlen(right))
     {
         return 1;
-    } 
+    }
+    else
+    {
+        return -1;
+    }
 }
 
 void String::reverse_cpy(char *dest, const char *src)
@@ -339,22 +339,11 @@ const char *String::strchr(const char *str, char c)
 
 const char *String::strstr(const char *haystack, const char *needle)
 {
-    if (strlen(haystack) < strlen(needle))
-    {
-        return nullptr;
-    }
+    int len = strlen(needle);
 
-    for(int i = 0; haystack[i] != '\0' && i < strlen(haystack) - strlen(needle) + 1; ++i)
+    for (const char *p = haystack; (p = strchr(p, needle[0])); ++p)
     {
-        const char *p = &haystack[i];
-        bool found = true;
-        for (int j = 0; j < strlen(needle); ++j)
-            if (haystack[i+j] != needle[j])
-            {
-                found = false;
-                break;
-            }
-        if (found)
+        if (strncmp(p, needle, len) == 0)
         {
             return p;
         }
