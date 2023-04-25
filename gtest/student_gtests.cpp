@@ -101,7 +101,11 @@ TEST(StringFunction, strchr) {
     char a[10] = "abcdcba";
 
     EXPECT_NE(String::strchr(a, 'b'), nullptr);
+    EXPECT_EQ(*String::strchr(a, 'b'), 'b');
+
     EXPECT_NE(String::strchr(a, 'd'), nullptr);
+    EXPECT_EQ(*String::strchr(a, 'd'), 'd');
+
     EXPECT_EQ(String::strchr(a, 'z'), nullptr);
 }
 
@@ -109,7 +113,14 @@ TEST(StringFunction, strstr) {
     char a[10] = "abcdef";
 
     EXPECT_NE(String::strstr(a, "a"), nullptr);
+    EXPECT_EQ(*String::strstr(a, "a"), 'a');
+
     EXPECT_NE(String::strstr(a, "abc"), nullptr);
+    EXPECT_EQ(*String::strstr(a, "abc"), 'a');
+
     EXPECT_NE(String::strstr(a, "ef"), nullptr);
+    EXPECT_EQ(*String::strstr(a, "ef"), 'e');
+
     EXPECT_EQ(String::strstr(a, "xyz"), nullptr);
+    EXPECT_EQ(String::strstr(a, "abcdefgh"), nullptr);
 }
