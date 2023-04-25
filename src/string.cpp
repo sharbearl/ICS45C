@@ -43,11 +43,19 @@ String String::reverse()
 
 int String::indexOf(char c)
 {
+    if (strchr(buf, c) == nullptr)
+    {
+        return -1;
+    }
     return strchr(buf, c) - buf; 
 }
 
 int String::indexOf(const String &s)
 {
+    if (strchr(buf, *s.buf) == nullptr)
+    {
+        return -1;
+    } 
     return strchr(buf, *s.buf) - buf; 
 }
 
