@@ -312,6 +312,12 @@ int String::strncmp(const char *left, const char *right, int n)
 
 void String::reverse_cpy(char *dest, const char *src)
 {
+    if (src == "")
+    {
+        dest[0] = '\0';
+        return;
+    }
+
     int len = strlen(src);
     int j = 0;
     char temp[len + 1];
@@ -326,6 +332,10 @@ void String::reverse_cpy(char *dest, const char *src)
 
 const char *String::strchr(const char *str, char c)
 {    
+    if (c == '\0')
+    {
+        return str + strlen(str);
+    }
     for(int i = 0; str[i] != '\0'; ++i)
     {
         const char *p = &str[i];
@@ -339,6 +349,11 @@ const char *String::strchr(const char *str, char c)
 
 const char *String::strstr(const char *haystack, const char *needle)
 {
+    if (needle == "")
+    {
+        return haystack;
+    }
+
     int len = strlen(needle);
 
     for (const char *p = haystack; (p = strchr(p, needle[0])); ++p)
