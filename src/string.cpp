@@ -234,7 +234,8 @@ char *String::strncat(char *dest, const char *src, int n)
 {
     int i;
     int len = strlen(dest);
-    char temp[strlen(src) + len + 1];
+    int temp_len = strlen(src) + len + 1; 
+    char temp[temp_len];
     strcpy(temp, dest);
 
     for(i = 0; src[i] != '\0' && i < n; ++i)
@@ -272,7 +273,7 @@ int String::strcmp(const char *left, const char *right)
     {
         return -1;
     }
-    else if (left[i] == right[i])
+    else
     {
         return 0;
     }
@@ -312,7 +313,7 @@ int String::strncmp(const char *left, const char *right, int n)
 
 void String::reverse_cpy(char *dest, const char *src)
 {
-    if (src == "")
+    if (strlen(src) == 0)
     {
         dest[0] = '\0';
         return;
@@ -320,7 +321,8 @@ void String::reverse_cpy(char *dest, const char *src)
 
     int len = strlen(src);
     int j = 0;
-    char temp[len + 1];
+    const int temp_len = len + 1;
+    char temp[temp_len];
     strcpy(temp, src);
 
     for(int i = len - 1; i >= 0; --i)
@@ -328,6 +330,7 @@ void String::reverse_cpy(char *dest, const char *src)
         dest[j] = temp[i];
         ++j;
     }
+    dest[j] = '\0';
 }
 
 const char *String::strchr(const char *str, char c)
@@ -349,7 +352,7 @@ const char *String::strchr(const char *str, char c)
 
 const char *String::strstr(const char *haystack, const char *needle)
 {
-    if (needle == "")
+    if (strlen(needle) == 0)
     {
         return haystack;
     }
