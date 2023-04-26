@@ -122,4 +122,10 @@ TEST(StringFunction, strstr) {
     EXPECT_EQ(*String::strstr(a, "ef"), 'e');
 
     EXPECT_EQ(String::strstr(a, "xyz"), nullptr);
+
+    char b[10] = {};
+    EXPECT_NE(String::strstr(b, ""), nullptr);
+    EXPECT_EQ(*String::strstr(b, ""), '\0');
+
+    EXPECT_EQ(String::strstr(b, "abc"), nullptr);
 }

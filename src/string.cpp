@@ -217,33 +217,28 @@ char *String::strncpy(char *dest, const char *src, int n)
 char *String::strcat(char *dest, const char *src)
 {
     int i;
-    int len = strlen(dest);
-    char temp[strlen(src) + len + 1];
-    strcpy(temp, dest);
+    int d_len = strlen(dest);
+    int s_len = strlen(src);
 
-    for(i = 0; src[i] != '\0'; ++i)
+    for(i = 0; i < s_len; ++i)
     {
-        temp[i + len] = src[i];
+        dest[i + d_len] = src[i];
     }
-    temp[i + len] = '\0';
-    strcpy(dest, temp);
+    dest[i + d_len] = '\0';
     return dest; 
 }
 
 char *String::strncat(char *dest, const char *src, int n)
 {
     int i;
-    int len = strlen(dest);
-    int temp_len = strlen(src) + len + 1; 
-    char temp[temp_len];
-    strcpy(temp, dest);
+    int d_len = strlen(dest);
+    int s_len = strlen(src);
 
-    for(i = 0; src[i] != '\0' && i < n; ++i)
+    for(i = 0; i < s_len && i < n; ++i)
     {
-        temp[i + len] = src[i];
+        dest[i + d_len] = src[i];
     }
-    temp[i + len] = '\0'; 
-    strcpy(dest, temp);
+    dest[i + d_len] = '\0'; 
     return dest;
 }
 
@@ -321,16 +316,16 @@ void String::reverse_cpy(char *dest, const char *src)
 
     int len = strlen(src);
     int j = 0;
-    const int temp_len = len + 1;
-    char temp[temp_len];
-    strcpy(temp, src);
+    char temp;
 
-    for(int i = len - 1; i >= 0; --i)
+    for(int i = len - 1; i >= (len / 2); --i)
     {
-        dest[j] = temp[i];
+        temp = src[j];
+        dest[j] = src[i];
+        dest[i] = temp;
         ++j;
     }
-    dest[j] = '\0';
+    dest[len] = '\0';
 }
 
 const char *String::strchr(const char *str, char c)
