@@ -280,8 +280,8 @@ int String::strcmp(const char *left, const char *right)
 
 int String::strncmp(const char *left, const char *right, int n)
 {
-    int i;
-    for(i = 0; left[i] != '\0' && right[i] != '\0' && i < n - 1; ++i)
+    int i = 0;
+    for(i = 0; left[i] != '\0' && right[i] != '\0' && i < n; ++i)
     {
         if (left[i] > right[i])
         {
@@ -296,7 +296,7 @@ int String::strncmp(const char *left, const char *right, int n)
             continue;
         }
     } 
-    if (left[i] == right[i] || n == 0)
+    if ((left[i] == '\0' && right[i] == '\0') || n == i)
     {
         return 0;
     }
@@ -325,13 +325,10 @@ void String::reverse_cpy(char *dest, const char *src)
 }
 
 const char *String::strchr(const char *str, char c)
-{   
-    const char *p = &str[0];
-    if (str[0] == c && str[0] == '\0')
-        return p;
+{    
     for(int i = 0; str[i] != '\0'; ++i)
     {
-        p = &str[i];
+        const char *p = &str[i];
         if (str[i] == c)
         {
             return p;
