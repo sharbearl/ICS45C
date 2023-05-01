@@ -22,6 +22,14 @@ char *String::strcpy(char *dest, const char *src)
     return dest;
 }
 
+char *String::strdup(const char *src)
+{    
+    char *p = new char[strlen(src) + 1];
+
+    strcpy(p, src); 
+    return p;
+}
+
 char *String::strncpy(char *dest, const char *src, int n)
 {
     int i;

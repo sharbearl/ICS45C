@@ -24,7 +24,21 @@ TEST(StringFunction, strcpy) {
 }
 
 TEST(StringFunction, strdup) {
-    EXPECT_TRUE(false);
+    char foo[10] = "foo";
+    char *x = String::strdup(foo);
+    EXPECT_STREQ(x, foo);
+
+    char a[10] = "a";
+    char *y = String::strdup(a);
+    EXPECT_STREQ(y, a); 
+
+    char empty[10] = "";
+    char *z = String::strdup(empty);
+    EXPECT_STREQ(z, empty);
+
+    delete[] x;
+    delete[] y;
+    delete[] z;
 }
 
 TEST(StringFunction, strncpy) {
