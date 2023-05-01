@@ -1,6 +1,28 @@
 #include <iostream>
 #include "string.hpp";
 
+
+String::String(const char *s)
+{
+    buf = strdup(s);
+}
+
+String::String(const String &s)
+{
+    buf = strdup(s.buf);
+}
+
+int String::size() const
+{
+    return strlen(buf);
+}
+
+String::~String()
+{
+    std::cout << "String " << buf << " is destructing" << std::endl;
+    delete[] buf;
+}
+
 int String::strlen(const char *s)
 {
     int len = 0;
