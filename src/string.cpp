@@ -35,6 +35,24 @@ int String::size() const
     return strlen(buf);
 }
 
+int String::indexOf(char c) const
+{
+    if(strchr(buf, c) == nullptr)
+    {
+        return -1;
+    }
+    return strchr(buf, c) - buf;
+}
+
+int String::indexOf(String s) const
+{
+    if(strchr(buf, *s.buf) == nullptr)
+    {
+        return -1;
+    }
+    return strchr(buf, *s.buf) - buf; 
+}
+
 bool String::operator==(String s) const
 {
     int result = strcmp(buf, s.buf);

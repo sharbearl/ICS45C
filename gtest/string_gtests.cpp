@@ -53,3 +53,27 @@ TEST(StringClass, Assignment) {
     EXPECT_EQ(s, String());
     EXPECT_EQ(s.size(), 0);
 }
+
+TEST(StringClass, IndexOfChar) {
+    String s("abcd");
+    EXPECT_EQ(s.indexOf('a'), 0);
+    EXPECT_EQ(s.indexOf('d'), 3);
+
+    String t("abcdcba");
+    EXPECT_EQ(t.indexOf('b'), 1);
+    EXPECT_EQ(t.indexOf('z'), -1); 
+}
+
+TEST(StringClass, IndexOfStr) {
+    String s("abcd");
+    String a("ab");
+    String b("cd");
+    EXPECT_EQ(s.indexOf(a), 0);
+    EXPECT_EQ(s.indexOf(b), 2);
+
+    String t("abcdcba");
+    String c("bcd");
+    String d("xyz");
+    EXPECT_EQ(t.indexOf(c), 1);
+    EXPECT_EQ(t.indexOf(d), -1); 
+}
