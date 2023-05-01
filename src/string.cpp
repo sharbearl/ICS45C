@@ -19,6 +19,17 @@ String &String::operator=(String s)
     return *this;
 }
 
+const char &String::operator[](int index) const
+{
+    if (!in_bounds(index))
+    {
+        std::cout << "ERROR: Index Out Of Bounds";
+        return buf[0];
+    }
+
+    return buf[index];
+}
+
 int String::size() const
 {
     return strlen(buf);
