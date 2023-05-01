@@ -99,9 +99,23 @@ bool String::operator>=(String s) const
     return result >= 0;
 }
 
-//String String::operator+(String s) const
+String String::operator+(String s) const
+{
+    String temp = String(strlen(buf) + strlen(s.buf));
+    strcpy(temp.buf, buf);
+    strcat(temp.buf, s.buf);
+    return temp;
+}
 
-//String &String::operator+=(String s)
+String &String::operator+=(String s)
+{
+    String temp = String(strlen(buf) + strlen(s.buf));
+    strcpy(temp.buf, buf);
+    delete[] buf;
+    strcat(temp.buf, s.buf);
+    buf = strdup(temp.buf);
+    return *this;
+}
 
 void String::print(std::ostream &out) const
 {

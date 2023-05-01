@@ -54,6 +54,15 @@ TEST(StringClass, Assignment) {
     EXPECT_EQ(s.size(), 0);
 }
 
+TEST(StringClass, Concatenation) {
+    String s("abc"), t("def");
+
+    EXPECT_EQ(s+t, String("abcdef"));
+
+    s += t;
+    EXPECT_EQ(s, String("abcdef"));
+}
+
 TEST(StringClass, IndexOfChar) {
     String s("abcd");
     EXPECT_EQ(s.indexOf('a'), 0);
