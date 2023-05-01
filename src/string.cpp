@@ -12,9 +12,52 @@ String::String(const String &s)
     buf = strdup(s.buf);
 }
 
+String &String::operator=(String s)
+{
+    delete[] buf;
+    buf = strdup(s.buf);
+    return *this;
+}
+
 int String::size() const
 {
     return strlen(buf);
+}
+
+bool String::operator==(String s) const
+{
+    int result = strcmp(buf, s.buf);
+    return result == 0;
+}
+
+bool String::operator!=(String s) const
+{
+    int result = strcmp(buf, s.buf);
+    return result != 0;
+}
+
+bool String::operator>(String s) const
+{
+    int result = strcmp(buf, s.buf);
+    return result > 0;
+}
+
+bool String::operator<(String s) const
+{
+    int result = strcmp(buf, s.buf);
+    return result < 0;
+}
+
+bool String::operator<=(String s) const
+{
+    int result = strcmp(buf, s.buf);
+    return result <= 0;
+}
+
+bool String::operator>=(String s) const
+{
+    int result = strcmp(buf, s.buf);
+    return result >= 0;
 }
 
 void String::print(std::ostream &out) const
