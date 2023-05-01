@@ -17,6 +17,11 @@ int String::size() const
     return strlen(buf);
 }
 
+void String::print(std::ostream &out) const
+{
+    out << buf;
+}
+
 String::~String()
 {
     std::cout << "String " << buf << " is destructing" << std::endl;
@@ -209,4 +214,10 @@ const char *String::strstr(const char *haystack, const char *needle)
         }
     }
     return nullptr;
+}
+
+std::ostream &operator<<(std::ostream &out, const String s)
+{
+    s.print(out);
+    return out;
 }
