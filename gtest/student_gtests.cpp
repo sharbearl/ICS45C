@@ -40,11 +40,32 @@ TEST(StringFunction, strncpy) {
 }
 
 TEST(StringFunction, strcat) {
-    EXPECT_TRUE(false);
+    char result[10] = "abc";
+    EXPECT_EQ(String::strcat(result, "def"), result);
+    EXPECT_STREQ(result, "abcdef");
+
+    EXPECT_EQ(String::strcat(result, "ghi"), result);
+    EXPECT_STREQ(result, "abcdefghi");
+
+    char empty[10] = {};
+    EXPECT_EQ(String::strcat(empty, "foo"), empty);
+    EXPECT_STREQ(empty, "foo");
 }
 
 TEST(StringFunction, strncat) {
-    EXPECT_TRUE(false);
+    char result[10] = "abc";
+    EXPECT_EQ(String::strncat(result, "def", 3), result);
+    EXPECT_STREQ(result, "abcdef");
+
+    EXPECT_EQ(String::strncat(result, "ghi", 2), result);
+    EXPECT_STREQ(result, "abcdefgh");
+
+    EXPECT_EQ(String::strncat(result, "", 2), result);
+    EXPECT_STREQ(result, "abcdefgh");
+
+    char empty[10] = {};
+    EXPECT_EQ(String::strncat(empty, "foo", 3), empty);
+    EXPECT_STREQ(empty, "foo");
 }
 
 TEST(StringFunction, strcmp) {
