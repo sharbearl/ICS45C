@@ -12,12 +12,20 @@ String::String(const String &s)
     buf = strdup(s.buf);
 }
 
+//String::String(String &&s)
+
+//void String::swap(String &s)
+
 String &String::operator=(String s)
 {
     delete[] buf;
     buf = strdup(s.buf);
     return *this;
 }
+
+//String &String::operator=(String &&s)
+
+//char &String::operator[](int index) const
 
 const char &String::operator[](int index) const
 {
@@ -34,6 +42,8 @@ int String::size() const
 {
     return strlen(buf);
 }
+
+//String reverse() const
 
 int String::indexOf(char c) const
 {
@@ -89,6 +99,10 @@ bool String::operator>=(String s) const
     return result >= 0;
 }
 
+//String String::operator+(String s) const
+
+//String &String::operator+=(String s)
+
 void String::print(std::ostream &out) const
 {
     out << buf;
@@ -100,6 +114,11 @@ void String::read(std::istream &in)
     char temp[1024];
     in >> temp;
     buf = strdup(temp);
+}
+
+String::String(int length)
+{
+    buf = new char[length + 1];
 }
 
 String::~String()
