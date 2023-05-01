@@ -91,7 +91,15 @@ TEST(StringFunction, strncmp) {
 }
 
 TEST(StringFunction, reverse_cpy) {
-    EXPECT_TRUE(false);
+    char a[10] = "abc";
+    char b[10] = "xyz";
+    String::reverse_cpy(a,b);
+    EXPECT_STREQ(a, "zyx");
+
+    char first[10] = "";
+    char second[10] = "code";
+    String::reverse_cpy(first, second);
+    EXPECT_STREQ(first, "edoc");
 }
 
 TEST(StringFunction, strchr) {
