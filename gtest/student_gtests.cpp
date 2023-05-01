@@ -69,11 +69,25 @@ TEST(StringFunction, strncat) {
 }
 
 TEST(StringFunction, strcmp) {
-    EXPECT_TRUE(false);
+    char a[10] = "abc";
+    char b[10] = "xyz";
+    char c[10] = "abcdefghi";
+    EXPECT_LT(String::strcmp(a,b), 0);
+    EXPECT_GT(String::strcmp(b,a), 0);
+    EXPECT_EQ(String::strcmp(a,a), 0); 
+    EXPECT_EQ(String::strcmp(c,c), 0); 
+    EXPECT_LT(String::strcmp(a,c), 0);  
 }
 
 TEST(StringFunction, strncmp) {
-    EXPECT_TRUE(false);
+    char a[10] = "abc";
+    char b[10] = "xyz";
+    char c[10] = "abcdefghi";
+    EXPECT_LT(String::strncmp(a,b,3), 0);
+    EXPECT_GT(String::strncmp(b,a,3), 0);
+    EXPECT_EQ(String::strncmp(a,a,2), 0); 
+    EXPECT_EQ(String::strncmp(c,c,3), 0); 
+    EXPECT_LT(String::strncmp(a,c,5), 0);
 }
 
 TEST(StringFunction, reverse_cpy) {

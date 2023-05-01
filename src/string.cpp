@@ -74,3 +74,45 @@ char *String::strncat(char *dest, const char *src, int n)
     dest[d_len] = src[0];
     return dest;
 }
+
+int String::strcmp(const char *left, const char *right)
+{
+    int i;
+    for(i = 0; left[i] != '\0' && right[i] != '\0'; ++i)
+    {
+        if(left[i] != right[i])
+        {
+            return left[i] - right[i];
+        }
+    }
+
+    if(left[i] == right[i])
+    {
+        return 0;
+    }
+    else
+    {
+        return left[i] - right[i];
+    }
+}
+
+int String::strncmp(const char *left, const char *right, int n)
+{
+    int i;
+    for(i = 0; left[i] != '\0' && right[i] != '\0' && i < n - 1; ++i)
+    {
+        if(left[i] != right[i])
+        {
+            return left[i] - right[i];
+        }
+    }
+
+    if(left[i] == right[i])
+    {
+        return 0;
+    }
+    else
+    {
+        return left[i] - right[i];
+    }
+}
