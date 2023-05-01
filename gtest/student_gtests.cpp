@@ -103,9 +103,40 @@ TEST(StringFunction, reverse_cpy) {
 }
 
 TEST(StringFunction, strchr) {
-    EXPECT_TRUE(false);
+    char a[10] = "abcdcba";
+
+    EXPECT_NE(String::strchr(a, 'b'), nullptr);
+    EXPECT_EQ(*String::strchr(a, 'b'), 'b');
+
+    EXPECT_NE(String::strchr(a, 'd'), nullptr);
+    EXPECT_EQ(*String::strchr(a, 'd'), 'd');
+
+    EXPECT_EQ(String::strchr(a, 'z'), nullptr);
 }
 
 TEST(StringFunction, strstr) {
-    EXPECT_TRUE(false);
+    char a[10] = "abcdef";
+    EXPECT_NE(String::strstr(a, "a"), nullptr);
+    EXPECT_EQ(*String::strstr(a, "a"), 'a');
+
+    EXPECT_NE(String::strstr(a, "abc"), nullptr);
+    EXPECT_EQ(*String::strstr(a, "abc"), 'a'); 
+    
+    EXPECT_NE(String::strstr(a, "ef"), nullptr);
+    EXPECT_EQ(*String::strstr(a, "ef"), 'e');
+
+    EXPECT_NE(String::strstr(a, "cd"), nullptr);
+    EXPECT_EQ(*String::strstr(a, "cd"), 'c'); 
+
+    EXPECT_NE(String::strstr(a, ""), nullptr);
+    EXPECT_EQ(*String::strstr(a, ""), 'a');
+
+    EXPECT_EQ(String::strstr(a, "xyz"), nullptr);
+    EXPECT_EQ(String::strstr(a, "abcdefgh"), nullptr); 
+
+    char b[10] = {};
+    EXPECT_NE(String::strstr(b, ""), nullptr);
+    EXPECT_EQ(*String::strstr(b, ""), '\0');
+
+    EXPECT_EQ(String::strstr(b, "abc"), nullptr);
 }
