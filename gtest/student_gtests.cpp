@@ -35,7 +35,7 @@ TEST(StringFunction, strncpy) {
     EXPECT_EQ(String::strncpy(result, "foo", 5), result);
     EXPECT_STREQ(result, "foo");
 
-    EXPECT_EQ(String:strncpy(result, "foo", 1), result);
+    EXPECT_EQ(String::strncpy(result, "foo", 1), result);
     EXPECT_STREQ(result, "f");
 }
 
