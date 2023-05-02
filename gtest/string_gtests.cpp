@@ -92,7 +92,10 @@ TEST(StringClass, IndexOfStr) {
     String c("bcd");
     String d("xyz");
     EXPECT_EQ(t.indexOf(c), 1);
-    EXPECT_EQ(t.indexOf(d), -1); 
+    EXPECT_EQ(t.indexOf(d), -1);
+
+    String e("");
+    EXPECT_EQ(t.indexOf(e), 0);
 }
 
 TEST(StringClass, Swap) {

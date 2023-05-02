@@ -82,11 +82,11 @@ int String::indexOf(char c) const
 
 int String::indexOf(const String &s) const
 {
-    if(strchr(buf, *s.buf) == nullptr)
+    if(strstr(buf, s.buf) == nullptr)
     {
         return -1;
     }
-    return strchr(buf, *s.buf) - buf; 
+    return strstr(buf, s.buf) - buf; 
 }
 
 bool String::operator==(const String &s) const
@@ -286,7 +286,7 @@ int String::strncmp(const char *left, const char *right, int n)
         }
     }
 
-    if(left[i] == right[i])
+    if(left[i] == right[i] || n == i)
     {
         return 0;
     }

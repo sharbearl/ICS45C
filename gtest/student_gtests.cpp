@@ -102,6 +102,7 @@ TEST(StringFunction, strncmp) {
     EXPECT_EQ(String::strncmp(a,a,2), 0); 
     EXPECT_EQ(String::strncmp(c,c,3), 0); 
     EXPECT_LT(String::strncmp(a,c,5), 0);
+    EXPECT_EQ(String::strncmp(a,b,0), 0);
 }
 
 TEST(StringFunction, reverse_cpy) {
