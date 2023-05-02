@@ -29,11 +29,7 @@ String &String::operator=(const String &s)
 
 String &String::operator=(String &&s)
 {
-    if(&s != this)
-    {
-        delete[] buf;
-        swap(s);
-    }
+    swap(s);
     return *this;
 }
 
@@ -138,8 +134,7 @@ String &String::operator+=(const String &s)
     String temp = String(strlen(buf) + strlen(s.buf));
     strcpy(temp.buf, buf);   
     strcat(temp.buf, s.buf);
-    delete[] buf; 
-    buf = strdup(temp.buf);
+    swap(temp);
     return *this;
 }
 
