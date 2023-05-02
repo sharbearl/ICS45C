@@ -7,7 +7,7 @@ String::String(const char *s) : buf(strdup(s)) {}
 
 String::String(const String &s) : buf(strdup(s.buf)) {}
 
-String::String(String &&s) : buf(strdup(s.buf)) 
+String::String(String &&s) : buf(s.buf) 
 {
     s.buf = nullptr;
 }
@@ -136,9 +136,9 @@ String String::operator+(const String &s) const
 String &String::operator+=(const String &s)
 {
     String temp = String(strlen(buf) + strlen(s.buf));
-    strcpy(temp.buf, buf);
+    strcpy(temp.buf, buf);   
     strcat(temp.buf, s.buf);
-    delete[] buf;
+    delete[] buf; 
     buf = strdup(temp.buf);
     return *this;
 }
