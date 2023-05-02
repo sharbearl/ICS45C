@@ -210,11 +210,7 @@ char *String::strncpy(char *dest, const char *src, int n)
 char *String::strcat(char *dest, const char *src)
 {
     int i = 0;
-    int d_len = 0;
-    for(int j = 0; dest[j] != '\0'; ++j)
-    {
-        ++d_len;
-    }
+    int d_len = strlen(dest);
     
     if (src[i] != '\0')
     {
@@ -231,11 +227,7 @@ char *String::strcat(char *dest, const char *src)
 char *String::strncat(char *dest, const char *src, int n)
 {
     int i = 0;
-    int d_len = 0;
-    for(int j = 0; dest[j] != '\0'; ++j)
-    {
-        ++d_len;
-    }
+    int d_len = strlen(dest);
 
     if (src[i] != '\0' && n != 0)
     {
@@ -299,11 +291,7 @@ void String::reverse_cpy(char *dest, const char *src)
         return;
     }
 
-    int len = 0;
-    for(int i = 0; src[i] != '\0'; ++i)
-    {
-        ++len;
-    }
+    int len = strlen(src);
 
     char temp;
     int j = 0;
