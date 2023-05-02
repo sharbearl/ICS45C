@@ -77,6 +77,9 @@ TEST(StringFunction, strncat) {
     EXPECT_EQ(String::strncat(result, "", 2), result);
     EXPECT_STREQ(result, "abcdefgh");
 
+    EXPECT_EQ(String::strncat(result, "xyz", 0), result);
+    EXPECT_STREQ(result, "abcdefgh");
+
     char empty[10] = {};
     EXPECT_EQ(String::strncat(empty, "foo", 3), empty);
     EXPECT_STREQ(empty, "foo");

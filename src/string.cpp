@@ -242,15 +242,15 @@ char *String::strncat(char *dest, const char *src, int n)
         ++d_len;
     }
 
-    if (src[i] != '\0')
+    if (src[i] != '\0' && n != 0)
     {
         for(i = 1; src[i] != '\0' && i < n; ++i)
         {
             dest[i + d_len] = src[i];
         }
+        dest[d_len] = src[0];
     }
     dest[i + d_len] = '\0';
-    dest[d_len] = src[0];
     return dest;
 }
 
