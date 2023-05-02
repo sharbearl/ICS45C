@@ -25,7 +25,16 @@ String &String::operator=(String s)
 
 //String &String::operator=(String &&s)
 
-//char &String::operator[](int index) const
+char &String::operator[](int index)
+{
+    if (!in_bounds(index))
+    {
+        std::cout << "ERROR: Index Out Of Bounds";
+        return *buf;
+    }
+
+    return *(buf + index); 
+}
 
 const char &String::operator[](int index) const
 {
