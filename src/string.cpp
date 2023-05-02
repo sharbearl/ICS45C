@@ -3,15 +3,9 @@
 #include "string.hpp";
 
 
-String::String(const char *s)
-{
-    buf = strdup(s);
-}
+String::String(const char *s) : buf(strdup(s)) {}
 
-String::String(const String &s)
-{
-    buf = strdup(s.buf);
-}
+String::String(const String &s) : buf(strdup(s.buf)) {}
 
 //String::String(String &&s)
 
@@ -72,7 +66,7 @@ int String::indexOf(char c) const
     return strchr(buf, c) - buf;
 }
 
-int String::indexOf(String s) const
+int String::indexOf(const String &s) const
 {
     if(strchr(buf, *s.buf) == nullptr)
     {
@@ -81,43 +75,43 @@ int String::indexOf(String s) const
     return strchr(buf, *s.buf) - buf; 
 }
 
-bool String::operator==(String s) const
+bool String::operator==(const String &s) const
 {
     int result = strcmp(buf, s.buf);
     return result == 0;
 }
 
-bool String::operator!=(String s) const
+bool String::operator!=(const String &s) const
 {
     int result = strcmp(buf, s.buf);
     return result != 0;
 }
 
-bool String::operator>(String s) const
+bool String::operator>(const String &s) const
 {
     int result = strcmp(buf, s.buf);
     return result > 0;
 }
 
-bool String::operator<(String s) const
+bool String::operator<(const String &s) const
 {
     int result = strcmp(buf, s.buf);
     return result < 0;
 }
 
-bool String::operator<=(String s) const
+bool String::operator<=(const String &s) const
 {
     int result = strcmp(buf, s.buf);
     return result <= 0;
 }
 
-bool String::operator>=(String s) const
+bool String::operator>=(const String &s) const
 {
     int result = strcmp(buf, s.buf);
     return result >= 0;
 }
 
-String String::operator+(String s) const
+String String::operator+(const String &s) const
 {
     String temp = String(strlen(buf) + strlen(s.buf));
     strcpy(temp.buf, buf);
@@ -125,7 +119,7 @@ String String::operator+(String s) const
     return temp;
 }
 
-String &String::operator+=(String s)
+String &String::operator+=(const String &s)
 {
     String temp = String(strlen(buf) + strlen(s.buf));
     strcpy(temp.buf, buf);
@@ -148,10 +142,7 @@ void String::read(std::istream &in)
     buf = strdup(temp);
 }
 
-String::String(int length)
-{
-    buf = new char[length + 1];
-}
+String::String(int length) : buf(new char[length + 1]) {}
 
 String::~String()
 {
