@@ -1,4 +1,5 @@
 #include <iostream>
+#include <utility>
 #include "string.hpp";
 
 
@@ -14,7 +15,10 @@ String::String(const String &s)
 
 //String::String(String &&s)
 
-//void String::swap(String &s)
+void String::swap(String &s)
+{
+    std::swap(buf, s.buf);
+}
 
 String &String::operator=(String s)
 {

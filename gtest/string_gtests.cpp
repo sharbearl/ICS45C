@@ -94,3 +94,11 @@ TEST(StringClass, IndexOfStr) {
     EXPECT_EQ(t.indexOf(c), 1);
     EXPECT_EQ(t.indexOf(d), -1); 
 }
+
+TEST(StringClass, Swap) {
+    String a("happy");
+    String b("sad");
+    a.swap(b);
+    EXPECT_EQ(a, String("sad"));
+    EXPECT_EQ(b, String("happy"));
+}
