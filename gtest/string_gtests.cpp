@@ -63,6 +63,14 @@ TEST(StringClass, Concatenation) {
     EXPECT_EQ(s, String("abcdef"));
 }
 
+TEST(StringClass, Reverse) {
+    String s("abcd");
+    EXPECT_EQ(s.reverse(), String("dcba"));
+
+    String t("happy");
+    EXPECT_EQ(t.reverse(), String("yppah"));
+}
+
 TEST(StringClass, IndexOfChar) {
     String s("abcd");
     EXPECT_EQ(s.indexOf('a'), 0);

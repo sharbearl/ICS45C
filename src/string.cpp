@@ -43,7 +43,12 @@ int String::size() const
     return strlen(buf);
 }
 
-//String reverse() const
+String String::reverse() const
+{
+    String temp = String(strlen(buf));
+    reverse_cpy(temp.buf, buf);
+    return temp;
+}
 
 int String::indexOf(char c) const
 {
