@@ -7,21 +7,35 @@ String::String(const char *s) : buf(strdup(s)) {}
 
 String::String(const String &s) : buf(strdup(s.buf)) {}
 
-//String::String(String &&s)
+String::String(String &&s) : buf(strdup(s.buf)) 
+{
+    s.buf = nullptr;
+}
 
 void String::swap(String &s)
 {
     std::swap(buf, s.buf);
 }
 
-String &String::operator=(String s)
+String &String::operator=(const String &s)
 {
-    delete[] buf;
-    buf = strdup(s.buf);
+    if(&s != this)
+    {
+        delete[] buf;
+        buf = strdup(s.buf);
+    }
     return *this;
 }
 
-//String &String::operator=(String &&s)
+String &String::operator=(String &&s)
+{
+    if(&s != this)
+    {
+        delete[] buf;
+        swap(s);
+    }
+    return *this;
+}
 
 char &String::operator[](int index)
 {
@@ -123,7 +137,10 @@ String &String::operator+=(const String &s)
 {
     String temp = String(strlen(buf) + strlen(s.buf));
     strcpy(temp.buf, buf);
-    delete[] buf;
+    if(s != *this)
+    {
+        delete[] buf;
+    }
     strcat(temp.buf, s.buf);
     buf = strdup(temp.buf);
     return *this;
@@ -146,7 +163,15 @@ String::String(int length) : buf(new char[length + 1]) {}
 
 String::~String()
 {
-    std::cout << "String " << buf << " is destructing" << std::endl;
+    
+    if(buf != nullptr)
+    {
+        std::cout << "String " << buf << " is destructing" << std::endl;
+    }
+    else
+    {
+        std::cout << "String is destructing" << std::endl; 
+    }
     delete[] buf;
 }
 
