@@ -1,4 +1,4 @@
-#include <iostream>;
+#include <iostream>
 #include "list.hpp";
 using namespace list;
 
@@ -26,6 +26,71 @@ void list::free(Node* head)
         p = p->next;
         delete temp;
     }
+}
+
+int list::compare(Node* lhs, Node* rhs)
+{
+    Node *l = lhs;
+    Node *r = rhs;
+
+    for(; l != nullptr && r != nullptr; l = l->next, r = r->next)
+    {
+        if(l->data != r->data)
+        {
+            return l->data - r->data;
+        }
+    }
+
+    if(l == nullptr && r == nullptr)
+    {
+        return 0;
+    }
+    else if(l == nullptr)
+    {
+        return 0 - r->data;
+    }
+    else
+    {
+        return l->data - 0;
+    }
+
+    delete l;
+    delete r;
+}
+
+int list::compare(Node* lhs, Node* rhs, int n)
+{
+    Node *l = lhs;
+    Node *r = rhs;
+    int i = 0;
+
+    for(; l != nullptr && r != nullptr && i < n; l = l->next, r = r->next, ++i)
+    {
+        if(l->data != r->data)
+        {
+            return l->data - r->data;
+        }
+    }
+
+    if(l == r || i == n)
+    {
+        return 0;
+    }
+    else if(l != nullptr && r != nullptr && l->data == r->data)
+    {
+        return 0;
+    }
+    else if(l == nullptr)
+    {
+        return 0 - r->data;
+    }
+    else
+    {
+        return l->data - 0;
+    }
+
+    delete l;
+    delete r;
 }
 
 void list::print(std::ostream& out, Node* head)

@@ -43,3 +43,38 @@ TEST(ListTests, Print) {
 
     list::free(head);
 }
+
+TEST(ListTest, Compare) {
+    Node* const first = list::from_string("abc");
+    Node* const second = list::from_string("abcd");
+    Node* const third = list::from_string("xyz");
+    Node* const fourth = list::from_string("");
+
+    EXPECT_LT(compare(first, second), 0);
+    EXPECT_GT(compare(third, first), 0);
+    EXPECT_GT(compare(first, fourth), 0);
+    EXPECT_EQ(compare(first, first), 0);
+
+    list::free(first);
+    list::free(second);
+    list::free(third);
+    list::free(fourth);
+}
+
+TEST(ListTest, CompareInt) {
+    Node* const first = list::from_string("abc");
+    Node* const second = list::from_string("abcd");
+    Node* const third = list::from_string("xyz");
+    Node* const fourth = list::from_string("");
+
+    EXPECT_LT(compare(first, second, 4), 0);
+    EXPECT_GT(compare(third, first, 3), 0);
+    EXPECT_GT(compare(first, fourth, 1), 0);
+    EXPECT_EQ(compare(first, first, 3), 0);
+    EXPECT_EQ(compare(first, second, 2), 0);
+
+    list::free(first);
+    list::free(second);
+    list::free(third);
+    list::free(fourth);
+}
