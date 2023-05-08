@@ -116,7 +116,7 @@ int list::length(Node* head)
     }
     return count;
 }
-
+/*
 Node* list::reverse(Node* head)
 {
     Node *last = head;
@@ -128,8 +128,8 @@ Node* list::reverse(Node* head)
         {
             first = p;
             first->next = last;
-            last = p;
+            last = first;
         }
     }
     return first;
-}
+}*/

@@ -80,8 +80,17 @@ TEST(ListTest, CompareInt) {
 }
 /*
 TEST(ListTest, Reverse) {
-    Node* first = "abc";
-    Node* second = "happy";
+    Node* const first = list::from_string("abc");
+    Node* const second = list::from_string("happy");
 
-    EXPECT
+    Node* const first_reverse = list::reverse(first);
+    Node* const second_reverse = list::reverse(second);
+
+    EXPECT_EQ(compare(first_reverse, list::from_string("cba")), 0);
+    EXPECT_EQ(compare(second_reverse, list::from_string("yppah")), 0);
+
+    list::free(first);
+    list::free(second);
+    list::free(first_reverse);
+    list::free(second_reverse);
 }*/
