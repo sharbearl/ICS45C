@@ -62,7 +62,13 @@ void String::print(std::ostream &out) const
     list::print(out, head);
 }
 
-//void String::read(std::istream &in)
+void String::read(std::istream &in)
+{
+    list::free(head);
+    char temp[1024];
+    in >> temp;
+    head = list::from_string(temp);
+}
 
 String::String(list::Node* head) : head(head) {}
 
@@ -87,4 +93,8 @@ std::ostream &operator<<(std::ostream &out, const String &s)
     return out;
 }
 
-//std::istream &String::operator>>(std::istream &in, String &s)
+std::istream &operator>>(std::istream &in, String &s)
+{
+    s.read(in);
+    return in;
+}
