@@ -64,3 +64,10 @@ TEST(StringClass, InBounds) {
     EXPECT_FALSE(t.in_bounds(0));
     EXPECT_FALSE(t.in_bounds(3));
 }
+
+TEST(StringClass, Reverse) {
+    String s("abc"), t("happy");
+
+    EXPECT_EQ(s.reverse(), String("cba"));
+    EXPECT_EQ(t.reverse(), String("yppah"));
+}

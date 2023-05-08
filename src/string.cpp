@@ -33,7 +33,10 @@ int String::size() const
     return list::length(head);
 }
 
-//String String::reverse() const
+String String::reverse() const
+{
+    return String(list::reverse(head));
+}
 
 //int indexOf(char c) const
 
@@ -61,7 +64,7 @@ void String::print(std::ostream &out) const
 
 //void String::read(std::istream &in)
 
-// String::String(list::Node* head)
+String::String(list::Node* head) : head(head) {}
 
 String::~String()
 {
