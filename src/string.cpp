@@ -10,6 +10,16 @@ int String::size() const
     return list::length(head);
 }
 
+bool String::operator==(const String &s) const
+{
+    int result = list::compare(head, s.head);
+    return result == 0;
+}
+/*
+std::strong_ordering String::operator<=>(const String &s) const
+{
+}*/
+
 void String::print(std::ostream &out) const
 {
     list::print(out, head);
