@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include <sstream>
 
 #include "list.hpp"
 
@@ -34,6 +35,11 @@ TEST(ListTests, Length) {
 // Add remaining tests below. All tests should follow
 // the format of `TEST(ListTests, <TestName>){}`.
 
-TEST(ListTests, ReplaceMe) {
-    EXPECT_TRUE(false);
+TEST(ListTests, Print) {
+    Node* const head = list::from_string("foo");
+    stringstream out;
+    list::print(out, head);
+    EXPECT_STREQ(out.str().c_str(), "foo");
+
+    list::free(head);
 }

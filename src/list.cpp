@@ -1,3 +1,4 @@
+#include <iostream>;
 #include "list.hpp";
 using namespace list;
 
@@ -24,6 +25,14 @@ void list::free(Node* head)
         Node *temp = p;
         p = p->next;
         delete temp;
+    }
+}
+
+void list::print(std::ostream& out, Node* head)
+{
+    for(Node *p = head; p != nullptr; p = p->next)
+    {
+        out << p->data;
     }
 }
 
