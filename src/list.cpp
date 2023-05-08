@@ -133,7 +133,7 @@ Node* list::reverse(Node* head)
     return first;
 }
 
-//Node* append(Node* lhs, Node* rhs)
+//Node* list::append(Node* lhs, Node* rhs)
 
 int list::index(Node* head, Node* node)
 {
@@ -164,5 +164,21 @@ Node* list::find_char(Node* head, char c)
         }
     }
     
+    return nullptr;
+}
+
+//Node* list::find_list(Node* haystack, Node* needle)
+
+Node* list::nth(Node* head, int n)
+{
+    int count = 0;
+    
+    for(Node *p = head; p != nullptr; p = p->next, ++count)
+    {
+        if(count == n)
+        {
+            return p;
+        }
+    }
     return nullptr;
 }

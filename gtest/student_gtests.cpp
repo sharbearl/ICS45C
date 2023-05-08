@@ -131,3 +131,20 @@ TEST(ListTests, FindChar) {
 
     list::free(head);
 }
+
+TEST(ListTests, Nth) { 
+    Node* const head = list::from_string("abc");
+
+    Node* first = list::nth(head, 0);
+    Node* second = list::nth(head, 1);
+    Node* third = list::nth(head, 2);
+    Node* fourth = list::nth(head, 3);
+
+    EXPECT_EQ(first->data, 'a');
+    EXPECT_EQ(second->data, 'b');
+    EXPECT_EQ(third->data, 'c');
+    EXPECT_EQ(fourth, nullptr);
+
+
+    list::free(head);
+}
