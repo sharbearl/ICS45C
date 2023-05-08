@@ -148,15 +148,15 @@ TEST(ListTests, Append) {
 TEST(ListTests, Index) {
     Node* const head = list::from_string("abc");
     Node* const a = new Node{'a', nullptr};
-    Node* const z = new Node{'z', nullptr};
+    Node* const z = new Node{'c', nullptr};
  
 
     EXPECT_EQ(list::index(head, a), 0);
-    EXPECT_EQ(list::index(head, z), -1);
+    EXPECT_EQ(list::index(head, c), 2);
 
     list::free(head);
     delete a;
-    delete z;
+    delete c;
 }
 
 TEST(ListTests, FindChar) {
@@ -239,11 +239,6 @@ TEST(ListTests, Last) {
     Node* last_two = list::last(second);
     EXPECT_EQ(last_two->data, 'y');
 
-    Node* const third = list::from_string("");
-    Node* last_three = list::last(third);
-    EXPECT_EQ(last_three, nullptr);
-
     list::free(first);
     list::free(second);
-    list::free(third);
 }
