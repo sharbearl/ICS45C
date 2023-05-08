@@ -44,6 +44,26 @@ TEST(ListTests, Print) {
     list::free(head);
 }
 
+TEST(ListTests, Copy) {
+    Node* const foo_list_head = list::from_string("foo");
+    Node* const foo_list_copy = list::copy(foo_list_head);
+    Node* foo_list = foo_list_copy;
+
+    EXPECT_EQ(foo_list->data, 'f');
+    ASSERT_NE(foo_list->next, nullptr);
+
+    foo_list = foo_list->next;
+    EXPECT_EQ(foo_list->data, 'o');
+    ASSERT_NE(foo_list->next, nullptr);
+
+    foo_list = foo_list->next;
+    EXPECT_EQ(foo_list->data, 'o');
+    ASSERT_EQ(foo_list->next, nullptr);
+
+    list::free(foo_list_head);
+    list::free(foo_list_copy);
+}
+
 TEST(ListTests, Compare) {
     Node* const first = list::from_string("abc");
     Node* const second = list::from_string("abcd");

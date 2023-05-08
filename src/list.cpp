@@ -103,8 +103,18 @@ void list::print(std::ostream& out, Node* head)
 
 Node* list::copy(Node* head)
 {
-    Node* p = new Node{head->data, head->next};
-    return p;
+    Node *first = new Node{head->data, nullptr};
+    Node *previous = first;
+
+    if(head->next != nullptr)
+    {
+        for(Node *p = head->next; p != nullptr; p = p->next)
+        {
+            previous->next = new Node{p->data, p->next};
+            previous = previous->next;
+        }
+    }
+    return first;
 }
 
 int list::length(Node* head)
@@ -132,8 +142,12 @@ Node* list::reverse(Node* head)
     }
     return first;
 }
+/*
+Node* list::append(Node* lhs, Node* rhs)
+{
+    Node* temp = copy(lhs);
 
-//Node* list::append(Node* lhs, Node* rhs)
+}*/
 
 int list::index(Node* head, Node* node)
 {
