@@ -78,3 +78,10 @@ TEST(ListTest, CompareInt) {
     list::free(third);
     list::free(fourth);
 }
+/*
+TEST(ListTest, Reverse) {
+    Node* first = "abc";
+    Node* second = "happy";
+
+    EXPECT
+}*/
