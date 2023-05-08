@@ -113,3 +113,21 @@ TEST(ListTests, Index) {
     delete a;
     delete z;
 }
+
+TEST(ListTests, FindChar) {
+    Node* const head = list::from_string("abc");
+
+    Node* one = list::find_char(head, 'a');
+    Node* two = list::find_char(head, 'b');
+    Node* three = list::find_char(head, 'c');
+    Node* four = list::find_char(head, 's');
+    Node* five = list::find_char(head, '\0');
+
+    EXPECT_EQ(one->data, 'a');
+    EXPECT_EQ(two->data, 'b');
+    EXPECT_EQ(three->data, 'c');
+    EXPECT_EQ(four, nullptr);
+    EXPECT_EQ(five, nullptr);
+
+    list::free(head);
+}

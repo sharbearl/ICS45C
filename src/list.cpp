@@ -148,3 +148,21 @@ int list::index(Node* head, Node* node)
     }
     return -1;
 }
+
+Node* list::find_char(Node* head, char c)
+{
+    if(c == '\0')
+    {
+        return nullptr;
+    }
+
+    for(Node *p = head; p != nullptr; p = p->next)
+    {
+        if(p->data == c)
+        {
+            return p;
+        }
+    }
+    
+    return nullptr;
+}
