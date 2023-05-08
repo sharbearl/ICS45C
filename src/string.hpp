@@ -65,7 +65,7 @@ public:
     void read(std::istream &in);
 
     // destructor for this string
-    //~String();
+    ~String();
 private:
     list::Node* head;
 
