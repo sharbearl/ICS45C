@@ -60,7 +60,15 @@ int String::indexOf(char c) const
     return list::index(head, search);
 }
 
-//int String::indexOf(const String &s) const
+int String::indexOf(const String &s) const
+{
+    list::Node* search = list::find_list(head, s.head);
+    if(search == nullptr)
+    {
+        return -1;
+    }
+    return list::index(head, search);
+}
 
 bool String::operator==(const String &s) const
 {

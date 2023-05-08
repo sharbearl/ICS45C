@@ -91,3 +91,12 @@ TEST(StringClass, IndexChar) {
     EXPECT_EQ(s.indexOf('g'), 6);
     EXPECT_EQ(s.indexOf('z'), -1);
 }
+
+TEST(StringClass, IndexStr) {
+    String s("abcdefg");
+
+    EXPECT_EQ(s.indexOf(String("abc")), 0);
+    EXPECT_EQ(s.indexOf(String("cde")), 2);
+    EXPECT_EQ(s.indexOf(String("efg")), 4);
+    EXPECT_EQ(s.indexOf(String("xyz")), -1);
+}
