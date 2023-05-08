@@ -50,9 +50,17 @@ String String::reverse() const
     return String(list::reverse(head));
 }
 
-//int indexOf(char c) const
+int String::indexOf(char c) const
+{
+    list::Node* search = list::find_char(head, c);
+    if(search == nullptr)
+    {
+        return -1;
+    }
+    return list::index(head, search);
+}
 
-//int indexOf(const String &s) const
+//int String::indexOf(const String &s) const
 
 bool String::operator==(const String &s) const
 {

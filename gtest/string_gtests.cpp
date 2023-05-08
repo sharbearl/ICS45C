@@ -82,3 +82,12 @@ TEST(StringClass, Indexing) {
     EXPECT_EQ(t[0], '@');
     EXPECT_EQ(t[4], '@');
 }
+
+TEST(StringClass, IndexChar) {
+    String s("abcdefg");
+
+    EXPECT_EQ(s.indexOf('a'), 0);
+    EXPECT_EQ(s.indexOf('d'), 3);
+    EXPECT_EQ(s.indexOf('g'), 6);
+    EXPECT_EQ(s.indexOf('z'), -1);
+}
