@@ -37,7 +37,7 @@ TEST(StringClass, Comparisons) {
     EXPECT_EQ(String("foo"), String("foo"));
     EXPECT_NE(String("foo"), String("fooo"));
 }
-/*
+
 TEST(StringClass, Assignment) {
     String s("test"), t("foo");
 
@@ -52,4 +52,15 @@ TEST(StringClass, Assignment) {
     s = String();
     EXPECT_EQ(s, String());
     EXPECT_EQ(s.size(), 0);
-}*/
+}
+
+TEST(StringClass, InBounds) {
+    String s("test"), t("");
+
+    EXPECT_TRUE(s.in_bounds(0));
+    EXPECT_TRUE(s.in_bounds(3));
+    EXPECT_FALSE(s.in_bounds(10));
+
+    EXPECT_FALSE(t.in_bounds(0));
+    EXPECT_FALSE(t.in_bounds(3));
+}
