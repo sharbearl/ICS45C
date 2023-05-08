@@ -87,11 +87,11 @@ TEST(ListTests, CompareInt) {
     Node* const third = list::from_string("xyz");
     Node* const fourth = list::from_string("");
 
-    EXPECT_LT(compare(first, second, 4), 0);
-    EXPECT_GT(compare(third, first, 3), 0);
-    EXPECT_GT(compare(first, fourth, 1), 0);
-    EXPECT_EQ(compare(first, first, 3), 0);
-    EXPECT_EQ(compare(first, second, 2), 0);
+    EXPECT_LT(list::compare(first, second, 4), 0);
+    EXPECT_GT(list::compare(third, first, 3), 0);
+    EXPECT_GT(list::compare(first, fourth, 1), 0);
+    EXPECT_EQ(list::compare(first, first, 3), 0);
+    EXPECT_EQ(list::compare(first, second, 2), 0);
 
     list::free(first);
     list::free(second);
@@ -109,8 +109,8 @@ TEST(ListTests, Reverse) {
     Node* const first_check = list::from_string("cba");
     Node* const second_check = list::from_string("yppah");
 
-    EXPECT_EQ(compare(first_reverse, first_check), 0);
-    EXPECT_EQ(compare(second_reverse, second_check), 0);
+    EXPECT_EQ(list::compare(first_reverse, first_check), 0);
+    EXPECT_EQ(list::compare(second_reverse, second_check), 0);
 
     list::free(first);
     list::free(second);
@@ -118,6 +118,31 @@ TEST(ListTests, Reverse) {
     list::free(second_reverse);
     list::free(first_check);
     list::free(second_check);
+}
+
+TEST(ListTests, Append) {
+    Node* const first = list::from_string("abc");
+    Node* const second = list::from_string("def");
+    Node* const third = list::from_string("");
+
+    Node* const one = list::append(first, second);
+    Node* const two = list::append(first, third);
+    Node* const three = list::append(third, first);
+
+    Node* const check = list::from_string("abcdef");
+
+    EXPECT_EQ(list::compare(one, check), 0);
+    EXPECT_EQ(list::compare(two, first), 0);
+    EXPECT_EQ(list::compare(three, first), 0);
+
+    list::free(first);
+    list::free(second);
+    list::free(third);
+    list::free(one);
+    list::free(two);
+    list::free(three);
+    list::free(check);
+
 }
 
 TEST(ListTests, Index) {

@@ -4,6 +4,10 @@ using namespace list;
 
 Node* list::from_string(const char *s)
 {
+    if(s[0] == '\0')
+    {
+        return nullptr;
+    }
     Node *first = new Node{s[0], nullptr}; 
     Node *previous = first;
 
@@ -103,6 +107,11 @@ void list::print(std::ostream& out, Node* head)
 
 Node* list::copy(Node* head)
 {
+    if(head == nullptr)
+    {
+        return nullptr;
+    }
+
     Node *first = new Node{head->data, nullptr};
     Node *previous = first;
 
@@ -142,12 +151,25 @@ Node* list::reverse(Node* head)
     }
     return first;
 }
-/*
+
 Node* list::append(Node* lhs, Node* rhs)
 {
-    Node* temp = copy(lhs);
+    if(lhs == nullptr)
+    {
+        return copy(rhs);
+    }
 
-}*/
+    Node* temp = copy(lhs);
+    Node* end = last(temp);
+
+    if(rhs != nullptr)
+        for(Node *p = rhs; p != nullptr; p = p->next)
+        {
+            end->next = new Node{p->data, p->next};
+            end = end->next;
+        }
+    return temp;
+}
 
 int list::index(Node* head, Node* node)
 {
