@@ -71,3 +71,14 @@ TEST(StringClass, Reverse) {
     EXPECT_EQ(s.reverse(), String("cba"));
     EXPECT_EQ(t.reverse(), String("yppah"));
 }
+
+TEST(StringClass, Indexing) {
+    String s("abc"), t("");
+
+    EXPECT_EQ(s[0], 'a');
+    EXPECT_EQ(s[1], 'b');
+    EXPECT_EQ(s[2], 'c');
+    EXPECT_EQ(s[4], 'a');
+    EXPECT_EQ(t[0], '@');
+    EXPECT_EQ(t[4], '@');
+}

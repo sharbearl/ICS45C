@@ -26,7 +26,19 @@ bool String::in_bounds(int index) const
     return index >= 0 && index < list::length(head);
 }
 
-//char String::operator[] const
+char String::operator[](int index) const
+{
+    if(head == nullptr)
+    {
+        return '@';
+    }
+    else if(!in_bounds(index))
+    {
+        std::cout << "ERROR: Index Out Of Bounds";
+        return head->data;
+    }
+    return list::nth(head, index)->data;
+}
 
 int String::size() const
 {
