@@ -133,3 +133,19 @@ Node* list::reverse(Node* head)
     }
     return first;
 }*/
+
+//Node* append(Node* lhs, Node* rhs)
+
+int list::index(Node* head, Node* node)
+{
+    int count = 0;
+
+    for(Node *p = head; p != nullptr; p = p->next, ++count)
+    {
+        if(p->data == node->data)
+        {
+            return count;
+        }
+    }
+    return -1;
+}

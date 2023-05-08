@@ -94,3 +94,17 @@ TEST(ListTest, Reverse) {
     list::free(first_reverse);
     list::free(second_reverse);
 }*/
+
+TEST(ListTest, Index) {
+    Node* const head = list::from_string("abc");
+    Node* const a = new Node{'a', nullptr};
+    Node* const z = new Node{'z', nullptr};
+ 
+
+    EXPECT_EQ(list::index(head, a), 0);
+    EXPECT_EQ(list::index(head, z), -1);
+
+    list::free(head);
+    delete a;
+    delete z;
+}
