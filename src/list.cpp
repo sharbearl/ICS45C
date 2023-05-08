@@ -116,23 +116,22 @@ int list::length(Node* head)
     }
     return count;
 }
-/*
+
 Node* list::reverse(Node* head)
 {
-    Node *last = head;
+    Node *last = new Node(head->data, nullptr);
     Node *first;
 
     if(last != nullptr)
     {
         for(Node *p = head->next; p != nullptr; p = p->next)
         {
-            first = p;
-            first->next = last;
+            first = new Node(p->data, last);
             last = first;
         }
     }
     return first;
-}*/
+}
 
 //Node* append(Node* lhs, Node* rhs)
 
