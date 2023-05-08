@@ -148,3 +148,16 @@ TEST(ListTests, Nth) {
 
     list::free(head);
 }
+
+TEST(ListTests, Last) {
+    Node* const first = list::from_string("abc");
+    Node* last_one = list::last(first);
+    EXPECT_EQ(last_one->data, 'c');
+
+    Node* const second = list::from_string("happy");
+    Node* last_two = list::last(second);
+    EXPECT_EQ(last_two->data, 'y');
+
+    list::free(first);
+    list::free(second);
+}

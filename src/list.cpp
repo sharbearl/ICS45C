@@ -182,3 +182,13 @@ Node* list::nth(Node* head, int n)
     }
     return nullptr;
 }
+
+Node* list::last(Node* head)
+{
+    Node* previous = head;
+    for(Node *p = head->next; p != nullptr; p = p->next)
+    {
+        previous = p;
+    }
+    return previous;
+}
