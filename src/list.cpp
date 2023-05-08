@@ -189,7 +189,7 @@ Node* list::find_char(Node* head, char c)
 {
     if(c == '\0')
     {
-        return nullptr;
+        return head;
     }
 
     for(Node *p = head; p != nullptr; p = p->next)
@@ -203,7 +203,24 @@ Node* list::find_char(Node* head, char c)
     return nullptr;
 }
 
-//Node* list::find_list(Node* haystack, Node* needle)
+Node* list::find_list(Node* haystack, Node* needle)
+{
+    if(needle == nullptr)
+    {
+        return haystack;
+    }
+
+    int len = length(needle);
+
+    for(Node *p = haystack; (p = find_char(p, needle->data)); p = p->next)
+    {
+        if(compare(p, needle, len) == 0)
+        {
+            return p;
+        }
+    }
+    return nullptr;
+}
 
 Node* list::nth(Node* head, int n)
 {
@@ -221,6 +238,11 @@ Node* list::nth(Node* head, int n)
 
 Node* list::last(Node* head)
 {
+    if(head == nullptr)
+    {
+        return nullptr;
+    }
+
     Node* previous = head;
     for(Node *p = head->next; p != nullptr; p = p->next)
     {

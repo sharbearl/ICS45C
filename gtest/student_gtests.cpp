@@ -172,9 +172,45 @@ TEST(ListTests, FindChar) {
     EXPECT_EQ(two->data, 'b');
     EXPECT_EQ(three->data, 'c');
     EXPECT_EQ(four, nullptr);
-    EXPECT_EQ(five, nullptr);
+    EXPECT_EQ(five->data, 'a');
 
     list::free(head);
+}
+
+TEST(ListTests, FindList) {
+    Node* const head = list::from_string("abcdefg");
+
+    Node* const one = list::from_string("");
+    Node* first = list::find_list(head, one);
+    EXPECT_EQ(first, head);
+
+    Node* const two = list::from_string("abc");
+    Node* second = list::find_list(head, two);
+    EXPECT_EQ(second->data, 'a');
+
+    Node* const three = list::from_string("efg");
+    Node* third = list::find_list(head, three);
+    EXPECT_EQ(third->data, 'e');
+
+    Node* const four = list::from_string("cde");
+    Node* fourth = list::find_list(head, four);
+    EXPECT_EQ(fourth->data, 'c');
+
+    Node* const five = list::from_string("abe");
+    Node* fifth = list::find_list(head, five);
+    EXPECT_EQ(fifth, nullptr);
+ 
+    Node* const six = list::from_string("xyz");
+    Node* sixth = list::find_list(head, six);
+    EXPECT_EQ(sixth, nullptr);
+
+    list::free(head);
+    list::free(one);
+    list::free(two);
+    list::free(three);
+    list::free(four);
+    list::free(five);
+    list::free(six);
 }
 
 TEST(ListTests, Nth) { 
@@ -203,6 +239,11 @@ TEST(ListTests, Last) {
     Node* last_two = list::last(second);
     EXPECT_EQ(last_two->data, 'y');
 
+    Node* const third = list::from_string("");
+    Node* last_three = list::last(third);
+    EXPECT_EQ(last_three, nullptr);
+
     list::free(first);
     list::free(second);
+    list::free(third);
 }
