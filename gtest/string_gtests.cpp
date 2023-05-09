@@ -98,7 +98,7 @@ TEST(StringClass, IndexStr) {
     EXPECT_EQ(s.indexOf(String("cde")), 2);
     EXPECT_EQ(s.indexOf(String("efg")), 4);
     EXPECT_EQ(s.indexOf(String("xyz")), -1);
-    EXPECT_EQ(s.indexOf(String("")), -1);
+    EXPECT_EQ(s.indexOf(String("")), 0);
 
     String t("");
     EXPECT_EQ(t.indexOf(String("abc")), -1);

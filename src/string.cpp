@@ -79,7 +79,7 @@ int String::indexOf(const String &s) const
     }
 
     list::Node* search = list::find_list(head, s.head);
-    if(search == nullptr || s.head == nullptr)
+    if(search == nullptr)
     {
         return -1;
     }
