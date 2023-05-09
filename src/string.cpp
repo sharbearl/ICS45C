@@ -73,8 +73,13 @@ int String::indexOf(char c) const
 
 int String::indexOf(const String &s) const
 {
+    if(s.head == nullptr && head == nullptr)
+    {
+        return 0;
+    }
+
     list::Node* search = list::find_list(head, s.head);
-    if(search == nullptr)
+    if(search == nullptr || s.head == nullptr)
     {
         return -1;
     }

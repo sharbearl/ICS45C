@@ -94,11 +94,15 @@ TEST(StringClass, IndexChar) {
 
 TEST(StringClass, IndexStr) {
     String s("abcdefg");
-
     EXPECT_EQ(s.indexOf(String("abc")), 0);
     EXPECT_EQ(s.indexOf(String("cde")), 2);
     EXPECT_EQ(s.indexOf(String("efg")), 4);
     EXPECT_EQ(s.indexOf(String("xyz")), -1);
+    EXPECT_EQ(s.indexOf(String("")), -1);
+
+    String t("");
+    EXPECT_EQ(t.indexOf(String("abc")), -1);
+    EXPECT_EQ(t.indexOf(String("")), 0);
 }
 
 TEST(StringClass, Concatenate) {
