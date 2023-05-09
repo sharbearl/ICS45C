@@ -100,3 +100,13 @@ TEST(StringClass, IndexStr) {
     EXPECT_EQ(s.indexOf(String("efg")), 4);
     EXPECT_EQ(s.indexOf(String("xyz")), -1);
 }
+
+TEST(StringClass, Concatenate) {
+    String s("abc"), t("def");
+
+    EXPECT_EQ(s+t, String("abcdef"));
+    EXPECT_EQ(s+s, String("abcabc"));
+
+    s += t;
+    EXPECT_EQ(s, String("abcdef"));
+}

@@ -1,4 +1,5 @@
 #include <iostream>
+#include <utility>
 #include "string.hpp";
 
 String::String(const char *s) : head(list::from_string(s)) {}
@@ -7,7 +8,10 @@ String::String(const String &s) : head(list::copy(s.head)) {}
 
 //String::String(String &&s)
 
-//void swap(String &s)
+void String::swap(String &s)
+{
+    std::swap(head, s.head);
+}
 
 String &String::operator=(const String &s)
 {
@@ -81,9 +85,19 @@ std::strong_ordering String::operator<=>(const String &s) const
     return list::compare(head, s.head) <=> 0;
 }
 
-//String String::operator+(const String &s)
+String String::operator+(const String &s) const
+{
+    String temp = String(list::append(head, s.head));
+    return temp;
 
-//String &String::operator+=(const String &s)
+}
+
+String &String::operator+=(const String &s)
+{
+    String temp = String(list::append(head, s.head));
+    swap(temp);
+    return *this;
+}
 
 void String::print(std::ostream &out) const
 {
