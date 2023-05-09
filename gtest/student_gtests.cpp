@@ -170,7 +170,7 @@ TEST(ListTests, FindChar) {
     EXPECT_EQ(two->data, 'b');
     EXPECT_EQ(three->data, 'c');
     EXPECT_EQ(four, nullptr);
-    EXPECT_EQ(five->data, 'a');
+    EXPECT_EQ(five, nullptr);
 
     list::free(head);
 }

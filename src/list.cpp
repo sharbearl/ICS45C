@@ -189,7 +189,7 @@ Node* list::find_char(Node* head, char c)
 {
     if(c == '\0')
     {
-        return head;
+        return nullptr;
     }
 
     for(Node *p = head; p != nullptr; p = p->next)
