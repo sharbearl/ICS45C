@@ -138,6 +138,11 @@ int list::length(Node* head)
 
 Node* list::reverse(Node* head)
 {
+    if(head == nullptr)
+    {
+        return head;
+    }
+
     Node *last = new Node(head->data, nullptr);
     Node *first;
 
