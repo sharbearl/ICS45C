@@ -147,16 +147,14 @@ TEST(ListTests, Append) {
 
 TEST(ListTests, Index) {
     Node* const head = list::from_string("abc");
-    Node* const a = new Node{'a', nullptr};
-    Node* const c = new Node{'c', nullptr};
+    Node* a = list::nth(head, 0);
+    Node* c = list::nth(head, 2);
  
 
     EXPECT_EQ(list::index(head, a), 0);
     EXPECT_EQ(list::index(head, c), 2);
 
     list::free(head);
-    delete a;
-    delete c;
 }
 
 TEST(ListTests, FindChar) {
