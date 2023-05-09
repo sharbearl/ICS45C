@@ -177,7 +177,7 @@ int list::index(Node* head, Node* node)
 
     for(Node *p = head; p != nullptr; p = p->next, ++count)
     {
-        if(p->data == node->data)
+        if(p == node)
         {
             return count;
         }
