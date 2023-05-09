@@ -101,8 +101,9 @@ String String::operator+(const String &s) const
 
 String &String::operator+=(const String &s)
 {
-    String temp = String(list::append(head, s.head));
-    swap(temp);
+    list::Node *temp = list::copy(s.head);
+    list::Node *last = list::last(head);
+    last->next = temp;
     return *this;
 }
 
