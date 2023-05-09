@@ -148,7 +148,7 @@ TEST(ListTests, Append) {
 TEST(ListTests, Index) {
     Node* const head = list::from_string("abc");
     Node* const a = new Node{'a', nullptr};
-    Node* const z = new Node{'c', nullptr};
+    Node* const c = new Node{'c', nullptr};
  
 
     EXPECT_EQ(list::index(head, a), 0);

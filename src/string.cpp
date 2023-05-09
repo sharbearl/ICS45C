@@ -6,7 +6,10 @@ String::String(const char *s) : head(list::from_string(s)) {}
 
 String::String(const String &s) : head(list::copy(s.head)) {}
 
-//String::String(String &&s)
+String::String(String &&s) : head(s.head)
+{
+    s.head = nullptr;
+}
 
 void String::swap(String &s)
 {
@@ -23,7 +26,11 @@ String &String::operator=(const String &s)
     return *this;
 }
 
-//String &String::operator=(String &&s)
+String &String::operator=(String &&s)
+{
+    swap(s);
+    return *this;
+}
 
 bool String::in_bounds(int index) const
 {
