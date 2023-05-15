@@ -23,7 +23,7 @@ public:
 
     virtual Shape* clone() const = 0;
 
-    virtual ~Shape() default;
+    virtual ~Shape() = default;
 
 protected:
     Shape(const Shape& other) = default;
