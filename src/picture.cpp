@@ -4,6 +4,31 @@
 
 Picture::Picture(): head(nullptr), tail(nullptr){}
 
+Picture::Picture(const Picture& other) : head(nullptr), tail(nullptr)
+{
+    if (other.head != nullptr)
+        head = new ListNode{other.head->shape->clone(), nullptr, tail};
+    
+    ListNode* prev = head;
+
+    if (other.head->next != nullptr)
+    {
+        for (ListNode* p = other.head->next; p != nullptr; p = p->next)
+        {
+            ListNode* temp = new ListNode{p->shape->clone(), prev, nullptr};
+            prev->next = temp;
+            prev = temp;
+        }
+    }
+
+    tail = prev;
+}
+
+Picture &Picture::operator=(const Picture& other)
+{
+
+}
+
 void Picture::add(const Shape& shape)
 {
     ListNode* temp = new ListNode{shape.clone(), tail, nullptr};

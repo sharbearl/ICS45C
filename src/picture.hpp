@@ -8,7 +8,7 @@ class Picture {
 public:
     Picture();
 
-    //Picture(const Picture& other);
+    Picture(const Picture& other);
     //Picture(Picture&& other);
 
     //void swap(Picture& other);
