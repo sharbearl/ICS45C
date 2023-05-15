@@ -41,6 +41,7 @@ void Picture::add(const Shape& shape)
     {
         temp->prev = tail;
         tail->next = temp;
+        tail = temp;
     }
 }
 

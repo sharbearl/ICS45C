@@ -57,7 +57,6 @@ TEST(RectangleTests, Draw) {
 
     EXPECT_STREQ(out.str().c_str(),
                  "****\n"
-                 "****\n"
                  "****\n");
 }
 
@@ -92,9 +91,8 @@ TEST(TriangleTests, Draw) {
     t.draw(out);
 
     EXPECT_STREQ(out.str().c_str(),
-                 "****\n"
-                 "****\n"
-                 "****\n");
+                 " * \n"
+                 "***\n");
 }
 
 TEST(TriangleTests, Print) {

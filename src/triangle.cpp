@@ -7,7 +7,7 @@ Triangle::Triangle(Point center, std::string name, int height, int base) :
 
 double Triangle::area() const
 {
-    return height * base / 2;
+    return height * base / 2.0;
 }
 
 void Triangle::draw(std::ostream& out) const
