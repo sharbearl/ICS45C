@@ -5,17 +5,18 @@
 Circle::Circle(Point center, std::string name, int radius) : 
     Shape(center, name), radius(radius) {}
 
-Circle* Circle::clone()
+Circle* Circle::clone() const
 {
-    return Circle(this);
+    Circle temp = Circle(*this);
+    return &temp;
 }
 
-double Circle::area() const override
+double Circle::area() const
 {
     return 0.0;
 }
 
-void Circle::draw(std::ostream& out) const override
+void Circle::draw(std::ostream& out) const
 {
 
 }

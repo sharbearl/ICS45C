@@ -2,7 +2,7 @@
 
 #include <sstream>
 
-#include "shape.hpp"/*
+#include "shape.hpp"
 #include "circle.hpp"
 #include "rectangle.hpp"
 #include "square.hpp"
@@ -31,7 +31,7 @@ TEST(CircleTests, Clone) {
     Circle* clone = c.clone();
     delete clone;
 }
-*/
+
 TEST(CircleTests, Print) {
     Circle c{{3, 2}, "foo", 10};
 
