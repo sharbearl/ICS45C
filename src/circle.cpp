@@ -13,7 +13,7 @@ Circle* Circle::clone() const
 
 double Circle::area() const
 {
-    return 0.0;
+    return std::numbers::pi * (radius * radius);
 }
 
 void Circle::draw(std::ostream& out) const

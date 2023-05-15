@@ -34,6 +34,19 @@ void Picture::draw_all(std::ostream& out) const
     }
 }
 
+double Picture::total_area() const
+{
+    double total = 0.0;
+
+    if (head != nullptr)
+    {
+        for (ListNode* p = head; p != nullptr; p = p->next)
+            total += (p->shape)->area();
+    }
+
+    return total;
+}
+
 Picture::~Picture()
 {/*
     for(ListNode *p = head; p != nullptr;)

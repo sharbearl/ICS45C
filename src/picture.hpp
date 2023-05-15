@@ -22,7 +22,7 @@ public:
 
     void draw_all(std::ostream& out) const;
 
-    //double total_area() const;
+    double total_area() const;
 
     ~Picture();
 
