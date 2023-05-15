@@ -38,7 +38,10 @@ void Picture::add(const Shape& shape)
     if (tail == nullptr)
         tail = temp;
     else
+    {
+        temp->prev = tail;
         tail->next = temp;
+    }
 }
 
 void Picture::print_all(std::ostream& out) const

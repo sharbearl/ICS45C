@@ -13,7 +13,7 @@ public:
 
     //void swap(Picture& other);
 
-    //Picture& operator=(const Picture& other);
+    Picture& operator=(const Picture& other);
     //Picture& operator=(Picture&& other);
 
     void add(const Shape& shape);
