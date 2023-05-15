@@ -7,8 +7,8 @@ Circle::Circle(Point center, std::string name, int radius) :
 
 Circle* Circle::clone() const
 {
-    Circle temp = Circle(*this);
-    return &temp;
+    Circle *temp = new Circle(*this);
+    return temp;
 }
 
 double Circle::area() const
@@ -18,5 +18,10 @@ double Circle::area() const
 
 void Circle::draw(std::ostream& out) const
 {
-
+    for (int y = -radius; y <= radius; y += 2)
+    {
+        for (int x = -radius; x <= radius; ++x)
+            out << (x * x + y * y <= radius * radius ? '*' : ' ');
+        out << '\n';
+    }
 }

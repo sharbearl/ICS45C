@@ -25,13 +25,6 @@ TEST(CircleTests, Draw) {
                  "   *   \n");
 }
 
-TEST(CircleTests, Clone) {
-    Circle c{{3, 2}, "foo", 10};
-
-    Circle* clone = c.clone();
-    delete clone;
-}
-
 TEST(CircleTests, Print) {
     Circle c{{3, 2}, "foo", 10};
 
@@ -40,3 +33,15 @@ TEST(CircleTests, Print) {
 
     EXPECT_STREQ(out.str().c_str(), "foo(3, 2)\n");
 }
+
+TEST(CircleTests, Clone) {
+    Circle c{{3, 2}, "foo", 10};
+
+    Circle* clone = c.clone();
+    std::stringstream out;
+    clone->print(out);
+
+    EXPECT_STREQ(out.str().c_str(), "foo(3, 2)\n");
+    delete clone;
+}
+
