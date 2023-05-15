@@ -80,3 +80,39 @@ TEST(RectangleTests, Clone) {
     EXPECT_STREQ(out.str().c_str(), "foo(3, 2)\n");
     delete clone;
 }
+
+TEST(TriangleTests, Area) {
+    EXPECT_EQ(Triangle({1, 2}, "", 2, 2).area(), 2.0);
+}
+
+TEST(TriangleTests, Draw) {
+    Triangle t{{0, 0}, "triangle", 4, 3};
+
+    std::stringstream out;
+    t.draw(out);
+
+    EXPECT_STREQ(out.str().c_str(),
+                 "****\n"
+                 "****\n"
+                 "****\n");
+}
+
+TEST(TriangleTests, Print) {
+    Triangle t{{3, 2}, "foo", 10, 10};
+
+    std::stringstream out;
+    t.print(out);
+
+    EXPECT_STREQ(out.str().c_str(), "foo(3, 2)\n");
+}
+
+TEST(TriangleTests, Clone) {
+    Triangle t{{3, 2}, "foo", 10, 10};                           
+
+    Triangle* clone = t.clone();
+    std::stringstream out;
+    clone->print(out);
+
+    EXPECT_STREQ(out.str().c_str(), "foo(3, 2)\n");
+    delete clone;
+}

@@ -51,11 +51,11 @@ TEST_F(PictureTests, TotalArea) {
     p.add(Square{{0, 0}, "square1", 5});
     ASSERT_EQ(p.total_area(), 42);
     p.add(Square{{1, -2}, "square2", 7});
-    ASSERT_EQ(p.total_area(), 91);
+    ASSERT_EQ(p.total_area(), 91);*/
     p.add(Triangle{{0, 0}, "triangle1", 1, 2});
     ASSERT_EQ(p.total_area(), 92);
     p.add(Triangle{{5, 7}, "triangle2", 5, 1});
-    ASSERT_EQ(p.total_area(), 94.5);*/
+    ASSERT_EQ(p.total_area(), 94.5);
     p.add(Circle{{0, 0}, "circle1", 1});
     //ASSERT_NEAR(p.total_area(), 97.64, 0.01);
     ASSERT_NEAR(p.total_area(), 20.14, 0.01);
@@ -78,9 +78,9 @@ TEST_F(PictureTests, PrintAll) {
         ASSERT_EQ(collective.str(), individual.str());
     };
 
-    testcase(Rectangle{{0, 0}, "rect1", 3, 5});/*
-    testcase(Square{{0, 0}, "square1", 5});
-    testcase(Triangle{{0, 0}, "triangle1", 1, 2});*/
+    testcase(Rectangle{{0, 0}, "rect1", 3, 5});
+    //testcase(Square{{0, 0}, "square1", 5});
+    testcase(Triangle{{0, 0}, "triangle1", 1, 2});
     testcase(Circle{{0, 0}, "circle1", 1});
 }
 
@@ -98,9 +98,9 @@ TEST_F(PictureTests, DrawAll) {
         ASSERT_EQ(collective.str(), individual.str());
     };
 
-    testcase(Rectangle{{0, 0}, "rect1", 3, 5});/*
-    testcase(Square{{0, 0}, "square1", 5});
-    testcase(Triangle{{0, 0}, "triangle1", 1, 2});*/
+    testcase(Rectangle{{0, 0}, "rect1", 3, 5});
+    //testcase(Square{{0, 0}, "square1", 5});
+    testcase(Triangle{{0, 0}, "triangle1", 1, 2});
     testcase(Circle{{0, 0}, "circle1", 1});
 }
 
