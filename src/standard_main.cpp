@@ -35,4 +35,3 @@ int main(int argc, char * argv[])
     collage.print_all(cout);
     collage.draw_all(cout);
 }
-}
