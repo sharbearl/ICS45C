@@ -6,6 +6,7 @@ Shape::Shape(Point center, std::string name) :
 
 void Shape::print(std::ostream& out) const
 {
-    out << name << "(" << center.x << ", " << center.y << ")" << std::endl;
+    out << name << " at (" << center.x << ", " << center.y << ") ";
+    out << "area = " << area() << std::endl;
 }
 

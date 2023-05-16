@@ -31,7 +31,7 @@ TEST(CircleTests, Print) {
     std::stringstream out;
     c.print(out);
 
-    EXPECT_STREQ(out.str().c_str(), "foo(3, 2)\n");
+    EXPECT_STREQ(out.str().c_str(), "foo at (3, 2) area = 314.159\n");
 }
 
 TEST(CircleTests, Clone) {
@@ -41,7 +41,7 @@ TEST(CircleTests, Clone) {
     std::stringstream out;
     clone->print(out);
 
-    EXPECT_STREQ(out.str().c_str(), "foo(3, 2)\n");
+    EXPECT_STREQ(out.str().c_str(), "foo at (3, 2) area = 314.159\n");
     delete clone;
 }
 
@@ -66,7 +66,7 @@ TEST(RectangleTests, Print) {
     std::stringstream out;
     r.print(out);
 
-    EXPECT_STREQ(out.str().c_str(), "foo(3, 2)\n");
+    EXPECT_STREQ(out.str().c_str(), "foo at (3, 2) area = 100\n");
 }
 
 TEST(RectangleTests, Clone) {
@@ -76,7 +76,7 @@ TEST(RectangleTests, Clone) {
     std::stringstream out;
     clone->print(out);
 
-    EXPECT_STREQ(out.str().c_str(), "foo(3, 2)\n");
+    EXPECT_STREQ(out.str().c_str(), "foo at (3, 2) area = 100\n");
     delete clone;
 }
 
@@ -101,7 +101,7 @@ TEST(TriangleTests, Print) {
     std::stringstream out;
     t.print(out);
 
-    EXPECT_STREQ(out.str().c_str(), "foo(3, 2)\n");
+    EXPECT_STREQ(out.str().c_str(), "foo at (3, 2) area = 50\n");
 }
 
 TEST(TriangleTests, Clone) {
@@ -111,7 +111,7 @@ TEST(TriangleTests, Clone) {
     std::stringstream out;
     clone->print(out);
 
-    EXPECT_STREQ(out.str().c_str(), "foo(3, 2)\n");
+    EXPECT_STREQ(out.str().c_str(), "foo at (3, 2) area = 50\n");
     delete clone;
 }
 
@@ -136,7 +136,7 @@ TEST(SquareTests, Print) {
     std::stringstream out;
     s.print(out);
 
-    EXPECT_STREQ(out.str().c_str(), "foo(3, 2)\n");
+    EXPECT_STREQ(out.str().c_str(), "foo at (3, 2) area = 100\n");
 }
 
 TEST(SquareTests, Clone) {
@@ -146,7 +146,7 @@ TEST(SquareTests, Clone) {
     std::stringstream out;
     clone->print(out);
 
-    EXPECT_STREQ(out.str().c_str(), "foo(3, 2)\n");
+    EXPECT_STREQ(out.str().c_str(), "foo at (3, 2) area = 100\n");
     delete clone;
 }
 
