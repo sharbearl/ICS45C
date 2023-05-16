@@ -2,8 +2,8 @@
 #include <algorithm>
 #include <iostream>
 
-Triangle::Triangle(Point center, std::string name, int height, int base) :
-    Shape(center, name), height(height), base(base) {}
+Triangle::Triangle(Point center, std::string name, int base, int height) :
+    Shape(center, name), base(base), height(height) {}
 
 double Triangle::area() const
 {
