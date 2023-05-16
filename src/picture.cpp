@@ -6,22 +6,7 @@ Picture::Picture(): head(nullptr), tail(nullptr){}
 
 Picture::Picture(const Picture& other) : head(nullptr), tail(nullptr)
 {
-    if (other.head != nullptr)
-        head = new ListNode{other.head->shape->clone(), nullptr, tail};
-    
-    ListNode* prev = head;
-
-    if (other.head->next != nullptr)
-    {
-        for (ListNode* p = other.head->next; p != nullptr; p = p->next)
-        {
-            ListNode* temp = new ListNode{p->shape->clone(), prev, nullptr};
-            prev->next = temp;
-            prev = temp;
-        }
-    }
-
-    tail = prev;
+   copy(other); 
 }
 
 Picture::Picture(Picture&& other) : head(other.head), tail(other.tail)
@@ -43,33 +28,11 @@ void Picture::swap(Picture& other)
 
 Picture &Picture::operator=(const Picture& other)
 {
-    if (&other == this)
-        return *this;
-
-    for(ListNode *p = head; p != nullptr;)
+    if (&other != this)
     {
-        ListNode *temp = p;
-        p = p->next;
-        delete temp->shape;
-        delete temp;
+        free();
+        copy(other);
     }
-
-    if (other.head != nullptr)
-        head = new ListNode{other.head->shape->clone(), nullptr, tail};
-    
-    ListNode* prev = head;
-
-    if (other.head->next != nullptr)
-    {
-        for (ListNode* p = other.head->next; p != nullptr; p = p->next)
-        {
-            ListNode* temp = new ListNode{p->shape->clone(), prev, nullptr};
-            prev->next = temp;
-            prev = temp;
-        }
-    }
-
-    tail = prev;
 
     return *this;
 }
@@ -131,6 +94,33 @@ double Picture::total_area() const
 }
 
 Picture::~Picture()
+{
+    free();
+}
+
+void Picture::copy(const Picture& other)
+{
+    if (other.head == nullptr)
+        return;
+
+    head = new ListNode{other.head->shape->clone(), nullptr, tail};
+    
+    ListNode* prev = head;
+
+    if (other.head->next != nullptr)
+    {
+        for (ListNode* p = other.head->next; p != nullptr; p = p->next)
+        {
+            ListNode* temp = new ListNode{p->shape->clone(), prev, nullptr};
+            prev->next = temp;
+            prev = temp;
+        }
+    }
+
+    tail = prev;
+}
+
+void Picture::free()
 {
     for(ListNode *p = head; p != nullptr;)
     {

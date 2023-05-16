@@ -26,6 +26,10 @@ public:
 
     ~Picture();
 
+    void copy(const Picture& other);
+
+    void free();
+
 private:
     struct ListNode {
         Shape* shape;
