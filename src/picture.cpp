@@ -101,7 +101,11 @@ Picture::~Picture()
 void Picture::copy(const Picture& other)
 {
     if (other.head == nullptr)
+    {
+        head = nullptr;
+        tail = nullptr;
         return;
+    }
 
     head = new ListNode{other.head->shape->clone(), nullptr, tail};
     
