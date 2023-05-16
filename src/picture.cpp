@@ -77,11 +77,12 @@ double Picture::total_area() const
 }
 
 Picture::~Picture()
-{/*
+{
     for(ListNode *p = head; p != nullptr;)
     {
         ListNode *temp = p;
         p = p->next;
+        delete temp->shape;
         delete temp;
-    }*/
+    }
 }
