@@ -24,9 +24,57 @@ Picture::Picture(const Picture& other) : head(nullptr), tail(nullptr)
     tail = prev;
 }
 
+Picture::Picture(Picture&& other) : head(other.head), tail(other.tail)
+{
+    other.head = nullptr;
+    other.tail = nullptr;
+}
+
+void Picture::swap(Picture& other)
+{
+    ListNode *temp = head;
+    head = other.head;
+    other.head = temp;
+
+    temp = tail;
+    tail = other.tail;
+    other.tail = temp;
+}
+
 Picture &Picture::operator=(const Picture& other)
 {
+    for(ListNode *p = head; p != nullptr;)
+    {
+        ListNode *temp = p;
+        p = p->next;
+        delete temp->shape;
+        delete temp;
+    }
 
+    if (other.head != nullptr)
+        head = new ListNode{other.head->shape->clone(), nullptr, tail};
+    
+    ListNode* prev = head;
+
+    if (other.head->next != nullptr)
+    {
+        for (ListNode* p = other.head->next; p != nullptr; p = p->next)
+        {
+            ListNode* temp = new ListNode{p->shape->clone(), prev, nullptr};
+            prev->next = temp;
+            prev = temp;
+        }
+    }
+
+    tail = prev;
+
+    return *this;
+}
+
+Picture &Picture::operator=(Picture&& other)
+{
+    swap(other);
+    return *this;
 }
 
 void Picture::add(const Shape& shape)

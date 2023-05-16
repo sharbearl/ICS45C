@@ -107,7 +107,7 @@ std::string to_string(const Picture& p) {
     p.print_all(out);
     return out.str();
 }
-/*
+
 TEST_F(PictureTests, Swap) {
     Picture p1, p2;
 
@@ -162,4 +162,4 @@ TEST_F(PictureTests, MoveAssignment) {
     p2 = std::move(p3);
 
     EXPECT_EQ(to_string(p2), p3_str);
-}*/
+}

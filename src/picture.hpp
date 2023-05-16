@@ -9,12 +9,12 @@ public:
     Picture();
 
     Picture(const Picture& other);
-    //Picture(Picture&& other);
+    Picture(Picture&& other);
 
-    //void swap(Picture& other);
+    void swap(Picture& other);
 
     Picture& operator=(const Picture& other);
-    //Picture& operator=(Picture&& other);
+    Picture& operator=(Picture&& other);
 
     void add(const Shape& shape);
 
