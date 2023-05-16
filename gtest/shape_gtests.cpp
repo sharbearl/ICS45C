@@ -114,3 +114,39 @@ TEST(TriangleTests, Clone) {
     EXPECT_STREQ(out.str().c_str(), "foo(3, 2)\n");
     delete clone;
 }
+
+TEST(SquareTests, Area) {
+    EXPECT_EQ(Square({1, 2}, "", 2).area(), 4.0);
+}
+
+TEST(SquareTests, Draw) {
+    Square s{{0, 0}, "square", 4};
+
+    std::stringstream out;
+    s.draw(out);
+
+    EXPECT_STREQ(out.str().c_str(),
+                 "****\n"
+                 "****\n");
+}
+
+TEST(SquareTests, Print) {
+    Square s{{3, 2}, "foo", 10};
+
+    std::stringstream out;
+    s.print(out);
+
+    EXPECT_STREQ(out.str().c_str(), "foo(3, 2)\n");
+}
+
+TEST(SquareTests, Clone) {
+    Square s{{3, 2}, "foo", 10};                           
+
+    Square* clone = s.clone();
+    std::stringstream out;
+    clone->print(out);
+
+    EXPECT_STREQ(out.str().c_str(), "foo(3, 2)\n");
+    delete clone;
+}
+
