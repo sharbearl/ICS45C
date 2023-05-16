@@ -43,6 +43,9 @@ void Picture::swap(Picture& other)
 
 Picture &Picture::operator=(const Picture& other)
 {
+    if (&other == this)
+        return *this;
+
     for(ListNode *p = head; p != nullptr;)
     {
         ListNode *temp = p;
@@ -98,7 +101,10 @@ void Picture::print_all(std::ostream& out) const
     if (head != nullptr)
     {
         for (ListNode* p = head; p != nullptr; p = p->next)
+        {
             (p->shape)->print(out);
+            (p->shape)->draw(out);
+        }
     }
 }
 

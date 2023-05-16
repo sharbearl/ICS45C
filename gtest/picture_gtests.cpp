@@ -39,6 +39,20 @@ TEST_F(PictureTests, CopyConstructor) {
     ASSERT_EQ(p.total_area(), q.total_area());
 }
 
+TEST_F(PictureTests, CopyAssignment) {
+    Picture p;
+    p.add(Circle{{0, 0}, "circle1", 1});
+    p.add(Circle{{5, 2}, "circle2", 3});
+
+    Picture q;
+    p.add(Circle{{0, 0}, "circle3", 2});
+    p.add(Circle{{5, 2}, "circle4", 4});
+
+    q = p;
+
+    ASSERT_EQ(p.total_area(), q.total_area());
+}
+
 TEST_F(PictureTests, TotalArea) {
     Picture p;
 
@@ -69,6 +83,7 @@ TEST_F(PictureTests, PrintAll) {
     const auto testcase = [&](Shape const& shape) {
         p.add(shape);
         shape.print(individual);
+        shape.draw(individual);
 
         std::stringstream collective;
         p.print_all(collective);
