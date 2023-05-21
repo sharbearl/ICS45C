@@ -24,7 +24,7 @@ public:
 
 private:
     int rows, cols;
-    Array<Arrya<T>> data;
+    Array<Array<T>> data;
 };
 
 template <typename T>

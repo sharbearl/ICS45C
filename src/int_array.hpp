@@ -46,7 +46,11 @@ public:
     }
 
     //implement this
-    void fill(int val);
+    void fill(int val)
+    {
+        for(int i = 0; i < len; i++)
+            buf[i] = val;
+    }
 
 private:
     int len;
