@@ -35,17 +35,26 @@ public:
         return len;
     }
 
-    //add bound check
     int& operator[](int index) {
+        if(!in_bounds(index))
+        {
+            std::ostringstream s;
+            s << "Exception operator[](" << len << ") Out Of Range";
+            throw s.str();
+        }
         return buf[index];
     }
 
-    //add bound check
     const int& operator[](int index) const {
+        if(!in_bounds(index))
+        {
+            std::ostringstream s;
+            s << "Exception operator[](" << len << ") Out Of Range";
+            throw s.str();
+        }
         return buf[index];
     }
 
-    //implement this
     void fill(int val)
     {
         for(int i = 0; i < len; i++)
