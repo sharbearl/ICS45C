@@ -35,3 +35,32 @@ TEST(ArrayTests, Subscript) {
     EXPECT_EQ(arr3[0], 3.1);
     EXPECT_EQ(arr3[2], 5.2);
 }
+
+TEST(ArrayTests, Print) {
+    stringstream out1;
+
+    Array<int> arr1{3};
+    arr1[0] = 0;
+    arr1[1] = 1;
+    arr1[2] = 2;
+    out1 << arr1;
+    EXPECT_EQ(out1.str(), "       0       1       2");
+
+    stringstream out2;
+
+    Array<string> arr2{3};
+    arr2[0] = "one";
+    arr2[1] = "two";
+    arr2[2] = "three";
+    out2 << arr2;
+    EXPECT_EQ(out2.str(), "     one     two   three");
+
+    stringstream out3;
+
+    Array<double> arr3{3};
+    arr3[0] = 1.1;
+    arr3[1] = 2.2;
+    arr3[2] = 3.3;
+    out3 << arr3;
+    EXPECT_EQ(out3.str(), "    1.10    2.20    3.30");
+}
