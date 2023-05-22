@@ -2,6 +2,7 @@
 
 #include <string>
 
+#include "alloc.hpp"
 #include "array.hpp"
 
 using namespace std;
@@ -148,15 +149,15 @@ TEST(ArrayTests, CopyConstructor) {
     EXPECT_EQ(arr7[0], "one");
     EXPECT_EQ(arr7[4], "one");
 }
-/*
+
 TEST(ArrayTests, MoveConstructor) {
     AllocationTracker tracker;
 
-    Array arr{10};
+    Array<int> arr{10};
     arr.fill(20);
 
     std::size_t allocs_before_move = tracker.get_num_allocations();
-    Array arr2{std::move(arr)};
+    Array<int> arr2{std::move(arr)};
     std::size_t allocs_after_move = tracker.get_num_allocations();
 
     EXPECT_EQ(allocs_before_move, allocs_after_move);
@@ -165,7 +166,7 @@ TEST(ArrayTests, MoveConstructor) {
     EXPECT_EQ(arr2[0], 20);
     EXPECT_EQ(arr2[9], 20);
 
-    Array empty;
+    Array<double> empty;
     Array arr3{std::move(empty)};
     EXPECT_EQ(arr3.length(), 0);
 }
@@ -173,9 +174,9 @@ TEST(ArrayTests, MoveConstructor) {
 TEST(ArrayTests, Swap) {
     AllocationTracker tracker;
 
-    Array arr{10};
+    Array<int> arr{10};
     arr.fill(20);
-    Array arr2{2};
+    Array<int> arr2{2};
     arr2.fill(5);
 
     std::size_t allocs_before_swap = tracker.get_num_allocations();
@@ -192,7 +193,7 @@ TEST(ArrayTests, Swap) {
     EXPECT_EQ(arr[0], 5);
     EXPECT_EQ(arr[1], 5);
 }
-*/
+
 TEST(ArrayTests, CopyAssignment) {
     Array<int> arr{10};
     arr.fill(20);
@@ -240,14 +241,14 @@ TEST(ArrayTests, CopyAssignment) {
     EXPECT_EQ(arr5[0], "two");
     EXPECT_EQ(arr5[1], "two");*/
 }
-/*
+
 TEST(ArrayTests, MoveAssignment) {
     AllocationTracker tracker;
 
-    Array arr{10};
+    Array<int> arr{10};
     arr.fill(20);
 
-    Array arr2{2};
+    Array<int> arr2{2};
     arr2.fill(5);
 
     std::size_t allocs_before_move = tracker.get_num_allocations();
@@ -259,4 +260,4 @@ TEST(ArrayTests, MoveAssignment) {
     EXPECT_EQ(arr[0], 5);
     EXPECT_EQ(arr[1], 5);
 }
-*/
+

@@ -17,18 +17,18 @@ public:
     {    
         copy(other.buf);
     }
-   /* 
-    Array(Array&& other) noexcept : len{other.len}, buf{other.buf}
+    
+    Array(Array<T>&& other) noexcept : len{other.len}, buf{other.buf}
     {
         other.len = 0;
         other.buf = nullptr;
     }
 
-    friend void swap(Array& lhs, Array& rhs) noexcept {
+    friend void swap(Array<T>& lhs, Array<T>& rhs) noexcept {
         std::swap(lhs.len, rhs.len);
         std::swap(lhs.buf, rhs.buf);
     }
-*/
+
     Array& operator=(const Array<T>& other)
     {
         if(&other != this)
@@ -42,13 +42,13 @@ public:
 
         return *this;
     }
-    /*
-    Array& operator=(Array&& other) noexcept
+    
+    Array& operator=(Array<T>&& other) noexcept
     {
         swap(*this, other);
         return *this;
     }
-*/
+
     ~Array() 
     {
         delete[] buf;
