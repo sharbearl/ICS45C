@@ -7,15 +7,18 @@ template <typename T>
 class Matrix{
 public:
     //to be implemented
-    Matrix();
+    Matrix() : rows{0}, cols{0}, data{Array<Array<T>>(cols)} {}
     
-    Matrix(int rows, int cols);
+    Matrix(int rows, int cols) : rows{rows}, cols{cols}, data{Array<Array<T>>(cols)} {}
 
     Array<T>& operator[](int row);
     const Array<T>& operator[](int row) const;
 
-    int num_rows() const;
-    int num_cols() const;
+    int num_rows() const
+    { return rows; }
+
+    int num_cols() const
+    { return cols; }
 
     void fill(const T& val);
 
