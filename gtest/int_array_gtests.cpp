@@ -57,7 +57,7 @@ TEST(IntArrayTests, OutOfBounds) {
     Array arr{10};
     EXPECT_ANY_THROW(arr[11]);
 }
-/*
+
 TEST(IntArrayTests, CopyConstructor) {
     Array arr{10};
     arr.fill(20);
@@ -70,7 +70,7 @@ TEST(IntArrayTests, CopyConstructor) {
     Array arr3{empty};
     EXPECT_EQ(arr3.length(), 0);
 }
-
+/*
 TEST(IntArrayTests, MoveConstructor) {
     AllocationTracker tracker;
 
@@ -114,7 +114,7 @@ TEST(IntArrayTests, Swap) {
     EXPECT_EQ(arr[0], 5);
     EXPECT_EQ(arr[1], 5);
 }
-
+*/
 TEST(IntArrayTests, CopyAssignment) {
     Array arr{10};
     arr.fill(20);
@@ -138,7 +138,7 @@ TEST(IntArrayTests, CopyAssignment) {
     EXPECT_EQ(arr[0], 5);
     EXPECT_EQ(arr[1], 5);
 }
-
+/*
 TEST(IntArrayTests, MoveAssignment) {
     AllocationTracker tracker;
 

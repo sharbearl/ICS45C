@@ -12,8 +12,16 @@ public:
 
     explicit Array(int len) : len{len}, buf{new int[len]} {}
 
+    Array(const Array& other) : len{other.len}, buf{new int[len]}
+    {    
+        if(len != 0)
+        {
+            int i;
+            for(i = 0; i < len; ++i)
+                buf[i] = other.buf[i];
+        }
+    }
     //implement these
-    Array(const Array& other);
     Array(Array&& other) noexcept;
 
     friend void swap(Array& lhs, Array& rhs) noexcept {
@@ -21,14 +29,30 @@ public:
         std::swap(lhs.buf, rhs.buf);
     }
 
+    Array& operator=(const Array& other)
+    {
+        if(&other != this)
+        {
+            delete buf;
+            len = other.len;
+            buf = new int[len];
+
+            if(len != 0)
+            {
+                int i;
+                for(i = 0; i < len; ++i)
+                    buf[i] = other.buf[i];
+            }
+        }
+
+        return *this;
+    }
     //implement these
-    Array& operator=(const Array& other);
     Array& operator=(Array&& other) noexcept;
 
-    //implement this
     ~Array() 
     {
-        
+        delete buf;
     }
 
     int length() const {
