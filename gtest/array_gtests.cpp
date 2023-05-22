@@ -261,3 +261,8 @@ TEST(ArrayTests, MoveAssignment) {
     EXPECT_EQ(arr[1], 5);
 }
 
+TEST(ArrayTests, FillFn) {
+    Array<int> arr1{3};
+
+
+}
