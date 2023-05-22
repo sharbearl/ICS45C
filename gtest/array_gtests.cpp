@@ -64,3 +64,29 @@ TEST(ArrayTests, Print) {
     out3 << arr3;
     EXPECT_EQ(out3.str(), "    1.10    2.20    3.30");
 }
+
+TEST(ArrayTests, Read) {
+    stringstream in1{"1 2 3 4"};
+
+    Array<int> arr1{3};
+    in1 >> arr1;
+    EXPECT_EQ(arr1[0], 1);
+    EXPECT_EQ(arr1[1], 2);
+    EXPECT_EQ(arr1[2], 3);
+
+    stringstream in2{"1.1 2.2 3.3 4.4"};
+
+    Array<double> arr2{3};
+    in2 >> arr2;
+    EXPECT_EQ(arr2[0], 1.1);
+    EXPECT_EQ(arr2[1], 2.2);
+    EXPECT_EQ(arr2[2], 3.3);
+
+    stringstream in3{"one two three four"};
+
+    Array<string> arr3{3};
+    in3 >> arr3;
+    EXPECT_EQ(arr3[0], "one");
+    EXPECT_EQ(arr3[1], "two");
+    EXPECT_EQ(arr3[2], "three");
+}
