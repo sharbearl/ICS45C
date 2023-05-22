@@ -57,27 +57,27 @@ public:
     int length() const {
         return len;
     }
+
+    T& operator[](int index) {
+        if(!in_bounds(index))
+        {
+            std::ostringstream s;
+            s << "Exception operator[](" << len << ") Out Of Range";
+            throw s.str();
+        }
+        return buf[index];
+    }
+
+    const T& operator[](int index) const {
+        if(!in_bounds(index))
+        {
+            std::ostringstream s;
+            s << "Exception operator[](" << len << ") Out Of Range";
+            throw s.str();
+        }
+        return buf[index];
+    }
 /*
-    int& operator[](int index) {
-        if(!in_bounds(index))
-        {
-            std::ostringstream s;
-            s << "Exception operator[](" << len << ") Out Of Range";
-            throw s.str();
-        }
-        return buf[index];
-    }
-
-    const int& operator[](int index) const {
-        if(!in_bounds(index))
-        {
-            std::ostringstream s;
-            s << "Exception operator[](" << len << ") Out Of Range";
-            throw s.str();
-        }
-        return buf[index];
-    }
-
     void fill(int val)
     {
         for(int i = 0; i < len; i++)
