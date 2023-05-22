@@ -115,9 +115,9 @@ TEST(ArrayTests, OutOfBounds) {
     Array<int> arr1{1};
     EXPECT_ANY_THROW(arr1[11]);
 
-    Array<string> arr1{1};
-    EXPECT_ANY_THROW(arr1[11]);
+    Array<string> arr2{1};
+    EXPECT_ANY_THROW(arr2[11]);
 
-    Array<double> arr1{1};
-    EXPECT_ANY_THROW(arr1[11]);
+    Array<double> arr3{1};
+    EXPECT_ANY_THROW(arr3[11]);
 }
