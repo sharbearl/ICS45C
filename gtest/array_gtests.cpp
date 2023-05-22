@@ -110,3 +110,14 @@ TEST(ArrayTests, Fill) {
     arr3.fill(5.5);
     EXPECT_EQ(arr3[4], 5.5);
 }
+
+TEST(ArrayTests, OutOfBounds) {
+    Array<int> arr1{1};
+    EXPECT_ANY_THROW(arr1[11]);
+
+    Array<string> arr1{1};
+    EXPECT_ANY_THROW(arr1[11]);
+
+    Array<double> arr1{1};
+    EXPECT_ANY_THROW(arr1[11]);
+}
