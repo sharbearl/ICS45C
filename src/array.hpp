@@ -8,11 +8,11 @@
 
 template <typename T>
 class Array {
-public:/*
+public:
     Array() : len{0}, buf{nullptr} {}
 
-    explicit Array(int len) : len{len}, buf{new int[len]} {}
-
+    explicit Array(int len) : len{len}, buf{new T[len]} {}
+    /*
     Array(const Array& other) : len{other.len}, buf{new int[len]}
     {    
         copy(other.buf);
@@ -48,7 +48,7 @@ public:/*
         swap(*this, other);
         return *this;
     }
-
+*/
     ~Array() 
     {
         delete[] buf;
@@ -57,7 +57,7 @@ public:/*
     int length() const {
         return len;
     }
-
+/*
     int& operator[](int index) {
         if(!in_bounds(index))
         {
