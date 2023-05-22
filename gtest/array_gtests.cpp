@@ -90,3 +90,23 @@ TEST(ArrayTests, Read) {
     EXPECT_EQ(arr3[1], "two");
     EXPECT_EQ(arr3[2], "three");
 }
+
+TEST(ArrayTests, Fill) {
+    Array<int> arr1{5};
+    arr1.fill(20);
+    EXPECT_EQ(arr1[0], 20);
+    arr1.fill(5);
+    EXPECT_EQ(arr1[4], 5);
+
+    Array<string> arr2{5};
+    arr2.fill("two");
+    EXPECT_EQ(arr2[0], "two");
+    arr2.fill("five");
+    EXPECT_EQ(arr2[4], "five");
+
+    Array<double> arr3{5};
+    arr3.fill(2.2);
+    EXPECT_EQ(arr3[0], 2.2);
+    arr3.fill(5.5);
+    EXPECT_EQ(arr3[4], 5.5);
+}
