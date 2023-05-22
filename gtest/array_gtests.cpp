@@ -121,3 +121,142 @@ TEST(ArrayTests, OutOfBounds) {
     Array<double> arr3{1};
     EXPECT_ANY_THROW(arr3[11]);
 }
+
+TEST(ArrayTests, CopyConstructor) {
+    Array<int> arr1{10};
+    arr1.fill(20);
+    Array<int> arr2{arr1};
+    EXPECT_EQ(arr2.length(), 10);
+    EXPECT_EQ(arr2[0], 20);
+    EXPECT_EQ(arr2[9], 20);
+
+    Array<int> empty;
+    Array arr3{empty};
+    EXPECT_EQ(arr3.length(), 0);
+
+    Array<double> arr4{5};
+    arr4.fill(2.2);
+    Array<double> arr5{arr4};
+    EXPECT_EQ(arr5.length(), 5);
+    EXPECT_EQ(arr5[0], 2.2);
+    EXPECT_EQ(arr5[4], 2.2);
+
+    Array<string> arr6{5};
+    arr6.fill("one");
+    Array<string> arr7{arr6};
+    EXPECT_EQ(arr7.length(), 5);
+    EXPECT_EQ(arr7[0], "one");
+    EXPECT_EQ(arr7[4], "one");
+}
+/*
+TEST(ArrayTests, MoveConstructor) {
+    AllocationTracker tracker;
+
+    Array arr{10};
+    arr.fill(20);
+
+    std::size_t allocs_before_move = tracker.get_num_allocations();
+    Array arr2{std::move(arr)};
+    std::size_t allocs_after_move = tracker.get_num_allocations();
+
+    EXPECT_EQ(allocs_before_move, allocs_after_move);
+
+    EXPECT_EQ(arr2.length(), 10);
+    EXPECT_EQ(arr2[0], 20);
+    EXPECT_EQ(arr2[9], 20);
+
+    Array empty;
+    Array arr3{std::move(empty)};
+    EXPECT_EQ(arr3.length(), 0);
+}
+
+TEST(ArrayTests, Swap) {
+    AllocationTracker tracker;
+
+    Array arr{10};
+    arr.fill(20);
+    Array arr2{2};
+    arr2.fill(5);
+
+    std::size_t allocs_before_swap = tracker.get_num_allocations();
+    swap(arr, arr2);
+    std::size_t allocs_after_swap = tracker.get_num_allocations();
+
+    EXPECT_EQ(allocs_before_swap, allocs_after_swap);
+
+    EXPECT_EQ(arr2.length(), 10);
+    EXPECT_EQ(arr2[0], 20);
+    EXPECT_EQ(arr2[9], 20);
+
+    EXPECT_EQ(arr.length(), 2);
+    EXPECT_EQ(arr[0], 5);
+    EXPECT_EQ(arr[1], 5);
+}
+*/
+TEST(ArrayTests, CopyAssignment) {
+    Array<int> arr{10};
+    arr.fill(20);
+
+    Array<int> arr2{2};
+    arr2.fill(5);
+
+    arr = arr2;
+
+    EXPECT_EQ(arr.length(), 2);
+    EXPECT_EQ(arr[0], 5);
+    EXPECT_EQ(arr[1], 5);
+
+    EXPECT_EQ(arr2.length(), 2);
+    EXPECT_EQ(arr2[0], 5);
+    EXPECT_EQ(arr2[1], 5);
+
+    arr = arr;
+
+    EXPECT_EQ(arr.length(), 2);
+    EXPECT_EQ(arr[0], 5);
+    EXPECT_EQ(arr[1], 5);
+    
+    Array<double> arr3{10};
+    arr3.fill(1.1);
+
+    Array<double> arr4{2};
+    arr4.fill(2.2);
+
+    arr3 = arr4;
+
+    EXPECT_EQ(arr3.length(), 2);
+    EXPECT_EQ(arr3[0], 2.2);
+    EXPECT_EQ(arr3[1], 2.2);
+
+    Array<string> arr5{10};
+    arr5.fill("one");
+
+    Array<string> arr6{2};
+    arr6.fill("two");
+/*
+    arr5 = arr6;
+
+    EXPECT_EQ(arr5.length(), 2);
+    EXPECT_EQ(arr5[0], "two");
+    EXPECT_EQ(arr5[1], "two");*/
+}
+/*
+TEST(ArrayTests, MoveAssignment) {
+    AllocationTracker tracker;
+
+    Array arr{10};
+    arr.fill(20);
+
+    Array arr2{2};
+    arr2.fill(5);
+
+    std::size_t allocs_before_move = tracker.get_num_allocations();
+    arr = std::move(arr2);
+    std::size_t allocs_after_move = tracker.get_num_allocations();
+    EXPECT_EQ(allocs_before_move, allocs_after_move);
+
+    EXPECT_EQ(arr.length(), 2);
+    EXPECT_EQ(arr[0], 5);
+    EXPECT_EQ(arr[1], 5);
+}
+*/

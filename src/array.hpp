@@ -12,12 +12,12 @@ public:
     Array() : len{0}, buf{nullptr} {}
 
     explicit Array(int len) : len{len}, buf{new T[len]} {}
-    /*
-    Array(const Array& other) : len{other.len}, buf{new int[len]}
+    
+    Array(const Array<T>& other) : len{other.len}, buf{new T[len]}
     {    
         copy(other.buf);
     }
-    
+   /* 
     Array(Array&& other) noexcept : len{other.len}, buf{other.buf}
     {
         other.len = 0;
@@ -28,21 +28,21 @@ public:
         std::swap(lhs.len, rhs.len);
         std::swap(lhs.buf, rhs.buf);
     }
-
-    Array& operator=(const Array& other)
+*/
+    Array& operator=(const Array<T>& other)
     {
         if(&other != this)
         {
             delete buf;
             len = other.len;
-            buf = new int[len];
+            buf = new T[len];
 
             copy(other.buf);
         }
 
         return *this;
     }
-    
+    /*
     Array& operator=(Array&& other) noexcept
     {
         swap(*this, other);
@@ -83,8 +83,8 @@ public:
         for(int i = 0; i < len; i++)
             buf[i] = val;
     }
-/*
-    void copy(int* src)
+
+    void copy(T* src)
     {
         if(len != 0)
         {
@@ -93,7 +93,7 @@ public:
                 buf[i] = src[i];
         }
     }
-    */
+    
     template <typename Fn>
     void fill_with_fn(Fn fn);
 
