@@ -21,8 +21,12 @@ public:
                 buf[i] = other.buf[i];
         }
     }
-    //implement these
-    Array(Array&& other) noexcept;
+    
+    Array(Array&& other) noexcept : len{other.len}, buf{other.buf}
+    {
+        other.len = 0;
+        other.buf = nullptr;
+    }
 
     friend void swap(Array& lhs, Array& rhs) noexcept {
         std::swap(lhs.len, rhs.len);
@@ -47,12 +51,16 @@ public:
 
         return *this;
     }
-    //implement these
-    Array& operator=(Array&& other) noexcept;
+    
+    Array& operator=(Array&& other) noexcept
+    {
+        swap(*this, other);
+        return *this;
+    }
 
     ~Array() 
     {
-        delete buf;
+        delete[] buf;
     }
 
     int length() const {
