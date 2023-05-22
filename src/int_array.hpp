@@ -14,12 +14,7 @@ public:
 
     Array(const Array& other) : len{other.len}, buf{new int[len]}
     {    
-        if(len != 0)
-        {
-            int i;
-            for(i = 0; i < len; ++i)
-                buf[i] = other.buf[i];
-        }
+        copy(other.buf);
     }
     
     Array(Array&& other) noexcept : len{other.len}, buf{other.buf}
@@ -41,12 +36,7 @@ public:
             len = other.len;
             buf = new int[len];
 
-            if(len != 0)
-            {
-                int i;
-                for(i = 0; i < len; ++i)
-                    buf[i] = other.buf[i];
-            }
+            copy(other.buf);
         }
 
         return *this;
@@ -91,6 +81,16 @@ public:
     {
         for(int i = 0; i < len; i++)
             buf[i] = val;
+    }
+
+    void copy(int* src)
+    {
+        if(len != 0)
+        {
+            int i;
+            for(i = 0; i < len; ++i)
+                buf[i] = src[i];
+        }
     }
 
 private:
