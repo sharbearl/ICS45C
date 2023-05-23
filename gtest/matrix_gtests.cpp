@@ -41,12 +41,29 @@ TEST(MatrixTests, Subscript) {
 }
 
 TEST(MatrixTests, OutOfBounds) {
-    Array<int> arr1{1};
-    EXPECT_ANY_THROW(arr1[11]);
+    Matrix<int> mat1{1, 1};
+    EXPECT_ANY_THROW(mat1[11][1]);
 
-    Array<double> arr2{1};
-    EXPECT_ANY_THROW(arr2[11]);
+    Matrix<double> mat2{1, 1};
+    EXPECT_ANY_THROW(mat2[11][1]);
 
-    Array<string> arr3{1};
-    EXPECT_ANY_THROW(arr3[11]);
+    Matrix<string> mat3{1, 1};
+    EXPECT_ANY_THROW(mat3[11][1]);
+}
+
+TEST(MatrixTests, Fill) {
+    Matrix<int> mat1{3, 2};
+    mat1.fill(5);
+    EXPECT_EQ(mat1[0][0], 5);
+    EXPECT_EQ(mat1[2][1], 5);
+
+    Matrix<double> mat2{3, 2};
+    mat2.fill(1.1);
+    EXPECT_EQ(mat2[0][0], 1.1);
+    EXPECT_EQ(mat2[2][1], 1.1);
+
+    Matrix<string> mat3{3, 2};
+    mat3.fill("hello");
+    EXPECT_EQ(mat3[0][0], "hello");
+    EXPECT_EQ(mat3[2][1], "hello");
 }

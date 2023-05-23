@@ -6,7 +6,6 @@
 template <typename T>
 class Matrix{
 public:
-    //to be implemented
     Matrix() : rows{0}, cols{0}, data{Array<Array<T>>(0)} {}
     
     Matrix(int rows, int cols) : 
@@ -32,7 +31,14 @@ public:
     int num_cols() const
     { return cols; }
 
-    void fill(const T& val);
+    void fill(const T& val)
+    {
+        for(int i = 0; i < rows; ++i)
+        {
+            for(int j = 0; j < cols; ++j)
+                data[i][j] = val;
+        }
+    }
 
     template <typename Fn>
     void fill_with_fn(Fn fn);
