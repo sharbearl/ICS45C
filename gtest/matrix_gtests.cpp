@@ -67,3 +67,21 @@ TEST(MatrixTests, Fill) {
     EXPECT_EQ(mat3[0][0], "hello");
     EXPECT_EQ(mat3[2][1], "hello");
 }
+
+TEST(MatrixTests, FillFn) {
+    Matrix<int> mat1{3, 2};
+    mat1.fill_with_fn([](int i, int j) { return i * j; });
+    EXPECT_EQ(mat1[0][0], 0);
+    EXPECT_EQ(mat1[2][1], 2);
+
+    Matrix<double> mat2{3, 2};
+    mat2.fill_with_fn([](int i, int j) { return (i*1.0) + (j*0.1); });
+    EXPECT_EQ(mat2[0][0], 0.0);
+    EXPECT_EQ(mat2[2][1], 2.1);
+
+    Matrix<string> mat3{3, 2};
+    mat3.fill_with_fn([](int i, int j) 
+        { return (to_string(i)) + to_string(j); });
+    EXPECT_EQ(mat3[0][0], "00");
+    EXPECT_EQ(mat3[2][1], "21");
+}
