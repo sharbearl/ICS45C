@@ -234,12 +234,12 @@ TEST(ArrayTests, CopyAssignment) {
 
     Array<string> arr6{2};
     arr6.fill("two");
-/*
+
     arr5 = arr6;
 
     EXPECT_EQ(arr5.length(), 2);
     EXPECT_EQ(arr5[0], "two");
-    EXPECT_EQ(arr5[1], "two");*/
+    EXPECT_EQ(arr5[1], "two");
 }
 
 TEST(ArrayTests, MoveAssignment) {

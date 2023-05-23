@@ -32,7 +32,7 @@ public:
     {
         if(&other != this)
         {
-            delete buf;
+            delete[] buf;
             len = other.len;
             buf = new int[len];
 
