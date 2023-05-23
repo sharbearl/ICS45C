@@ -7,9 +7,14 @@ template <typename T>
 class Matrix{
 public:
     //to be implemented
-    Matrix() : rows{0}, cols{0}, data{Array<Array<T>>(cols)} {}
+    Matrix() : rows{0}, cols{0}, data{Array<Array<T>>(0)} {}
     
-    Matrix(int rows, int cols) : rows{rows}, cols{cols}, data{Array<Array<T>>(cols)} {}
+    Matrix(int rows, int cols) : 
+        rows{rows}, cols{cols}, data{Array<Array<T>>(rows)} 
+    {
+        for(int i = 0; i < rows; ++i)
+            data[i] = Array<T>(cols);
+    }
 
     Array<T>& operator[](int row);
     const Array<T>& operator[](int row) const;
