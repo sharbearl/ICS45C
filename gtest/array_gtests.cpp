@@ -263,6 +263,23 @@ TEST(ArrayTests, MoveAssignment) {
 
 TEST(ArrayTests, FillFn) {
     Array<int> arr1{3};
+    arr1.fill_with_fn([](int index) { return index*2; });
 
+    EXPECT_EQ(arr1.length(), 3);
+    EXPECT_EQ(arr1[0], 0);
+    EXPECT_EQ(arr1[2], 4);
 
+    Array<double> arr2{3};
+    arr2.fill_with_fn([](int index) { return 1.0 + (index * 0.1); });
+
+    EXPECT_EQ(arr2.length(), 3);
+    EXPECT_EQ(arr2[0], 1.0);
+    EXPECT_EQ(arr2[2], 1.2);
+
+    Array<string> arr3{3};
+    arr3.fill_with_fn([](int index) { return to_string(index); });
+
+    EXPECT_EQ(arr3.length(), 3);
+    EXPECT_EQ(arr3[0], "0");
+    EXPECT_EQ(arr3[2], "2");
 }
