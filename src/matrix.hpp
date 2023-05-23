@@ -56,9 +56,19 @@ private:
 };
 
 template <typename T>
-std::ostream& operator<<(std::ostream& out, const Matrix<T>& matrix);
+std::ostream& operator<<(std::ostream& out, const Matrix<T>& matrix)
+{
+    for(int i = 0; i < matrix.num_rows(); ++i)
+        out << matrix[i] << std::endl;
+    return out;
+}
 
 template <typename T>
-std::istream& operator>>(std::istream& in, Matrix<T>& matrix);
+std::istream& operator>>(std::istream& in, Matrix<T>& matrix)
+{
+    for(int i = 0; i < matrix.num_rows(); ++i)
+        in >> matrix[i];
+    return in;
+}
 
 #endif
