@@ -16,8 +16,15 @@ public:
             data[i] = Array<T>(cols);
     }
 
-    Array<T>& operator[](int row);
-    const Array<T>& operator[](int row) const;
+    Array<T>& operator[](int row)
+    {
+        return data[row];
+    }
+
+    const Array<T>& operator[](int row) const
+    {
+        return data[row];
+    }
 
     int num_rows() const
     { return rows; }
