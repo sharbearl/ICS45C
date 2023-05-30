@@ -11,7 +11,7 @@ TEST(MapsetTests, to_lowercase) {
     EXPECT_EQ(to_lowercase("T"), "t");
     EXPECT_EQ(to_lowercase(""), "");
 }
-/*
+
 TEST(MapsetTests, load_stopwords) {
     stringstream words1{"hello WORLD test TEST bar FOO bar"};
     std::set<std::string> set1{"bar", "foo", "hello", "test", "world"};
@@ -25,7 +25,7 @@ TEST(MapsetTests, load_stopwords) {
     std::set<std::string> set3{"a"};
     EXPECT_EQ(load_stopwords(words3), set3);
 }
-
+/*
 TEST(WordCount, count_words) {
     stringstream test("aa aa Aa aA AA bC bc bc BC XY XY foo FOO foO Foo BAR bar");
     std::map<std::string, int> expected{{"aa", 5}, {"bc", 4}, {"xy", 2}, {"bar", 2}};
