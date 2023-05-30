@@ -7,5 +7,5 @@ int main() {
     std::ifstream input{"rand_numbers.txt"};
     std::ofstream odds{"odds.txt"};
     std::ofstream evens{"evens.txt"};
-    split_off_even(input, odds, evens);
+    split_odd_even(input, odds, evens);
 }

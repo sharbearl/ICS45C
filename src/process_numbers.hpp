@@ -1,4 +1,4 @@
-#ifdef PROCESS_NUMBERS_HPP
+#ifndef PROCESS_NUMBERS_HPP
 #define PROCESS_NUMBERS_HPP
 
 #include <iosfwd>
