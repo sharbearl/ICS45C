@@ -1,9 +1,10 @@
+#include <algorithm>
 #include "mapset.hpp"
 
 std::string to_lowercase(const std::string& str)
 {
-    std::string lower{};
-    std::transform(str.begin(), str.end(), lower.begin(), 
+    std::string lower {str};
+    std::transform(lower.begin(), lower.end(), lower.begin(), 
                    [](char c){return std::tolower(c);});
     return lower; 
 }
