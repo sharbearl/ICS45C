@@ -1,4 +1,4 @@
-#ifdef COMPUTE_GRADES_HPP
+#ifndef COMPUTE_GRADES_HPP
 #define COMPUTE_GRADES_HPP
 
 #include <compare>
@@ -15,15 +15,17 @@ public:
     std::strong_ordering operator<=>(const Student& other) const;
     bool operator==(const Student& other) const;
 
-    friend std::istream& operator>>(std::istream& in, Student& s);
-    friend std::ostream& operator<<(std::ostream& out, const Student& s);
+    //friend std::istream& operator>>(std::istream& in, Student& s);
+    //friend std::ostream& operator<<(std::ostream& out, const Student& s);
 
+    //void fill(std::string first, std::string last, 
+    //          std::vector<int> quizzes, std::vector<int> hws, double fin);
 private:
     std::string last_name = "Name";
     std::string first_name = "Missing";
     std::vector<int> quiz;
     std::vector<int> hw;
-    double final_score> = 0.0;
+    double final_score = 0.0;
 
     double quiz_avg;
     double hw_avg;
@@ -32,7 +34,7 @@ private:
 
     void compute_quiz_avg();
     void compute_hw_avg();
-    void compute_course_score();
+    void compute_course_score();    
 };
 
 class Gradebook {
