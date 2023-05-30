@@ -23,9 +23,23 @@ std::set<std::string> load_stopwords(std::istream& stopwords)
                    {return to_lowercase(str);});
     return lower_words;
 }
-/*
-std::map<std::string, int> count_word(std::istream& document,
-                           const std::set<std::string>& stopwords);
 
+std::map<std::string, int> count_word(std::istream& document,
+                           const std::set<std::string>& stopwords)
+{
+    std::map<std::string, int> counts;
+    for(std::string word : std::istream_iterator<std::string>(document))
+    {
+        std::string lower_word = to_lowercase(word);
+        
+    }
+    if(!counts.find(to_lowercase(lower_word) && !stopwords.find(
+                                                        lower_word))
+            counts.insert({lower_word, 1});
+        else if(counts.find(lower_word))
+            ++counts[lower_word];
+    return counts;
+}
+/*
 void output_word_counts(const std::map<std::string, int>& word_counts
                         std::ostream& output);*/
