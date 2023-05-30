@@ -1,14 +1,26 @@
+#include <stdexcept>
 #include <iostream>
 #include <fstream>
 #include <iterator>
 #include <numeric>
 #include <cmath>
 #include "compute_grades.hpp"
+
+void Student::validate() const
+{
+    if(final_score < 0 || final_score > 100)
+        throw std::domain_error("Error: invalid percentage " + 
+                                std::to_string(final_score));
+
+}
+
+void Student::compute_grade()
+{
+    compute_quiz_avg();
+    compute_hw_avg();
+    compute_course_score();
+}
 /*
-void Student::validate() const;
-
-void Student::compute_grade();
-
 std::strong_ordering Student::operator<=>(const Student& other) const;*/
 bool Student::operator==(const Student& other) const
 {
@@ -60,6 +72,32 @@ void Student::compute_course_score()
 {
     course_score = std::round(((quiz_avg * .4) + (hw_avg * .3) + 
                               (final_score * .3)) * 100);
+    if(course_score <= 59)
+        course_grade = "F";
+    else if(course_score <= 62)
+        course_grade = "D-";
+    else if(course_score <= 66)
+        course_grade = "D";
+    else if(course_score <= 69)
+        course_grade = "D+";
+    else if(course_score <= 72)
+        course_grade = "C-";
+    else if(course_score <= 76)
+        course_grade = "C";
+    else if(course_score <= 79)
+        course_grade = "C+";
+    else if(course_score <= 82)
+        course_grade = "B-";
+    else if(course_score <= 86)
+        course_grade = "B";
+    else if(course_score <= 89)
+        course_grade = "B+";
+    else if(course_score <= 92)
+        course_grade = "A-";
+    else if(course_score <= 96)
+        course_grade = "A";
+    else if(course_score <= 100)
+        course_grade = "A+";
 }
 /*
 void Student::fill(std::string first, std::string last, 
