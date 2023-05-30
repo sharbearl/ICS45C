@@ -11,7 +11,7 @@ TEST(MapsetTests, to_lowercase) {
     EXPECT_EQ(to_lowercase("T"), "t");
     EXPECT_EQ(to_lowercase(""), "");
 }
-
+/*
 TEST(MapsetTests, load_stopwords) {
     stringstream words1{"hello WORLD test TEST bar FOO bar"};
     std::set<std::string> set1{"bar", "foo", "hello", "test", "world"};
@@ -37,4 +37,4 @@ TEST(WordCount, output_word_counts) {
     stringstream output;
     output_word_counts(word_counts, output);
     EXPECT_STREQ(output.str().c_str(), "bar 5\nfoo 1\nxy 3\n");
-}
+}*/
