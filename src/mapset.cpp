@@ -36,6 +36,10 @@ std::map<std::string, int> count_words(std::istream& document,
                 ++counts[to_lowercase(word)];});
     return counts;
 }
-/*
-void output_word_counts(const std::map<std::string, int>& word_counts
-                        std::ostream& output);*/
+
+void output_word_counts(const std::map<std::string, int>& word_counts,
+                        std::ostream& output)
+{
+    for(auto [key, value] : word_counts)
+        output << key << " " << value << "\n";
+}

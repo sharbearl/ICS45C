@@ -31,10 +31,10 @@ TEST(WordCount, count_words) {
     std::map<std::string, int> expected{{"aa", 5}, {"bc", 4}, {"xy", 2}, {"bar", 2}};
     EXPECT_EQ(count_words(test, {"foo"}), expected);
 }
-/*
+
 TEST(WordCount, output_word_counts) {
     map<string, int> word_counts{{"foo", 1}, {"bar", 5}, {"xy", 3}};
     stringstream output;
     output_word_counts(word_counts, output);
     EXPECT_STREQ(output.str().c_str(), "bar 5\nfoo 1\nxy 3\n");
-}*/
+}
