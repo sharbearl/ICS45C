@@ -1,6 +1,7 @@
 #include <algorithm>
 #include <iostream>
 #include <iterator>
+#include <ranges>
 #include "mapset.hpp"
 
 std::string to_lowercase(const std::string& str)
@@ -24,20 +25,15 @@ std::set<std::string> load_stopwords(std::istream& stopwords)
     return lower_words;
 }
 
-std::map<std::string, int> count_word(std::istream& document,
+std::map<std::string, int> count_words(std::istream& document,
                            const std::set<std::string>& stopwords)
 {
     std::map<std::string, int> counts;
-    for(std::string word : std::istream_iterator<std::string>(document))
-    {
-        std::string lower_word = to_lowercase(word);
-        
-    }
-    if(!counts.find(to_lowercase(lower_word) && !stopwords.find(
-                                                        lower_word))
-            counts.insert({lower_word, 1});
-        else if(counts.find(lower_word))
-            ++counts[lower_word];
+    std::for_each(std::istream_iterator<std::string>(document),
+                  std::istream_iterator<std::string>(),
+                  [stopwords, &counts](std::string word){
+            if(stopwords.find(to_lowercase(word)) == stopwords.end())
+                ++counts[to_lowercase(word)];});
     return counts;
 }
 /*
