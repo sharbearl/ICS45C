@@ -178,15 +178,12 @@ void Gradebook::validate() const
 std::istream& operator>>(std::istream& in, Gradebook& b)
 {
     std::istream_iterator<Student> stream (in);
-    std::copy(stream, std::istream_iterator<Student>(), b.students.begin());
-    /*std::for_each(stream, std::istream_iterator<Student>(), 
-                  [&b, &in](auto s){in >> s; back_inserter(b.students);});*/
+    std::copy(stream, std::istream_iterator<Student>(), 
+              back_inserter(b.students));
     return in;
 }
 std::ostream& operator<<(std::ostream& out, const Gradebook& b)
 {
-   /* std::for_each(b.students.begin(), b.students.end(), [&out](Student s)
-                  {out << s;});*/
     std::copy(b.students.begin(), b.students.end(), 
               std::ostream_iterator<Student>(out, "\n"));
     return out;
