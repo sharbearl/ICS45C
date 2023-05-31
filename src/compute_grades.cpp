@@ -52,7 +52,7 @@ std::istream& operator>>(std::istream& in, Student& s)
         std::stringstream stream(line);
         std::string word;
         stream >> word;
-        if(word == "\n")
+        if(line.empty())
             break;
         else if(word == "Name")
         {
