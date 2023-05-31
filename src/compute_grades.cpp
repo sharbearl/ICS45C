@@ -1,6 +1,8 @@
 #include <stdexcept>
 #include <iostream>
 #include <fstream>
+#include <sstream>
+#include <iomanip>
 #include <iterator>
 #include <numeric>
 #include <cmath>
@@ -42,38 +44,60 @@ bool Student::operator==(const Student& other) const
            (last_name == other.last_name);
 }
 
-friend std::istream& Student::operator>>(std::istream& in, Student& s)
+std::istream& operator>>(std::istream& in, Student& s)
 {
     std::string line;
     while(getline(in, line))
     {
-        if(line == '\n')
+        std::stringstream stream(line);
+        std::string word;
+        stream >> word;
+        if(word == "\n")
             break;
-        else if(line.starts_with("Name")
+        else if(word == "Name")
         {
-            std::vector<std::string>::iterator start = line.begin() + 5;
-            auto split = std::partition_point(start, line.end(), []
-                         (std::string i) {return i == " ";});
-            std::copy(start, split, first_name);
-            std::copy(split, line.end(), last_name);
+            stream >> word;
+            s.first_name = word;
+            s.last_name = line.substr(s.first_name.size() + 5);
         }
-        else if(line.starts_with("Quiz")
+        else if(word == "Quiz")
         {
-            std::vector<int>::iterator start = line.begin() + 5;
-            std::copy(start, line.end(), quiz);
+            std::istream_iterator<int> start(stream);
+            std::copy(start, std::istream_iterator<int>(), 
+                      std::back_inserter(s.quiz));
         }
-        else if(line.starts_with("Hw")
+        else if(word == "Hw")
         {
-            std::vector<int>::iterator start = line.begin() + 3;
-            std::copy(start, line.end(), hw);
+            std::istream_iterator<int> start(stream);
+            std::copy(start, std::istream_iterator<int>(), 
+                      std::back_inserter(s.hw));
         }
-        else if(line.starts_with("final")
+        else if(word == "Final")
         {
-            final = std::stod(line.substr(6));
+            stream >> word;
+            s.final_score = std::stod(word);
         }
+    }
+    return in;
 }
 
-friend std::ostream& Student::operator<<(std::ostream& out, const Student& s);
+std::ostream& operator<<(std::ostream& out, const Student& s)
+{
+    std::stringstream temp;
+    temp << std::left;
+
+    temp << "Name: " << std::setw(8) << s.first_name << " " << s.last_name 
+         << std::endl;
+    temp << "HW Ave: " << std::setw(8) << s.hw_avg << std::endl;
+    temp << "QZ Ave: " << std::setw(8) << s.quiz_avg << std::endl;
+    temp << "Final: " << std::setw(8) << s.final_score << std::endl;
+    temp << "Total: " << std::setw(8) << s.course_score << std::endl;
+    temp << "Grade: " << std::setw(8) << s.course_grade << std::endl;
+
+    out << temp.str() << std::endl;
+
+    return out;
+}
 
 void Student::compute_quiz_avg()
 {
@@ -127,12 +151,20 @@ void Student::compute_course_score()
         course_grade = "A+";
 }
 /*
-void Gradebook::compute_grades();
+void Gradebook::compute_grades()
+{
+    std::transform(students.begin(), students.end(), students.begin(), []
+                   (Student s) {s.compute_grade();});
+}
 void Gradebook::sort();
-void Gradebook::validate() const;
+void Gradebook::validate() const
+{
+    std::transform(student.begin(), students.end(), students.begin(), []
+                   (Student s) {s.validate();});
+}
 *//*
-friend std::istream& Gradebook::operator>>(std::istream& in, Gradebook& b)
+std::istream& operator>>(std::istream& in, Gradebook& b)
 {
     
 }*/
-//friend std::ostream& Gradebook::operator<<(std::ostream& out, const Gradebook& b);
+//std::ostream& operator<<(std::ostream& out, const Gradebook& b);

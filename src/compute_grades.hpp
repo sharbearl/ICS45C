@@ -15,8 +15,8 @@ public:
     std::strong_ordering operator<=>(const Student& other) const;
     bool operator==(const Student& other) const;
 
-    //friend std::istream& operator>>(std::istream& in, Student& s);
-    //friend std::ostream& operator<<(std::ostream& out, const Student& s);
+    friend std::istream& operator>>(std::istream& in, Student& s);
+    friend std::ostream& operator<<(std::ostream& out, const Student& s);
 
     //void fill(std::string first, std::string last, 
     //          std::vector<int> quizzes, std::vector<int> hws, double fin);
