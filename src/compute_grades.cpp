@@ -78,6 +78,12 @@ std::istream& operator>>(std::istream& in, Student& s)
             s.final_score = std::stod(word);
         }
     }
+
+    if(s.quiz.size() == 0)
+        s.quiz.push_back(0);
+    if(s.hw.size() == 0)
+        s.hw.push_back(0);
+
     return in;
 }
 
@@ -162,15 +168,25 @@ void Gradebook::sort()
 {
     std::sort(students.begin(), students.end());
 }
-/*
+
 void Gradebook::validate() const
 {
-    std::transform(students.begin(), students.end(), students.begin(), []
-                   (Student s) {s.validate();});
-}*/
-/*
+    std::for_each(students.begin(), students.end(), 
+                  [](Student s){s.validate();});
+}
+
 std::istream& operator>>(std::istream& in, Gradebook& b)
 {
-    
-}*/
-//std::ostream& operator<<(std::ostream& out, const Gradebook& b);
+    std::istream_iterator<Student> stream (in);
+    std::for_each(stream, std::istream_iterator<Student>(), 
+                  [&b, &in](auto s){in >> s; back_inserter(b.students);});
+    return in;
+}
+std::ostream& operator<<(std::ostream& out, const Gradebook& b)
+{
+    std::for_each(b.students.begin(), b.students.end(), [&out](Student s)
+                  {out << s;});
+    //std::copy(b.students.begin(), b.students.end(), 
+    //          std::ostream_iterator<std::string>(out, "\n"));
+    return out;
+}
