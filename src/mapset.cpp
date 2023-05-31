@@ -40,6 +40,7 @@ std::map<std::string, int> count_words(std::istream& document,
 void output_word_counts(const std::map<std::string, int>& word_counts,
                         std::ostream& output)
 {
-    for(auto [key, value] : word_counts)
-        output << key << " " << value << "\n";
+    std::for_each(word_counts.begin(), word_counts.end(), [&output]
+                  (auto word) {output << word.first << " " << 
+                               word.second << "\n";});
 }
