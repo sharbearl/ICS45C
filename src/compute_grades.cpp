@@ -116,14 +116,15 @@ void Student::compute_quiz_avg()
     {
         std::sort(quiz.begin(), quiz.end());
         quiz.erase(quiz.begin());
-        quiz_avg = std::accumulate(quiz.begin(), quiz.end(), 0) /
-                   quiz.size();
+        double avg = quiz.size();
+        quiz_avg = std::accumulate(quiz.begin(), quiz.end(), 0) / avg;
     }
 }
 
 void Student::compute_hw_avg()
 {
-    hw_avg = std::accumulate(hw.begin(), hw.end(), 0) / hw.size();
+    double avg = hw.size();
+    hw_avg = std::accumulate(hw.begin(), hw.end(), 0) / avg;
 }
 
 void Student::compute_course_score()
