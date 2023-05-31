@@ -70,7 +70,7 @@ std::istream& operator>>(std::istream& in, Student& s)
         else if(word == "HW")
         {
             s.hw.clear();
-            stream << s.last_name;
+            stream >> s.last_name;
             std::istream_iterator<int> start(stream);
             std::copy(start, std::istream_iterator<int>(), 
                       std::back_inserter(s.hw));
