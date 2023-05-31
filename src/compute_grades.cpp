@@ -47,10 +47,10 @@ bool Student::operator==(const Student& other) const
 std::istream& operator>>(std::istream& in, Student& s)
 {
     std::string line;
+    s.quiz.clear();
+    s.hw.clear();
     while(getline(in, line))
     {
-        s.quiz.clear();
-        s.hw.clear();
         std::stringstream stream(line);
         std::string word;
         stream >> word;
