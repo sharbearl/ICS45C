@@ -101,7 +101,7 @@ std::ostream& operator<<(std::ostream& out, const Student& s)
     temp << std::setw(8) << "Total: " << s.course_score << std::endl;
     temp << std::setw(8) << "Grade: " << s.course_grade << std::endl;
 
-    out << temp.str() << std::endl;
+    out << temp.str();
 
     return out;
 }

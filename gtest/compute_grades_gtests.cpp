@@ -13,7 +13,7 @@ TEST(StudentTests, Output) {
     s.validate();
     s.compute_grade();
     out << s;
-    EXPECT_EQ(out.str(), "Name:   Lisa Simpson\nHW Ave: 100\nQZ Ave: 100\nFinal:  100\nTotal:  100\nGrade:  A+\n\n");
+    EXPECT_EQ(out.str(), "Name:   Lisa Simpson\nHW Ave: 100\nQZ Ave: 100\nFinal:  100\nTotal:  100\nGrade:  A+\n");
 }
 
 TEST(StudentTests, Validate) {
