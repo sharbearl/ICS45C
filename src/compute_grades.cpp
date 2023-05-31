@@ -71,8 +71,10 @@ std::istream& operator>>(std::istream& in, Student& s)
         {
             s.hw.clear();
             std::istream_iterator<int> start(stream);
-            std::copy(start, std::istream_iterator<int>(), 
-                      std::back_inserter(s.hw));
+            std::for_each(start, std::istream_iterator<int>(), [](auto s)
+                          {std::cout << s;});
+            //std::copy(start, std::istream_iterator<int>(), 
+            //          std::back_inserter(s.hw));
         }
         else if(word == "Final")
         {
