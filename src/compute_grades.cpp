@@ -179,7 +179,7 @@ std::istream& operator>>(std::istream& in, Gradebook& b)
 {
     std::istream_iterator<Student> stream (in);
     std::copy(stream, std::istream_iterator<Student>(), 
-              back_inserter(b.students));
+              std::back_inserter(b.students));
     return in;
 }
 std::ostream& operator<<(std::ostream& out, const Gradebook& b)
