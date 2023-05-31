@@ -91,7 +91,8 @@ std::ostream& operator<<(std::ostream& out, const Student& s)
 {
     std::stringstream temp;
     temp << std::left;
-    std::for_each(s.hw.begin(), s.hw.end(), [&out](auto i){temp << i;});
+    std::string name = s.first_name + s.last_name;
+    std::for_each(s.hw.begin(), s.hw.end(), [&temp](auto i){temp << i;});
     temp << std::setw(8) << "Name: " << name << std::endl;
     temp << std::setw(8) << "HW Ave: " << s.hw_avg << std::endl;
     temp << std::setw(8) << "QZ Ave: " << s.quiz_avg << std::endl;
