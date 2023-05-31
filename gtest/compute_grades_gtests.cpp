@@ -7,7 +7,7 @@ using namespace std;
 
 TEST(StudentTests, Output) {
     Student s;
-    stringstream in{"Name Lisa Simpson\nQuiz 100 100 10 100\nHW   100 100 100 100\nFinal 100\n\n"};
+    stringstream in{"Quiz 100 100 10 100\nName Lisa Simpson\nHW   100 100 100 100\nFinal 100\n\n"};
     stringstream out;
     in >> s;
     s.validate();

@@ -17,9 +17,7 @@ public:
 
     friend std::istream& operator>>(std::istream& in, Student& s);
     friend std::ostream& operator<<(std::ostream& out, const Student& s);
-
-    //void fill(std::string first, std::string last, 
-    //          std::vector<int> quizzes, std::vector<int> hws, double fin);
+    
 private:
     std::string last_name = "Name";
     std::string first_name = "Missing";

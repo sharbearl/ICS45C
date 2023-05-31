@@ -62,12 +62,14 @@ std::istream& operator>>(std::istream& in, Student& s)
         }
         else if(word == "Quiz")
         {
+            s.quiz.clear();
             std::istream_iterator<int> start(stream);
             std::copy(start, std::istream_iterator<int>(), 
                       std::back_inserter(s.quiz));
         }
         else if(word == "HW")
         {
+            s.hw.clear();
             std::istream_iterator<int> start(stream);
             std::copy(start, std::istream_iterator<int>(), 
                       std::back_inserter(s.hw));
@@ -166,7 +168,7 @@ void Gradebook::compute_grades()
 
 void Gradebook::sort()
 {
-    //std::sort(students.begin(), students.end());
+    std::sort(students.begin(), students.end());
 }
 
 void Gradebook::validate() const
