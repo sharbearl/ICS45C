@@ -31,7 +31,9 @@ void Student::compute_grade()
 
 std::strong_ordering Student::operator<=>(const Student& other) const
 {
-    return last_name - other.last_name;
+    if(last_name != other.last_name)
+        return last_name <=> other.last_name;
+    return first_name <=> other.first_name;
 }
 
 bool Student::operator==(const Student& other) const
@@ -39,26 +41,39 @@ bool Student::operator==(const Student& other) const
     return (first_name == other.first_name) && 
            (last_name == other.last_name);
 }
-/*
+
 friend std::istream& Student::operator>>(std::istream& in, Student& s)
 {
-    std::string word;
-    while(word << in)
+    std::string line;
+    while(getline(in, line))
     {
-        if(line = '\n')
+        if(line == '\n')
             break;
         else if(line.starts_with("Name")
         {
-            word << in;
-            s.first_name = word;
-            word << in;
-            s.last_name = word;
+            std::vector<std::string>::iterator start = line.begin() + 5;
+            auto split = std::partition_point(start, line.end(), []
+                         (std::string i) {return i == " ";});
+            std::copy(start, split, first_name);
+            std::copy(split, line.end(), last_name);
         }
         else if(line.starts_with("Quiz")
         {
-            
+            std::vector<int>::iterator start = line.begin() + 5;
+            std::copy(start, line.end(), quiz);
+        }
+        else if(line.starts_with("Hw")
+        {
+            std::vector<int>::iterator start = line.begin() + 3;
+            std::copy(start, line.end(), hw);
+        }
+        else if(line.starts_with("final")
+        {
+            final = std::stod(line.substr(6));
+        }
 }
-friend std::ostream& Student::operator<<(std::ostream& out, const Student& s);*/
+
+friend std::ostream& Student::operator<<(std::ostream& out, const Student& s);
 
 void Student::compute_quiz_avg()
 {
@@ -112,24 +127,12 @@ void Student::compute_course_score()
         course_grade = "A+";
 }
 /*
-void Student::fill(std::string first, std::string last, 
-                   std::vector<int> quizzes, std::vector<int> hws, 
-                   double fin)
-{
-    first_name = first;
-    last_name = last;
-    quiz = quizzes;
-    hw = hws;
-    final_score = fin;
-
-    compute_quiz_avg();
-    compute_hw_avg();
-    compute_course_score();
-}*/
-/*
 void Gradebook::compute_grades();
 void Gradebook::sort();
 void Gradebook::validate() const;
-
-friend std::istream& Gradebook::operator>>(std::istream& in, Gradebook& b);
-friend std::ostream& Gradebook::operator<<(std::ostream& out, const Gradebook& b);*/
+*//*
+friend std::istream& Gradebook::operator>>(std::istream& in, Gradebook& b)
+{
+    
+}*/
+//friend std::ostream& Gradebook::operator<<(std::ostream& out, const Gradebook& b);
