@@ -150,19 +150,24 @@ void Student::compute_course_score()
     else if(course_score <= 100)
         course_grade = "A+";
 }
-/*
+
 void Gradebook::compute_grades()
 {
     std::transform(students.begin(), students.end(), students.begin(), []
-                   (Student s) {s.compute_grade();});
+                   (Student s) {s.compute_grade(); return s;});
 }
-void Gradebook::sort();
+
+void Gradebook::sort()
+{
+    std::sort(students.begin(), students.end());
+}
+
 void Gradebook::validate() const
 {
-    std::transform(student.begin(), students.end(), students.begin(), []
+    std::transform(students.begin(), students.end(), students.begin(), []
                    (Student s) {s.validate();});
 }
-*//*
+/*
 std::istream& operator>>(std::istream& in, Gradebook& b)
 {
     
