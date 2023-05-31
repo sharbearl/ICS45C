@@ -91,9 +91,7 @@ std::ostream& operator<<(std::ostream& out, const Student& s)
 {
     std::stringstream temp;
     temp << std::left;
-    
-    std::for_each(s.hw.begin(), s.hw.end(), [&temp](auto v){temp << v;});
-    std::string name = s.first_name + s.last_name;
+    std::for_each(s.hw.begin(), s.hw.end(), [&out](auto i){temp << i;});
     temp << std::setw(8) << "Name: " << name << std::endl;
     temp << std::setw(8) << "HW Ave: " << s.hw_avg << std::endl;
     temp << std::setw(8) << "QZ Ave: " << s.quiz_avg << std::endl;
@@ -115,7 +113,7 @@ void Student::compute_quiz_avg()
     else
     {
         std::sort(quiz.begin(), quiz.end());
-        quiz.erase(quiz.begin());
+        //quiz.erase(quiz.begin());
         double avg = quiz.size();
         quiz_avg = std::accumulate(quiz.begin(), quiz.end(), 0) / avg;
     }
