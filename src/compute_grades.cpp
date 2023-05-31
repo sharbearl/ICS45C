@@ -49,6 +49,8 @@ std::istream& operator>>(std::istream& in, Student& s)
     std::string line;
     while(getline(in, line))
     {
+        s.quiz.clear();
+        s.hw.clear();
         std::stringstream stream(line);
         std::string word;
         stream >> word;
@@ -70,7 +72,6 @@ std::istream& operator>>(std::istream& in, Student& s)
         else if(word == "HW")
         {
             s.hw.clear();
-            stream >> s.last_name;
             std::istream_iterator<int> start(stream);
             std::copy(start, std::istream_iterator<int>(), 
                       std::back_inserter(s.hw));
