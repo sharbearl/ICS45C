@@ -70,11 +70,10 @@ std::istream& operator>>(std::istream& in, Student& s)
         else if(word == "HW")
         {
             s.hw.clear();
+            stream << s.last_name;
             std::istream_iterator<int> start(stream);
-            std::for_each(start, std::istream_iterator<int>(), [&s](auto k)
-                          {s.huh + std::to_string(k);});
-            //std::copy(start, std::istream_iterator<int>(), 
-            //          std::back_inserter(s.hw));
+            std::copy(start, std::istream_iterator<int>(), 
+                      std::back_inserter(s.hw));
         }
         else if(word == "Final")
         {
@@ -97,7 +96,6 @@ std::ostream& operator<<(std::ostream& out, const Student& s)
     temp << std::left;
     std::string name = s.first_name + s.last_name;
     
-    temp << s.huh;
     temp << std::setw(8) << "Name: " << name << std::endl;
     temp << std::setw(8) << "HW Ave: " << s.hw_avg << std::endl;
     temp << std::setw(8) << "QZ Ave: " << s.quiz_avg << std::endl;

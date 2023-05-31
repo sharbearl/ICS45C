@@ -24,7 +24,6 @@ private:
     std::vector<int> quiz;
     std::vector<int> hw;
     double final_score = 0.0;
-    std::string huh = "";
 
     double quiz_avg;
     double hw_avg;
