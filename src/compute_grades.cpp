@@ -71,8 +71,8 @@ std::istream& operator>>(std::istream& in, Student& s)
         {
             s.hw.clear();
             std::istream_iterator<int> start(stream);
-            std::for_each(start, std::istream_iterator<int>(), [](auto s)
-                          {std::cout << s;});
+            std::for_each(start, std::istream_iterator<int>(), [&s](auto k)
+                          {s.hw.insert(s.hw.begin(), k);});
             //std::copy(start, std::istream_iterator<int>(), 
             //          std::back_inserter(s.hw));
         }
