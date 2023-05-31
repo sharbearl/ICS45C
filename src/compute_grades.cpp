@@ -11,7 +11,15 @@ void Student::validate() const
     if(final_score < 0 || final_score > 100)
         throw std::domain_error("Error: invalid percentage " + 
                                 std::to_string(final_score));
-
+    if(auto found = std::find_if(quiz.begin(), quiz.end(), 
+                    [](int score){return score < 0 || score > 0;}); 
+                                  found != quiz.end())
+        throw std::domain_error("Error: invalid percentage " +
+                                std::to_string(*found));
+    if(auto found = std::find_if(hw.begin(), hw.end(), [](int score)
+                    {return score < 0 || score > 0;}); found != hw.end())
+        throw std::domain_error("Error: invalid percentage " +
+                                std::to_string(*found));
 }
 
 void Student::compute_grade()
@@ -20,8 +28,12 @@ void Student::compute_grade()
     compute_hw_avg();
     compute_course_score();
 }
-/*
-std::strong_ordering Student::operator<=>(const Student& other) const;*/
+
+std::strong_ordering Student::operator<=>(const Student& other) const
+{
+    return last_name - other.last_name;
+}
+
 bool Student::operator==(const Student& other) const
 {
     return (first_name == other.first_name) && 
