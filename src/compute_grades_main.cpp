@@ -4,7 +4,7 @@
 using namespace std;
 
 int main() {
-    ifstream gradebook{"gradebook.txt"};
+    ifstream gradebook{"src/gradebook.txt"};
     Gradebook b;
     gradebook >> b;
 
@@ -12,6 +12,6 @@ int main() {
     b.compute_grades();
     b.sort();
 
-    ofstream course_grades{"course_grades.txt"};
+    ofstream course_grades{"src/course_grades.txt"};
     course_grades << b;
 }
