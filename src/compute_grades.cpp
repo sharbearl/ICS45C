@@ -14,12 +14,12 @@ void Student::validate() const
         throw std::domain_error("Error: invalid percentage " + 
                                 std::to_string(final_score));
     if(auto found = std::find_if(quiz.begin(), quiz.end(), 
-                    [](int score){return score < 0 || score > 0;}); 
+                    [](int score){return score < 0 || score > 100;}); 
                                   found != quiz.end())
         throw std::domain_error("Error: invalid percentage " +
                                 std::to_string(*found));
     if(auto found = std::find_if(hw.begin(), hw.end(), [](int score)
-                    {return score < 0 || score > 0;}); found != hw.end())
+                    {return score < 0 || score > 100;}); found != hw.end())
         throw std::domain_error("Error: invalid percentage " +
                                 std::to_string(*found));
 }
@@ -66,7 +66,7 @@ std::istream& operator>>(std::istream& in, Student& s)
             std::copy(start, std::istream_iterator<int>(), 
                       std::back_inserter(s.quiz));
         }
-        else if(word == "Hw")
+        else if(word == "HW")
         {
             std::istream_iterator<int> start(stream);
             std::copy(start, std::istream_iterator<int>(), 
@@ -85,14 +85,15 @@ std::ostream& operator<<(std::ostream& out, const Student& s)
 {
     std::stringstream temp;
     temp << std::left;
+    
+    std::string name = s.first_name + s.last_name;
 
-    temp << "Name: " << std::setw(8) << s.first_name << " " << s.last_name 
-         << std::endl;
-    temp << "HW Ave: " << std::setw(8) << s.hw_avg << std::endl;
-    temp << "QZ Ave: " << std::setw(8) << s.quiz_avg << std::endl;
-    temp << "Final: " << std::setw(8) << s.final_score << std::endl;
-    temp << "Total: " << std::setw(8) << s.course_score << std::endl;
-    temp << "Grade: " << std::setw(8) << s.course_grade << std::endl;
+    temp << std::setw(8) << "Name: " << name << std::endl;
+    temp << std::setw(8) << "HW Ave: " << s.hw_avg << std::endl;
+    temp << std::setw(8) << "QZ Ave: " << s.quiz_avg << std::endl;
+    temp << std::setw(8) << "Final: " << s.final_score << std::endl;
+    temp << std::setw(8) << "Total: " << s.course_score << std::endl;
+    temp << std::setw(8) << "Grade: " << s.course_grade << std::endl;
 
     out << temp.str() << std::endl;
 
@@ -122,7 +123,7 @@ void Student::compute_hw_avg()
 void Student::compute_course_score()
 {
     course_score = std::round(((quiz_avg * .4) + (hw_avg * .3) + 
-                              (final_score * .3)) * 100);
+                              (final_score * .3)));
     if(course_score <= 59)
         course_grade = "F";
     else if(course_score <= 62)
@@ -161,12 +162,12 @@ void Gradebook::sort()
 {
     std::sort(students.begin(), students.end());
 }
-
+/*
 void Gradebook::validate() const
 {
     std::transform(students.begin(), students.end(), students.begin(), []
                    (Student s) {s.validate();});
-}
+}*/
 /*
 std::istream& operator>>(std::istream& in, Gradebook& b)
 {
