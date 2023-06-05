@@ -21,8 +21,8 @@ public:
         using iterator_category = std::forward_iterator_tag;
         using value_type = SetList::value_type;
         using difference_type = std::ptrdiff_t;
-        using pointer = T*;
-        using reference = T&;
+        using pointer = SetList::value_type*;
+        using reference = SetList::value_type&;
 
         explicit ListIterator(std::shared_ptr<ListNode> ptr = nullptr)
             : ptr(ptr) {}
