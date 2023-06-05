@@ -64,25 +64,25 @@ public:
 
     ListIterator begin()
     {
-        return head;
+        return ListIterator(head);
     }
 
     ListIterator end()
     {
-        if(p != nullptr)
+        std::shared_ptr<ListNode> last = head;
+        if(last != nullptr)
         {  
-            ListNode *last = head;
             for(ListNode *p = last; p != nullptr; p = p->next)
                 last = p;
         }
-        return p;
+        return ListIterator(last->next);
     }
 
     bool contains(T const& value)
     {
-        if(p != nullptr)
+        if(head != nullptr)
         {  
-            ListNode *last = head;
+            std::shared_ptr<ListNode> last = head;
             for(ListNode *p = last; p != nullptr; p = p->next)
             {
                 if(p->data = value)
@@ -96,11 +96,11 @@ public:
     {
         if(!contains(value))
         {
-            ListNode *temp = head;
+            std::shared_ptr<ListNode> temp = head;
             head = new ListNode(value, temp);
         }
 
-        return *this;
+        return ListIterator(head);
     }
 private:
     using iterator = ListIterator;
