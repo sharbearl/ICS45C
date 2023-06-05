@@ -14,21 +14,43 @@ class SetList {
         std::shared_ptr<ListNode> next;
     };
 public:
-    using value_type = ???;
+    using value_type = T;
 
     class ListIterator {
     public:
-        using iterator_category = ???;
-        using value_type = ???;
-        using difference_type = ???;
-        using pointer = ???;
-        using reference = ???;
+        using iterator_category = std::forward_iterator_tag;
+        using value_type = SetList::value_type;
+        using difference_type = std::ptrdiff_t;
+        using pointer = ListNode*;
+        using reference = ListNode&;
 
         explicit ListIterator(std::shared_ptr<ListNode> ptr = nullptr);
-        ListIterator& operator++();
-        ListIterator operator++(int);
-        T& operator*() const;
-        T* operator->() const;
+        ListIterator& operator++()
+        {
+            if(ptr != nullptr)
+            {
+                ptr = ptr->next;
+            }
+            return *this;
+        }
+
+        ListIterator operator++(int)
+        {
+            ListIterator copy = *this;
+            ptr = ptr->next;
+            return copy;
+        }
+
+        T& operator*() const
+        {
+            return ptr->data;
+        }
+
+        T* operator->() const
+        {
+            return ptr;
+        }
+
         bool operator ==(const ListIterator& other) const = default;
     private:
         std::shared_ptr<ListNode> ptr;
