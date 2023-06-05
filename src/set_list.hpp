@@ -24,7 +24,9 @@ public:
         using pointer = ListNode*;
         using reference = ListNode&;
 
-        explicit ListIterator(std::shared_ptr<ListNode> ptr = nullptr);
+        explicit ListIterator(std::shared_ptr<ListNode> ptr = nullptr)
+            : ptr(ptr) {}
+
         ListIterator& operator++()
         {
             if(ptr != nullptr)
@@ -69,35 +71,22 @@ public:
 
     ListIterator end()
     {
-        std::shared_ptr<ListNode> last = head;
-        if(last != nullptr)
-        {  
-            for(ListNode *p = last; p != nullptr; p = p->next)
-                last = p;
-        }
-        return ListIterator(last->next);
+        return ListIterator(nullptr);
     }
 
     bool contains(T const& value)
     {
-        if(head != nullptr)
-        {  
-            std::shared_ptr<ListNode> last = head;
-            for(ListNode *p = last; p != nullptr; p = p->next)
-            {
-                if(p->data = value)
-                    return true;
-            }
-        }
-        return false;
+        auto result = std::find(begin(), end(), value);
+
+        return result != end();
     }
 
     ListIterator insert(T value)
     {
         if(!contains(value))
         {
-            std::shared_ptr<ListNode> temp = head;
-            head = new ListNode(value, temp);
+            auto new_head {std::make_shared<ListNode>(value, head)};
+            head = new_head;
         }
 
         return ListIterator(head);
