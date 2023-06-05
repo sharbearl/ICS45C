@@ -61,10 +61,47 @@ public:
         std::ranges::for_each(std::forward<Rng>(rng),
                               std::bind_front(&SetList::insert, this));
     }
-    ListIterator begin();
-    ListIterator end();
-    bool contains(T const& value);
-    ListIterator insert(T value);
+
+    ListIterator begin()
+    {
+        return head;
+    }
+
+    ListIterator end()
+    {
+        if(p != nullptr)
+        {  
+            ListNode *last = head;
+            for(ListNode *p = last; p != nullptr; p = p->next)
+                last = p;
+        }
+        return p;
+    }
+
+    bool contains(T const& value)
+    {
+        if(p != nullptr)
+        {  
+            ListNode *last = head;
+            for(ListNode *p = last; p != nullptr; p = p->next)
+            {
+                if(p->data = value)
+                    return true;
+            }
+        }
+        return false;
+    }
+
+    ListIterator insert(T value)
+    {
+        if(!contains(value))
+        {
+            ListNode *temp = head;
+            head = new ListNode(value, temp);
+        }
+
+        return *this;
+    }
 private:
     using iterator = ListIterator;
     static_assert(std::forward_iterator<iterator>);
