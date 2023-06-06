@@ -115,19 +115,19 @@ public:
     Value& operator[](const Key& key)
     {
         auto result = std::find_if(begin(), end(), 
-            [key](std::pair<Key, Value> pair){return pair.first == key;});
+            [key](std::pair<Key, Value> pair)
+            {return pair.first == key;});
         if(result != end())
         {
             return (*result).second;
         }
         else
         {
-            result = std::find_if(begin(), end(), [key]
-                (std::pair<Key, Value> pair){return key < pair.first;});
-            std::pair<Key, Value> new_pair;
-            pair.first = key;
-            result = data.insert(result, std::move(new_pair));
-            return *(pair.second);
+            auto inserted = std::lower_bound(data.begin(), data.end(), key, 
+                [](std::pair<Key, Value> pair, const Key& k)
+                {return k < pair.first;});
+            auto new_pair = data.emplace(inserted, key, Value{});
+            return (*new_pair).second;
         }
     }
 private:
