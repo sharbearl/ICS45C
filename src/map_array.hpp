@@ -122,10 +122,12 @@ public:
         }
         else
         {
-            std::pair<Key, Value> pair;
+            result = std::find_if(begin(), end(), [key]
+                (std::pair<Key, Value> pair){return key < pair.first;});
+            std::pair<Key, Value> new_pair;
             pair.first = key;
-            result = data.back_insert(pair);
-            return *pair.second;
+            result = data.insert(result, std::move(new_pair));
+            return *(pair.second);
         }
     }
 private:

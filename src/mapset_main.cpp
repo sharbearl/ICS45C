@@ -27,8 +27,8 @@ MapArray<string, int> count_words(istream& document,
 
     MapArray<string, int> result;
 
-    for(const string& s : word_view) {
-        ++results[s];
+    for(const string& s : words_view) {
+        ++result[s];
     }
 
     return result;
@@ -44,7 +44,7 @@ void output_word_counts(MapArray<string, int>& word_counts,
 int main() {
     ifstream stopwords_file{"stopwords.txt"};
     ifstream document{"sample_doc.txt"};
-    ostream output{"frequency.txt"};
+    ofstream output{"frequency.txt"};
 
     auto stopwords = load_stopwords(stopwords_file);
     auto word_counts = count_words(document, stopwords);
