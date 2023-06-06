@@ -85,8 +85,8 @@ public:
     {
         if(!contains(value))
         {
-            auto new_head {std::move
-                           (std::make_shared<ListNode>(value, head))};
+            auto new_head {std::make_shared<ListNode>
+                           (std::move(value), head)};
             head = new_head;
         }
 

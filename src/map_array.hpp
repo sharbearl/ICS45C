@@ -13,7 +13,7 @@ public:
     using value_type = std::pair<Key, Value>;
     class ArrayIterator {
     public:
-        using iterator_category = std::bidirectional_iterator_tag;
+        using iterator_category = std::random_access_iterator_tag;
         using value_type = MapArray::value_type;
         using difference_type = std::ptrdiff_t;
         using pointer = MapArray::value_type*;
@@ -95,7 +95,7 @@ public:
 
         std::pair<Key, Value>& operator[](difference_type d) const
         {           
-            return ptr + d;
+            return *(ptr + d);
         }
     private:
         std::pair<Key, Value>* ptr;
@@ -116,7 +116,17 @@ public:
     {
         auto result = std::find_if(begin(), end(), 
             [key](std::pair<Key, Value> pair){return pair.first == key;});
-        return *result.second;
+        if(result != end())
+        {
+            return (*result).second;
+        }
+        else
+        {
+            std::pair<Key, Value> pair;
+            pair.first = key;
+            result = data.back_insert(pair);
+            return *pair.second;
+        }
     }
 private:
     std::vector<std::pair<Key, Value>> data;
