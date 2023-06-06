@@ -104,20 +104,24 @@ public:
 
     ArrayIterator begin()
     {
+        if(data.size() == 0)
+            return ArrayIterator(nullptr);
         return ArrayIterator(&data[0]);
     }
 
     ArrayIterator end()
     {
+        if(data.size() == 0)
+            return ArrayIterator(nullptr);
         return ArrayIterator(&data[data.size()]);
     }
 
     Value& operator[](const Key& key)
     {
-        auto result = std::find_if(begin(), end(), 
+        auto result = std::find_if(data.begin(), data.end(), 
             [key](std::pair<Key, Value> pair)
             {return pair.first == key;});
-        if(result != end())
+        if(result != data.end())
         {
             return (*result).second;
         }
@@ -125,8 +129,10 @@ public:
         {
             auto inserted = std::lower_bound(data.begin(), data.end(), key, 
                 [](std::pair<Key, Value> pair, const Key& k)
-                {return k < pair.first;});
-            auto new_pair = data.emplace(inserted, key, Value{});
+                {return k > pair.first;});
+            //auto new_pair = data.emplace(inserted, key, Value{});
+            auto new_pair = data.insert(inserted, 
+                    std::pair<Key, Value>(key, Value{}));
             return (*new_pair).second;
         }
     }
