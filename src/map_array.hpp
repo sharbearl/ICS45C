@@ -104,12 +104,12 @@ public:
 
     ArrayIterator begin()
     {
-        return ArrayIterator(data.begin());
+        return ArrayIterator(&data[0]);
     }
 
     ArrayIterator end()
     {
-        return ArrayIterator(nullptr);
+        return ArrayIterator(&data[data.size()]);
     }
 
     Value& operator[](const Key& key)
