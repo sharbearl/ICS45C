@@ -48,18 +48,38 @@ public:
             return cpy;
         }
 
-        ArrayIterator& operator+=(difference_type d);
+        ArrayIterator& operator+=(difference_type d)
+        {
+            ptr += d;
+            return *this;
+        }
 
-        ArrayIterator& operator-=(difference_type d);
+        ArrayIterator& operator-=(difference_type d)
+        {
+            ptr -= d;
+            return *this;
+        }
 
-        friend ArrayIterator operator+(ArrayIterator it, difference_type d);
+        friend ArrayIterator operator+(ArrayIterator it, difference_type d)
+        {
+            return ArrayIterator(it.ptr + d);
+        }
         
-        friend ArrayIterator operator+(difference_type d, ArrayIterator it);
-        
-        friend ArrayIterator operator-(ArrayIterator it, difference_type d);
+        friend ArrayIterator operator+(difference_type d, ArrayIterator it)
+        {
+            return ArrayIterator(it.ptr + d);
+        }
+
+        friend ArrayIterator operator-(ArrayIterator it, difference_type d)
+        {
+            return ArrayIterator(it.ptr - d);
+        }
         
         friend difference_type operator-(ArrayIterator lhs, 
-                                         ArrayIterator rhs);
+                                         ArrayIterator rhs)
+        {
+            return lhs.ptr - rhs.ptr;
+        }
         
         auto operator<=>(const ArrayIterator& other) const = default;
 
@@ -73,11 +93,15 @@ public:
             return ptr;
         }
 
-        std::pair<Key, Value>& operator[](difference_type d) const;
+        std::pair<Key, Value>& operator[](difference_type d) const
+        {           
+            return ptr + d;
+        }
     private:
         std::pair<Key, Value>* ptr;
     };
     using iterator = ArrayIterator;
+
     ArrayIterator begin()
     {
         return ArrayIterator(data.begin());
@@ -85,10 +109,15 @@ public:
 
     ArrayIterator end()
     {
-        return ArrayIterator(data.end());
+        return ArrayIterator(nullptr);
     }
 
-    Value& operator[](const Key& key);
+    Value& operator[](const Key& key)
+    {
+        auto result = std::find_if(begin(), end(), 
+            [key](std::pair<Key, Value> pair){return pair.first == key;});
+        return *result.second;
+    }
 private:
     std::vector<std::pair<Key, Value>> data;
     static_assert(std::random_access_iterator<iterator>);
