@@ -123,7 +123,7 @@ public:
             {return pair.first == key;});
         if(result != data.end())
         {
-            return (*result).second;
+            return result->second;
         }
         else
         {
@@ -133,7 +133,7 @@ public:
             //auto new_pair = data.emplace(inserted, key, Value{});
             auto new_pair = data.insert(inserted, 
                     std::pair<Key, Value>(key, Value{}));
-            return (*new_pair).second;
+            return new_pair->second;
         }
     }
 private:
